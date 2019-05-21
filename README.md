@@ -17,8 +17,16 @@
 * 게시판
   + 게시판을 통해서 동호회 회원들 간의 자유로운 의사소통을 보장
 
-## Skill
+## Specification
 * [Requery](https://github.com/coupang/spring-data-requery)
+* Spring Boot
+* Maven
+* Spring Data JPA
+* H2
+* Restful API
+* Lombok
+* QueryDSL
+* MySQL
 
 ## Test
 * BDD(Behaviour-Driven Development) 방식
