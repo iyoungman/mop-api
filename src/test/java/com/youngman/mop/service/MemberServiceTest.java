@@ -40,19 +40,16 @@ public class MemberServiceTest {
 				.pw("PW")
 				.address("ADDRESS")
 				.mobile("01053221661")
-				.build()
-		;
+				.build();
 
 		//when
 		memberCreateService.signUp(signUpRequestDto);
 
 		//then
 		assertThat(memberRepository.findByEmail(signUpRequestDto.getEmail()).get(),
-				is(notNullValue()))
-		;
+				is(notNullValue()));
 		assertThat(memberRepository.findByEmail(signUpRequestDto.getEmail()).get().getEmail(),
-				is(signUpRequestDto.getEmail()))
-		;
+				is(signUpRequestDto.getEmail()));
 
 	}
 }
