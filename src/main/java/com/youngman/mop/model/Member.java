@@ -1,12 +1,14 @@
 package com.youngman.mop.model;
 
-import com.youngman.mop.model.dto.MemberDto;
+import com.youngman.mop.model.dto.SignUpRequestDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by YoungMan on 2019-05-08.
@@ -18,9 +20,12 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "member_id")
+	private Long id;
+
+	@Column(unique = true)
+	private String email;
 
 	private String pw;
 
@@ -30,37 +35,35 @@ public class Member {
 
 	private String address;
 
+	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+	private List<MyClub> myClubs = new ArrayList<>();
+
 
 	@Builder
-	public Member(String id, String pw, String name, String mobile, String address) {
-		this.id = id;
+	public Member(String email, String pw, String name, String mobile, String address) {
+		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.mobile = mobile;
 		this.address = address;
 	}
 
-	public static Member of(MemberDto.SignUpRequest signUpRequest) {
+	public static Member of(SignUpRequestDto signUpRequestDto) {
 		return Member.builder()
-				.id(signUpRequest.getId())
-				.pw(signUpRequest.getPw())
-				.name(signUpRequest.getName())
-				.mobile(signUpRequest.getMobile())
-				.address(signUpRequest.getAddress())
+				.email(signUpRequestDto.getEmail())
+				.pw(signUpRequestDto.getPw())
+				.name(signUpRequestDto.getName())
+				.mobile(signUpRequestDto.getMobile())
+				.address(signUpRequestDto.getAddress())
 				.build();
 	}
 
-	public void updateMember(MemberDto.SignUpRequest signUpRequest) {
-		this.id = signUpRequest.getId();
-		this.pw = signUpRequest.getPw();
-		this.name = signUpRequest.getName();
-		this.mobile = signUpRequest.getMobile();
-		this.address = signUpRequest.getAddress();
+	public void updateMember(SignUpRequestDto signUpRequestDto) {
+//		this.email = signUpRequestDto.getEmail();
+		this.pw = signUpRequestDto.getPw();
+		this.name = signUpRequestDto.getName();
+		this.mobile = signUpRequestDto.getMobile();
+		this.address = signUpRequestDto.getAddress();
 	}
-
-	//Club에 가입한다
-
-
-
 
 }
