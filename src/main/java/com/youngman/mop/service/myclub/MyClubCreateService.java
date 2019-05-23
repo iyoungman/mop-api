@@ -35,13 +35,15 @@ public class MyClubCreateService {
 		myClubRepository.save(myClub);
 	}
 
-	private Member findMemberByEmail(String email) {
+	//TODO Private
+	public Member findMemberByEmail(String email) {
 		return memberRepository.findByEmail(email).orElseThrow(
 				() -> new UserDefineException("존재하지 않는 아이디 입니다.")
 		);
 	}
 
-	private Club findClubById(Long id) {
+	//TODO Private
+	public Club findClubById(Long id) {
 		return clubRepository.findById(id).orElseThrow(
 				() -> new UserDefineException("존재하지 않는 동호회 입니다.")
 		);

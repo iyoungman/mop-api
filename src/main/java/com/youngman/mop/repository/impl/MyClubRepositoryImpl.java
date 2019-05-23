@@ -14,6 +14,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+import static com.youngman.mop.model.QMember.member;
+import static com.youngman.mop.model.QMyClub.myClub;
+import static com.youngman.mop.model.QClub.club;
+
 /**
  * Created by YoungMan on 2019-05-23.
  */
@@ -22,8 +26,6 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	private QMyClub myClub = QMyClub.myClub;
-	private QMember member = QMember.member;
 
 	public MyClubRepositoryImpl() {
 		super(MyClub.class);
@@ -31,11 +33,13 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 
 	@Override
 	public List<MyClubResponseDto> fetchMyClubsByUserId(String email) {
+
 		JPAQuery<Member> jpaQuery = new JPAQuery<>(entityManager);
-		List<Member> members = jpaQuery.distinct()
-				.select(member)
+
+		List<MyClub> myClubs = jpaQuery.distinct()
+				.select(myClub)
 				.from(member)
-				.innerJoin(member.myClubs).fetchJoin()
+				.innerJoin(myClub.member).fetchJoin()
 				.innerJoin(myClub.club).fetchJoin()
 				.where(member.email.eq(email))
 				.fetch()
