@@ -33,13 +33,13 @@ public class Club {
 
 	private String introduce;
 
-	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate createDate;
-
 	private String region;
 
 	private String hobby;
+
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate createDate;
 
 	//여기 있어야 할게 아니다 - 일정이 가지는게 맞을것 같다
 //	private String upComingMeeting;
@@ -58,7 +58,6 @@ public class Club {
 		this.myClubs = myClubs;
 	}
 
-	//Club생성
 	public static Club of(ClubCreateRequestDto clubCreateRequestDto) {
 		return Club.builder()
 				.name(clubCreateRequestDto.getName())
