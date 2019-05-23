@@ -23,6 +23,7 @@ public class MemberCreateService {
 
 		if (!memberRepository.existsByEmail(signUpRequestDto.getEmail())) {
 			memberRepository.save(Member.of(signUpRequestDto));
+			return;
 		}
 		throw new UserDefineException("이미 존재하는 이메일 입니다.");
 	}
