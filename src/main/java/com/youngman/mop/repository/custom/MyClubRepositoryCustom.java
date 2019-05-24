@@ -1,5 +1,6 @@
 package com.youngman.mop.repository.custom;
 
+import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 
 public interface MyClubRepositoryCustom {
 
-	List<MyClubResponseDto> fetchMyClubsByUserId(String email);
+	List<MyClubResponseDto> fetchMyClubsByMemberEmail(String email);
 }

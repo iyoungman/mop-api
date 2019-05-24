@@ -1,4 +1,4 @@
-package com.youngman.mop.model;
+package com.youngman.mop.model.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,8 +21,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "review_id")
 	private Long id;
 

@@ -5,10 +5,36 @@ spring:
 ---
 spring:
   profiles: local
+
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: true
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mop?useSSL=false&serverTimezone=Asia/Seoul
+    username: iyoungman
+    password: duddnjsgl912!
+
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
+---
+spring:
+  profiles: test
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
   h2:
     console:
       enabled: true

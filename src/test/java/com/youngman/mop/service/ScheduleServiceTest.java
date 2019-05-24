@@ -1,21 +1,21 @@
 package com.youngman.mop.service;
 
 import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.dto.MyClubCreateRequestDto;
+import com.youngman.mop.model.dto.ScheduleCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
-import com.youngman.mop.repository.MemberRepository;
-import com.youngman.mop.repository.MyClubRepository;
-import com.youngman.mop.service.myclub.MyClubCreateService;
+import com.youngman.mop.repository.ScheduleRepository;
+import com.youngman.mop.service.schedule.ScheduleCreateService;
+import javafx.concurrent.ScheduledService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
@@ -24,51 +24,46 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
 /**
- * Created by YoungMan on 2019-05-23.
+ * Created by YoungMan on 2019-05-24.
  */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class MyClubServiceTest {
+public class ScheduleServiceTest {
 
-	@MockBean(name = "myClubRepository")
-	private MyClubRepository myClubRepository;
+	@Autowired
+	private ScheduleRepository scheduleRepository;
 
-	@MockBean(name = "memberRepository")
-	private MemberRepository memberRepository;
+	@Autowired
+	private ScheduleCreateService scheduleCreateService;
 
 	@MockBean(name = "clubRepository")
 	private ClubRepository clubRepository;
 
-	@Autowired
-	private MyClubCreateService myClubCreateService;
-
 	@Test
-	public void createMyClub() throws Exception {
+	public void createSchedule() throws Exception {
 
 		//given
-		Member member = Member.builder()
-				.build();
-
 		Club club = Club.builder()
 				.build();
-
-		given(memberRepository.findByEmail("Test@email.com"))
-				.willReturn(Optional.of(member));
 
 		given(clubRepository.findById(1L))
 				.willReturn(Optional.of(club));
 
-		MyClubCreateRequestDto myClubCreateRequestDto = MyClubCreateRequestDto.builder()
-				.email("Test@email.com")
+		ScheduleCreateRequestDto scheduleCreateRequestDto = ScheduleCreateRequestDto.builder()
+				.name("축구모임1")
+				.content("22명 모집합니다")
+				.region("서울")
+				.writer("이영준")
+				.meetingTime(LocalDateTime.now().plusDays(1))
 				.clubId(1L)
 				.build();
 
 		//when
-		myClubCreateService.createMyClub(myClubCreateRequestDto);
+		scheduleCreateService.createSchedule(scheduleCreateRequestDto);
 
 		//then
-		assertThat(myClubRepository.findAll(), is(notNullValue()));
+		assertThat(scheduleRepository.findAll().get(0).getName(), is("축구모임1"));
 	}
 }

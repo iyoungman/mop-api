@@ -1,4 +1,4 @@
-package com.youngman.mop.model;
+package com.youngman.mop.model.domain;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -17,8 +17,8 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MyClub {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "my_club_id")
 	private Long id;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -42,7 +42,4 @@ public class MyClub {
 				.build();
 	}
 
-	public void updateMyClub() {
-
-	}
 }

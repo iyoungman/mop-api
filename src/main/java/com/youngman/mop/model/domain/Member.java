@@ -1,4 +1,4 @@
-package com.youngman.mop.model;
+package com.youngman.mop.model.domain;
 
 import com.youngman.mop.model.dto.SignUpRequestDto;
 import lombok.AccessLevel;
@@ -47,6 +47,8 @@ public class Member {
 	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
 
+	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+	private List<MyHobby> myHobbies = new ArrayList<>();
 
 	@Builder
 	public Member(String email, String pw, String name, String mobile, String address) {
@@ -68,7 +70,6 @@ public class Member {
 	}
 
 	public void updateMember(SignUpRequestDto signUpRequestDto) {
-//		this.email = signUpRequestDto.getEmail();
 		this.pw = signUpRequestDto.getPw();
 		this.name = signUpRequestDto.getName();
 		this.mobile = signUpRequestDto.getMobile();

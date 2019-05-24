@@ -1,6 +1,6 @@
 package com.youngman.mop.repository;
 
-import com.youngman.mop.model.Club;
+import com.youngman.mop.model.domain.Club;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,4 +1,4 @@
-package com.youngman.mop.model;
+package com.youngman.mop.model.domain;
 
 import com.youngman.mop.model.dto.ClubCreateRequestDto;
 import lombok.AccessLevel;
@@ -41,13 +41,11 @@ public class Club {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate createDate;
 
-	//여기 있어야 할게 아니다 - 일정이 가지는게 맞을것 같다
-//	private String upComingMeeting;
-
-//	private String upComingMeetingDate;
-
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
+
+	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+	private List<Schedule> schedule = new ArrayList<>();
 
 	@Builder
 	public Club(String name, String introduce, String region, String hobby, List<MyClub> myClubs) {
@@ -68,7 +66,11 @@ public class Club {
 		;
 	}
 
-	//Update
-
+	public void updateClub(ClubCreateRequestDto clubCreateRequestDto) {
+		this.name = clubCreateRequestDto.getName();
+		this.introduce = clubCreateRequestDto.getIntroduce();
+		this.region = clubCreateRequestDto.getRegion();
+		this.hobby = clubCreateRequestDto.getHobby();
+	}
 
 }

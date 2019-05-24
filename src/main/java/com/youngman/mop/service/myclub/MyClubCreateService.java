@@ -1,9 +1,9 @@
 package com.youngman.mop.service.myclub;
 
 import com.youngman.mop.exception.UserDefineException;
-import com.youngman.mop.model.Club;
-import com.youngman.mop.model.Member;
-import com.youngman.mop.model.MyClub;
+import com.youngman.mop.model.domain.Club;
+import com.youngman.mop.model.domain.Member;
+import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
 import com.youngman.mop.repository.MemberRepository;
