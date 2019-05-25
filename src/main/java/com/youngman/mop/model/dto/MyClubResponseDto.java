@@ -16,31 +16,28 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MyClubResponseDto {
 
-	private Long id;
+	private Long clubId;
 	private String name;
 	private String introduce;
 	private LocalDate createDate;
 	private String region;
 	private String hobby;
-	private String upComingMeetingName;
 	private LocalDateTime upComingMeetingDate;
 
 	@Builder
-	public MyClubResponseDto(Long id,
+	public MyClubResponseDto(Long clubId,
 							 String name,
 							 String introduce,
 							 LocalDate createDate,
 							 String region,
 							 String hobby,
-							 String upComingMeetingName,
 							 LocalDateTime upComingMeetingDate) {
-		this.id = id;
+		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;
 		this.createDate = createDate;
 		this.region = region;
 		this.hobby = hobby;
-		this.upComingMeetingName = upComingMeetingName;
 		this.upComingMeetingDate = upComingMeetingDate;
 	}
 }

@@ -2,8 +2,9 @@ package com.youngman.mop.service.member;
 
 import com.youngman.mop.exception.UserDefineException;
 import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.dto.SignUpRequestDto;
+import com.youngman.mop.model.dto.MemberCreateRequestDto;
 import com.youngman.mop.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,18 +12,15 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@RequiredArgsConstructor
 public class MemberCreateService {
 
 	private final MemberRepository memberRepository;
 
-	public MemberCreateService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
+	public void createMember(MemberCreateRequestDto memberCreateRequestDto) {
 
-	public void signUp(SignUpRequestDto signUpRequestDto) {
-
-		if (!memberRepository.existsByEmail(signUpRequestDto.getEmail())) {
-			memberRepository.save(Member.of(signUpRequestDto));
+		if (!memberRepository.existsByEmail(memberCreateRequestDto.getEmail())) {
+			memberRepository.save(Member.of(memberCreateRequestDto));
 			return;
 		}
 		throw new UserDefineException("이미 존재하는 이메일 입니다.");

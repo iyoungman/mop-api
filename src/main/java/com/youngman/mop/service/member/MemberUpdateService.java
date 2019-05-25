@@ -2,8 +2,9 @@ package com.youngman.mop.service.member;
 
 import com.youngman.mop.exception.UserDefineException;
 import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.dto.SignUpRequestDto;
+import com.youngman.mop.model.dto.MemberCreateRequestDto;
 import com.youngman.mop.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,17 +12,14 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@RequiredArgsConstructor
 public class MemberUpdateService {
 
 	private final MemberRepository memberRepository;
 
-	public MemberUpdateService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-
-	public void updateMember(SignUpRequestDto signUpRequestDto) {
-		Member member = findByEmail(signUpRequestDto.getEmail());
-		member.updateMember(signUpRequestDto);
+	public void updateMember(MemberCreateRequestDto memberCreateRequestDto) {
+		Member member = findByEmail(memberCreateRequestDto.getEmail());
+		member.updateMember(memberCreateRequestDto);
 		memberRepository.save(member);
 	}
 

@@ -6,6 +6,7 @@ import com.youngman.mop.model.domain.Schedule;
 import com.youngman.mop.model.dto.ScheduleCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
 import com.youngman.mop.repository.ScheduleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,15 +17,11 @@ import java.util.function.Predicate;
  */
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleCreateService {
 
 	private final ScheduleRepository scheduleRepository;
 	private final ClubRepository clubRepository;
-
-	public ScheduleCreateService(ScheduleRepository scheduleRepository, ClubRepository clubRepository) {
-		this.scheduleRepository = scheduleRepository;
-		this.clubRepository = clubRepository;
-	}
 
 	public void createSchedule(ScheduleCreateRequestDto scheduleCreateRequestDto) {
 		timeValidationCheck(scheduleCreateRequestDto.getMeetingTime());

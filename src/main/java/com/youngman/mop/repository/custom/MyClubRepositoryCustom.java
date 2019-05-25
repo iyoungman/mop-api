@@ -1,6 +1,5 @@
 package com.youngman.mop.repository.custom;
 
-import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
 
 import java.util.List;

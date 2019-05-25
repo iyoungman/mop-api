@@ -1,6 +1,7 @@
 package com.youngman.mop.service.member;
 
 import com.youngman.mop.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,15 +9,16 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@RequiredArgsConstructor
 public class MemberDeleteService {
 
 	private final MemberRepository memberRepository;
 
-	public MemberDeleteService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-
 	public void deleteById(Long id) {
 		memberRepository.deleteById(id);
+	}
+
+	public void deleteByEmail(String email) {
+		memberRepository.deleteByEmail(email);
 	}
 }

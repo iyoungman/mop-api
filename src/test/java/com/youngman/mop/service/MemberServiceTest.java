@@ -1,6 +1,6 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.model.dto.SignUpRequestDto;
+import com.youngman.mop.model.dto.MemberCreateRequestDto;
 import com.youngman.mop.repository.MemberRepository;
 import com.youngman.mop.service.member.MemberCreateService;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class MemberServiceTest {
 	public void signUp() throws Exception {
 
 		//given
-		SignUpRequestDto signUpRequestDto = SignUpRequestDto.builder()
+		MemberCreateRequestDto memberCreateRequestDto = MemberCreateRequestDto.builder()
 				.email("Test@email.com")
 				.name("이영준")
 				.pw("PW")
@@ -43,13 +43,13 @@ public class MemberServiceTest {
 				.build();
 
 		//when
-		memberCreateService.signUp(signUpRequestDto);
+		memberCreateService.createMember(memberCreateRequestDto);
 
 		//then
-		assertThat(memberRepository.findByEmail(signUpRequestDto.getEmail()).get(),
+		assertThat(memberRepository.findByEmail(memberCreateRequestDto.getEmail()).get(),
 				is(notNullValue()));
-		assertThat(memberRepository.findByEmail(signUpRequestDto.getEmail()).get().getEmail(),
-				is(signUpRequestDto.getEmail()));
+		assertThat(memberRepository.findByEmail(memberCreateRequestDto.getEmail()).get().getEmail(),
+				is(memberCreateRequestDto.getEmail()));
 
 	}
 }

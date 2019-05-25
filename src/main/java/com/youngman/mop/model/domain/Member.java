@@ -1,6 +1,6 @@
 package com.youngman.mop.model.domain;
 
-import com.youngman.mop.model.dto.SignUpRequestDto;
+import com.youngman.mop.model.dto.MemberCreateRequestDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -59,21 +59,21 @@ public class Member {
 		this.address = address;
 	}
 
-	public static Member of(SignUpRequestDto signUpRequestDto) {
+	public static Member of(MemberCreateRequestDto memberCreateRequestDto) {
 		return Member.builder()
-				.email(signUpRequestDto.getEmail())
-				.pw(signUpRequestDto.getPw())
-				.name(signUpRequestDto.getName())
-				.mobile(signUpRequestDto.getMobile())
-				.address(signUpRequestDto.getAddress())
+				.email(memberCreateRequestDto.getEmail())
+				.pw(memberCreateRequestDto.getPw())
+				.name(memberCreateRequestDto.getName())
+				.mobile(memberCreateRequestDto.getMobile())
+				.address(memberCreateRequestDto.getAddress())
 				.build();
 	}
 
-	public void updateMember(SignUpRequestDto signUpRequestDto) {
-		this.pw = signUpRequestDto.getPw();
-		this.name = signUpRequestDto.getName();
-		this.mobile = signUpRequestDto.getMobile();
-		this.address = signUpRequestDto.getAddress();
+	public void updateMember(MemberCreateRequestDto memberCreateRequestDto) {
+		this.pw = memberCreateRequestDto.getPw();
+		this.name = memberCreateRequestDto.getName();
+		this.mobile = memberCreateRequestDto.getMobile();
+		this.address = memberCreateRequestDto.getAddress();
 	}
 
 }

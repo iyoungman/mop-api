@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ScheduleFetchService {
-
-	//월별 스케줄 가져오기
+public class ScheduleDeleteService {
 }
+

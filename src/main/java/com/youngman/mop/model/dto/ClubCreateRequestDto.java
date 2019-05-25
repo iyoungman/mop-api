@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ClubCreateRequestDto {
 
-	private Long id;
+	private Long clubId;
 	private String name;
 	private String introduce;
 	private String region;
 	private String hobby;
 
 	@Builder
-	public ClubCreateRequestDto(Long id, String name, String introduce, String region, String hobby) {
-		this.id = id;
+	public ClubCreateRequestDto(Long clubId, String name, String introduce, String region, String hobby) {
+		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;
 		this.region = region;

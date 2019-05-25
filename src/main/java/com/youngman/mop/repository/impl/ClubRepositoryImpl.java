@@ -3,15 +3,16 @@ package com.youngman.mop.repository.impl;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.youngman.mop.model.domain.Club;
 import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
-import com.youngman.mop.repository.custom.MyClubRepositoryCustom;
+import com.youngman.mop.repository.custom.ClubRepositoryCustom;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import static com.youngman.mop.model.domain.QClub.club;
@@ -20,22 +21,22 @@ import static com.youngman.mop.model.domain.QMyClub.myClub;
 import static com.youngman.mop.model.domain.QSchedule.schedule;
 
 /**
- * Created by YoungMan on 2019-05-23.
+ * Created by YoungMan on 2019-05-25.
  */
 
-public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements MyClubRepositoryCustom {
+public class ClubRepositoryImpl extends QuerydslRepositorySupport implements ClubRepositoryCustom {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public MyClubRepositoryImpl() {
-		super(MyClub.class);
+	public ClubRepositoryImpl() {
+		super(Club.class);
 	}
 
 
-	@Override
-	public List<MyClubResponseDto> fetchMyClubsByMemberEmail(String email) {
+	public List<MyClubResponseDto> fetchPagingClubsByMember(String email, String address, int pageNo) {
 
+		final int pageSize = 24;
 		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
 
 		return jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
@@ -44,10 +45,8 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 				.innerJoin(myClub.member, member)
 				.innerJoin(myClub.club, club)
 				.innerJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email), isAfterSchedule())
-				.orderBy(schedule.meetingTime.asc())
-				.groupBy(club.id)
-//				.having(club.id.goe(1))
+				.where(eqMemberEmail(email), eqMemberAddress(address))
+				.offset(calculateOffset(pageSize, pageNo)).limit(pageSize)
 				.fetch();
 	}
 
@@ -58,9 +57,18 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 		return member.email.eq(email);
 	}
 
-	private BooleanExpression isAfterSchedule() {
-		return schedule.meetingTime.after(LocalDateTime.now());
+	private BooleanExpression eqMemberAddress(String address) {
+		if (StringUtils.isEmpty(address)) {
+			return null;
+		}
+		return club.region.eq(address);
 	}
 
+	/*public void fetchPagingClubsBySearch(String email, String address, int pageNo) {
 
+	}*/
+
+	private long calculateOffset(int pageSize, int pageNo) {
+		return (long) (pageSize * (pageNo - 1));
+	}
 }

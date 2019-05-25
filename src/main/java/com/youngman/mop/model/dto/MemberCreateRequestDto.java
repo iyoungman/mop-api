@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 /**
  * Created by YoungMan on 2019-05-23.
  */
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SignUpRequestDto {
+public class MemberCreateRequestDto {
 
 	private String email;
 	private String pw;
@@ -20,7 +21,7 @@ public class SignUpRequestDto {
 	private String address;
 
 	@Builder
-	public SignUpRequestDto(String email, String pw, String name, String mobile, String address) {
+	public MemberCreateRequestDto(String email, String pw, String name, String mobile, String address) {
 		this.email = email;
 		this.pw = pw;
 		this.name = name;

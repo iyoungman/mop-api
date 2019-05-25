@@ -23,7 +23,7 @@ public class MyClubRepositoryImplTest {
 	private MyClubRepository myClubRepository;
 
 	@Test
-	public void fetch() throws Exception {
+	public void fetchMyClubsByMemberEmail() throws Exception {
 		List<MyClubResponseDto> myClubs =  myClubRepository.fetchMyClubsByMemberEmail("Test@email.com");
 		System.out.println(myClubs.size());
 	}
