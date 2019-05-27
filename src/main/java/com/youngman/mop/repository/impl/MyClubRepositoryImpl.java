@@ -1,7 +1,9 @@
 package com.youngman.mop.repository.impl;
 
+import com.querydsl.core.types.NullExpression;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
@@ -38,13 +40,17 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 
 		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
 
-		return jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
-				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
+		return  jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
+				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, new CaseBuilder()
+						.when(isAfterSchedule())
+						.then(schedule.meetingTime.min())
+						.otherwise((LocalDateTime) null).as("meetingTime"))
+				)
 				.from(myClub)
 				.innerJoin(myClub.member, member)
 				.innerJoin(myClub.club, club)
-				.innerJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email), isAfterSchedule())
+				.leftJoin(club.schedule, schedule)
+				.where(eqMemberEmail(email))
 				.orderBy(schedule.meetingTime.asc())
 				.groupBy(club.id)
 //				.having(club.id.goe(1))

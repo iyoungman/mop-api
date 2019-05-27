@@ -7,6 +7,9 @@ import com.youngman.mop.model.domain.Club;
 import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
 import com.youngman.mop.repository.custom.ClubRepositoryCustom;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.util.StringUtils;
 
@@ -14,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.youngman.mop.model.domain.QClub.club;
 import static com.youngman.mop.model.domain.QMember.member;
@@ -70,5 +74,23 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 
 	private long calculateOffset(int pageSize, int pageNo) {
 		return (long) (pageSize * (pageNo - 1));
+	}
+
+
+	@Override
+	public Page<MyClubResponseDto> ff(String email, String address, Pageable pageable) {
+
+		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
+
+		jpaQuery =  jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
+				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
+				.from(myClub)
+				.innerJoin(myClub.member, member)
+				.innerJoin(myClub.club, club)
+				.leftJoin(club.schedule, schedule)
+				.where(eqMemberEmail(email), eqMemberAddress(address));
+
+		final List<MyClubResponseDto> accounts = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
+		return new PageImpl<>(accounts, pageable, jpaQuery.fetchCount());
 	}
 }

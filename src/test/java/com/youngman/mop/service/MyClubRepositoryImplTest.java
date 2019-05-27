@@ -1,6 +1,5 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.model.domain.MyClub;
 import com.youngman.mop.model.dto.MyClubResponseDto;
 import com.youngman.mop.repository.MyClubRepository;
 import org.junit.Test;
@@ -24,7 +23,7 @@ public class MyClubRepositoryImplTest {
 
 	@Test
 	public void fetchMyClubsByMemberEmail() throws Exception {
-		List<MyClubResponseDto> myClubs =  myClubRepository.fetchMyClubsByMemberEmail("Test@email.com");
+		List<MyClubResponseDto> myClubs =  myClubRepository.fetchMyClubsByMemberEmail("test");
 		System.out.println(myClubs.size());
 	}
 }
