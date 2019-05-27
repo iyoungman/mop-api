@@ -38,20 +38,21 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 	}
 
 
-	public List<MyClubResponseDto> fetchPagingClubsByMember(String email, String address, int pageNo) {
+	@Override
+	public Page<MyClubResponseDto> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
 
-		final int pageSize = 24;
 		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
 
-		return jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
+		jpaQuery =  jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
 				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
 				.from(myClub)
 				.innerJoin(myClub.member, member)
 				.innerJoin(myClub.club, club)
-				.innerJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email), eqMemberAddress(address))
-				.offset(calculateOffset(pageSize, pageNo)).limit(pageSize)
-				.fetch();
+				.leftJoin(club.schedule, schedule)
+				.where(eqMemberEmail(email), eqMemberAddress(address));
+
+		List<MyClubResponseDto> accounts = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
+		return new PageImpl<>(accounts, pageable, jpaQuery.fetchCount());
 	}
 
 	private BooleanExpression eqMemberEmail(String email) {
@@ -72,25 +73,4 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 
 	}*/
 
-	private long calculateOffset(int pageSize, int pageNo) {
-		return (long) (pageSize * (pageNo - 1));
-	}
-
-
-	@Override
-	public Page<MyClubResponseDto> ff(String email, String address, Pageable pageable) {
-
-		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
-
-		jpaQuery =  jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
-				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
-				.from(myClub)
-				.innerJoin(myClub.member, member)
-				.innerJoin(myClub.club, club)
-				.leftJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email), eqMemberAddress(address));
-
-		final List<MyClubResponseDto> accounts = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
-		return new PageImpl<>(accounts, pageable, jpaQuery.fetchCount());
-	}
 }

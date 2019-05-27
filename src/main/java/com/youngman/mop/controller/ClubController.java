@@ -9,7 +9,6 @@ import com.youngman.mop.service.club.ClubDeleteService;
 import com.youngman.mop.service.club.ClubFetchService;
 import com.youngman.mop.service.club.ClubUpdateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -36,19 +35,11 @@ public class ClubController {
 	}
 
 	@GetMapping("/member")
-	public List<MyClubResponseDto> fetchPagingClubsByMember(@RequestParam("email") String email,
-															@RequestParam("pageNo") int pageNo) {
-		return clubFetchService.fetchPagingClubsByMember(email, pageNo);
+	public PagingClubResponseDto fetchPagingClubsByMember(@RequestParam("email") String email,
+														  @RequestParam("pageNo") int pageNo) {
+
+		return clubFetchService.fetchPagingClubsByMember(email, PageRequest.of(pageNo, 24));
 	}
-
-
-	@GetMapping("/test")
-	public PagingClubResponseDto ff(@RequestParam("email") String email,
-									@RequestParam("pageNo") int pageNo) {
-
-		return clubFetchService.ff(email, PageRequest.of(pageNo, 24));
-	}
-
 
 	@PutMapping
 	public void updateClub(@RequestBody ClubCreateRequestDto clubCreateRequestDto) {
