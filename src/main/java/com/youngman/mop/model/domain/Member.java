@@ -40,6 +40,8 @@ public class Member {
 
 	private String address;
 
+	private String introduce;
+
 	@CreationTimestamp
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate createDate;
@@ -51,12 +53,13 @@ public class Member {
 	private List<MyHobby> myHobbies = new ArrayList<>();
 
 	@Builder
-	public Member(String email, String pw, String name, String mobile, String address) {
+	public Member(String email, String pw, String name, String mobile, String address, String introduce) {
 		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.mobile = mobile;
 		this.address = address;
+		this.introduce = introduce;
 	}
 
 	public static Member of(MemberCreateRequestDto memberCreateRequestDto) {
@@ -75,5 +78,7 @@ public class Member {
 		this.mobile = memberCreateRequestDto.getMobile();
 		this.address = memberCreateRequestDto.getAddress();
 	}
+
+	//Introduce 는 설정에서
 
 }

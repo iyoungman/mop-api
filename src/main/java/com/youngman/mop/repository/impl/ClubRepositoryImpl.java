@@ -4,13 +4,17 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.youngman.mop.model.domain.Club;
+import com.youngman.mop.model.domain.Member;
 import com.youngman.mop.model.domain.MyClub;
+import com.youngman.mop.model.dto.ClubInfoResponseDto;
 import com.youngman.mop.model.dto.MyClubResponseDto;
 import com.youngman.mop.repository.custom.ClubRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -28,6 +32,7 @@ import static com.youngman.mop.model.domain.QSchedule.schedule;
  * Created by YoungMan on 2019-05-25.
  */
 
+@Component
 public class ClubRepositoryImpl extends QuerydslRepositorySupport implements ClubRepositoryCustom {
 
 	@PersistenceContext
@@ -40,10 +45,9 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 
 	@Override
 	public Page<MyClubResponseDto> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
-
 		JPAQuery<MyClubResponseDto> jpaQuery = new JPAQuery<>(entityManager);
 
-		jpaQuery =  jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
+		jpaQuery = jpaQuery.select(Projections.constructor(MyClubResponseDto.class,
 				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
 				.from(myClub)
 				.innerJoin(myClub.member, member)
@@ -67,6 +71,25 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 			return null;
 		}
 		return club.region.eq(address);
+	}
+
+	public Club fetchClubInfoById(Long clubId) {
+		JPAQuery<Club> jpaQuery = new JPAQuery<>(entityManager);
+
+		return jpaQuery.select(club)
+				.from(club)
+				.leftJoin(club.myClubs, myClub).fetchJoin()
+				.innerJoin(myClub.member, member).fetchJoin()
+//				.leftJoin(club.schedule, schedule).fetchJoin()
+				.where(eqClubId(clubId))
+				.fetchOne();
+	}
+
+	private BooleanExpression eqClubId(Long clubId) {
+		if (ObjectUtils.isEmpty(clubId)) {
+			return null;
+		}
+		return club.id.eq(clubId);
 	}
 
 	/*public void fetchPagingClubsBySearch(String email, String address, int pageNo) {

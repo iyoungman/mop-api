@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -41,9 +43,11 @@ public class Club {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate createDate;
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Schedule> schedule = new ArrayList<>();
 

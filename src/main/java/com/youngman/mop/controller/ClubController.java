@@ -2,17 +2,14 @@ package com.youngman.mop.controller;
 
 import com.youngman.mop.model.common.PageRequest;
 import com.youngman.mop.model.dto.ClubCreateRequestDto;
-import com.youngman.mop.model.dto.MyClubResponseDto;
+import com.youngman.mop.model.dto.ClubInfoResponseDto;
 import com.youngman.mop.model.dto.PagingClubResponseDto;
 import com.youngman.mop.service.club.ClubCreateService;
 import com.youngman.mop.service.club.ClubDeleteService;
 import com.youngman.mop.service.club.ClubFetchService;
 import com.youngman.mop.service.club.ClubUpdateService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by YoungMan on 2019-05-24.
@@ -39,6 +36,11 @@ public class ClubController {
 														  @RequestParam("pageNo") int pageNo) {
 
 		return clubFetchService.fetchPagingClubsByMember(email, PageRequest.of(pageNo, 24));
+	}
+
+	@GetMapping("/info")
+	public ClubInfoResponseDto fetchClubInfoById(@RequestParam("clubId") Long clubId) {
+		return clubFetchService.fetchClubInfoById(clubId);
 	}
 
 	@PutMapping
