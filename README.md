@@ -18,7 +18,6 @@
   + 게시판을 통해서 동호회 회원들 간의 자유로운 의사소통을 보장
 
 ## Specification
-* [Requery](https://github.com/coupang/spring-data-requery)
 * Spring Boot
 * Maven
 * Spring Data JPA
