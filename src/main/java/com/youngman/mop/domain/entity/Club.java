@@ -1,6 +1,6 @@
-package com.youngman.mop.model.domain;
+package com.youngman.mop.domain.entity;
 
-import com.youngman.mop.model.dto.ClubCreateRequestDto;
+import com.youngman.mop.domain.dto.ClubCreateRequestDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

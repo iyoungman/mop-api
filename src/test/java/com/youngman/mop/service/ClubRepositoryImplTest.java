@@ -1,23 +1,14 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.domain.MyClub;
-import com.youngman.mop.model.dto.ClubInfoResponseDto;
-import com.youngman.mop.repository.ClubRepository;
-import com.youngman.mop.repository.MyClubRepository;
+import com.youngman.mop.domain.dto.ClubInfoResponseDto;
 import com.youngman.mop.repository.impl.ClubRepositoryImpl;
 import com.youngman.mop.service.club.ClubFetchService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by YoungMan on 2019-05-30.

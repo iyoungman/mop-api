@@ -1,6 +1,6 @@
 package com.youngman.mop.controller;
 
-import com.youngman.mop.model.dto.ScheduleCreateRequestDto;
+import com.youngman.mop.domain.dto.ScheduleCreateRequestDto;
 import com.youngman.mop.service.schedule.ScheduleCreateService;
 import com.youngman.mop.service.schedule.ScheduleDeleteService;
 import com.youngman.mop.service.schedule.ScheduleFetchService;

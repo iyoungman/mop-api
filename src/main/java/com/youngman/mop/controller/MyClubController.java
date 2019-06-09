@@ -1,7 +1,7 @@
 package com.youngman.mop.controller;
 
-import com.youngman.mop.model.dto.MyClubCreateRequestDto;
-import com.youngman.mop.model.dto.MyClubResponseDto;
+import com.youngman.mop.domain.dto.MyClubCreateRequestDto;
+import com.youngman.mop.domain.dto.MyClubResponseDto;
 import com.youngman.mop.service.myclub.MyClubCreateService;
 import com.youngman.mop.service.myclub.MyClubDeleteService;
 import com.youngman.mop.service.myclub.MyClubFetchService;

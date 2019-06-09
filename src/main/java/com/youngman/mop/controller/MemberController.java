@@ -1,7 +1,7 @@
 package com.youngman.mop.controller;
 
-import com.youngman.mop.model.dto.MemberSignInRequestDto;
-import com.youngman.mop.model.dto.MemberCreateRequestDto;
+import com.youngman.mop.domain.dto.MemberSignInRequestDto;
+import com.youngman.mop.domain.dto.MemberCreateRequestDto;
 import com.youngman.mop.service.member.MemberCreateService;
 import com.youngman.mop.service.member.MemberDeleteService;
 import com.youngman.mop.service.member.MemberSignInService;

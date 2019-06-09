@@ -3,11 +3,8 @@ package com.youngman.mop.repository.impl;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.domain.MyClub;
-import com.youngman.mop.model.dto.ClubInfoResponseDto;
-import com.youngman.mop.model.dto.MyClubResponseDto;
+import com.youngman.mop.domain.entity.Club;
+import com.youngman.mop.domain.dto.MyClubResponseDto;
 import com.youngman.mop.repository.custom.ClubRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,10 +20,10 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Objects;
 
-import static com.youngman.mop.model.domain.QClub.club;
-import static com.youngman.mop.model.domain.QMember.member;
-import static com.youngman.mop.model.domain.QMyClub.myClub;
-import static com.youngman.mop.model.domain.QSchedule.schedule;
+import static com.youngman.mop.domain.entity.QClub.club;
+import static com.youngman.mop.domain.entity.QMember.member;
+import static com.youngman.mop.domain.entity.QMyClub.myClub;
+import static com.youngman.mop.domain.entity.QSchedule.schedule;
 
 /**
  * Created by YoungMan on 2019-05-25.

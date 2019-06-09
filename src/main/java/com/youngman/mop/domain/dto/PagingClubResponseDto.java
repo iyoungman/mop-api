@@ -1,4 +1,4 @@
-package com.youngman.mop.model.dto;
+package com.youngman.mop.domain.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.youngman.mop.model.dto;
+package com.youngman.mop.domain.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberSignInRequestDto {
+public class MyClubCreateRequestDto {
 
 	private String email;
-	private String pw;
+	private Long clubId;
 
 	@Builder
-	public MemberSignInRequestDto(String email, String pw) {
+	public MyClubCreateRequestDto(String email, Long clubId) {
 		this.email = email;
-		this.pw = pw;
+		this.clubId = clubId;
 	}
 }

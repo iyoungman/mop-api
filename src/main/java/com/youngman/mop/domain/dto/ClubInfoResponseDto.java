@@ -1,10 +1,7 @@
-package com.youngman.mop.model.dto;
+package com.youngman.mop.domain.dto;
 
-import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.domain.Member;
 import lombok.*;
 
-import javax.persistence.Access;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

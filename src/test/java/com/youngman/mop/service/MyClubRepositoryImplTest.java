@@ -1,6 +1,6 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.model.dto.MyClubResponseDto;
+import com.youngman.mop.domain.dto.MyClubResponseDto;
 import com.youngman.mop.repository.MyClubRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

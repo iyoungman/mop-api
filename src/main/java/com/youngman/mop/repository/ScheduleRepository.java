@@ -1,6 +1,6 @@
 package com.youngman.mop.repository;
 
-import com.youngman.mop.model.domain.Schedule;
+import com.youngman.mop.domain.entity.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

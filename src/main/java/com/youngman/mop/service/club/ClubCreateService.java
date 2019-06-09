@@ -1,7 +1,7 @@
 package com.youngman.mop.service.club;
 
-import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.dto.ClubCreateRequestDto;
+import com.youngman.mop.domain.entity.Club;
+import com.youngman.mop.domain.dto.ClubCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

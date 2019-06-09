@@ -1,8 +1,8 @@
 package com.youngman.mop.service.member;
 
 import com.youngman.mop.exception.UserDefineException;
-import com.youngman.mop.model.domain.Member;
-import com.youngman.mop.model.dto.MemberSignInRequestDto;
+import com.youngman.mop.domain.entity.Member;
+import com.youngman.mop.domain.dto.MemberSignInRequestDto;
 import com.youngman.mop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

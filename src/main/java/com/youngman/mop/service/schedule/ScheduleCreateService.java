@@ -1,9 +1,9 @@
 package com.youngman.mop.service.schedule;
 
 import com.youngman.mop.exception.UserDefineException;
-import com.youngman.mop.model.domain.Club;
-import com.youngman.mop.model.domain.Schedule;
-import com.youngman.mop.model.dto.ScheduleCreateRequestDto;
+import com.youngman.mop.domain.entity.Club;
+import com.youngman.mop.domain.entity.Schedule;
+import com.youngman.mop.domain.dto.ScheduleCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
 import com.youngman.mop.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,12 +1,11 @@
 package com.youngman.mop.repository.impl;
 
-import com.querydsl.core.types.NullExpression;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.youngman.mop.model.domain.MyClub;
-import com.youngman.mop.model.dto.MyClubResponseDto;
+import com.youngman.mop.domain.entity.MyClub;
+import com.youngman.mop.domain.dto.MyClubResponseDto;
 import com.youngman.mop.repository.custom.MyClubRepositoryCustom;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.util.StringUtils;
@@ -16,10 +15,10 @@ import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.youngman.mop.model.domain.QClub.club;
-import static com.youngman.mop.model.domain.QMember.member;
-import static com.youngman.mop.model.domain.QMyClub.myClub;
-import static com.youngman.mop.model.domain.QSchedule.schedule;
+import static com.youngman.mop.domain.entity.QClub.club;
+import static com.youngman.mop.domain.entity.QMember.member;
+import static com.youngman.mop.domain.entity.QMyClub.myClub;
+import static com.youngman.mop.domain.entity.QSchedule.schedule;
 
 /**
  * Created by YoungMan on 2019-05-23.

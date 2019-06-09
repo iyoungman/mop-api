@@ -1,4 +1,4 @@
-package com.youngman.mop.model.domain;
+package com.youngman.mop.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,24 +15,21 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "board_tbl")
+@Table(name = "review_tbl")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board {
+public class Review {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_id")
+	@Column(name = "review_id")
 	private Long id;
-
-	private String title;
 
 	@Lob
 	private String content;
 
-	private String writer;
-
 	@CreationTimestamp
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate createDate;
+
 }
