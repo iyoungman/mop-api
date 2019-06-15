@@ -19,7 +19,7 @@ import java.util.Map;
 public class JwtService {
 
 	private final String SECRET_KEY = "MOP";
-	private final long EXPIRE_TIME = 1000 * 60 * 60; // 테스트 중이라 10시간으로 설정.
+	private final long EXPIRE_TIME = 1000 * 60 * 60;
 
 
 	public String createJwt(String email) {
