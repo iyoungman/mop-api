@@ -14,12 +14,10 @@ public class ErrorResponseDto {
 
 	private String userDefineErrorMessage;
 	private String originalErrorMessage;
-	private String requestURL;
 
 	@Builder
-	public ErrorResponseDto(String userDefineErrorMessage, String originalErrorMessage, String requestURL) {
+	public ErrorResponseDto(String userDefineErrorMessage, String originalErrorMessage) {
 		this.userDefineErrorMessage = userDefineErrorMessage;
 		this.originalErrorMessage = originalErrorMessage;
-		this.requestURL = requestURL;
 	}
 }

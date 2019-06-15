@@ -1,8 +1,7 @@
 package com.youngman.mop.exception;
 
 import com.youngman.mop.domain.dto.ErrorResponseDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,52 +17,58 @@ import java.time.LocalDateTime;
  * Created by YoungMan on 2019-05-29.
  */
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-	private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@Autowired
 	private UrlPathHelper urlPathHelper;
 
-	@ExceptionHandler(UserDefineException.class)
-	public ResponseEntity handleUserDefineException(HttpServletRequest request, UserDefineException e) {
-		String requestURL = urlPathHelper.getOriginatingRequestUri(request);
 
-		logger.info("======================================");
-		logger.info("예외 발생 시간 : " + LocalDateTime.now());
-		logger.info("요청 HTTP 메소드 : " + request.getMethod());
-		logger.info("요청 URL : " + requestURL);
-		logger.info("클라이언트 : " + request.getRemoteHost());
-		logger.info("사용자 정의 에러 메세지 : " + e.getMessage());
-		logger.info("원본 에러 메세지 : " + e.getOriginalErrorMessage());
-		logger.info("Cause : " + e.getCause());
-		logger.info("======================================");
+	@ExceptionHandler(UserDefineException.class)
+	public ResponseEntity handleUserDefineException(HttpServletRequest request, UserDefineException exception) {
+		printHttpRequestLog(request);
+		printUserDefineExceptionLog(exception);
 
 		return new ResponseEntity<>(ErrorResponseDto.builder()
-				.userDefineErrorMessage(e.getMessage())
-				.originalErrorMessage(e.getOriginalErrorMessage())
-				.requestURL(requestURL)
+				.userDefineErrorMessage(exception.getMessage())
+				.originalErrorMessage(exception.getOriginalErrorMessage())
 				.build(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity handleException(HttpServletRequest request, Exception e) {
-		String requestURL = urlPathHelper.getOriginatingRequestUri(request);
-
-		logger.info("======================================");
-		logger.info("예외 발생 시간 : " + LocalDateTime.now());
-		logger.info("요청 HTTP 메소드 : " + request.getMethod());
-		logger.info("요청 URL : " + requestURL);
-		logger.info("클라이언트 : " + request.getRemoteHost());
-		logger.info("원본 에러 메세지 : " + e.toString());
-		logger.info("Cause : " + e.getCause());
-		logger.info("======================================");
+	public ResponseEntity handleUnknownException(HttpServletRequest request, Exception exception) {
+		printHttpRequestLog(request);
+		printUnknownExceptionLog(exception);
 
 		return new ResponseEntity<>(ErrorResponseDto.builder()
-				.userDefineErrorMessage("예상치 못한 예외 발생")
-				.originalErrorMessage(e.toString())
-				.requestURL(requestURL)
-				.build(),HttpStatus.BAD_REQUEST);
+				.userDefineErrorMessage("UnKnown Exception")
+				.originalErrorMessage(exception.toString())
+				.build(), HttpStatus.BAD_REQUEST);
+	}
+
+	private void printHttpRequestLog(HttpServletRequest request) {
+		String requestURL = urlPathHelper.getOriginatingRequestUri(request);
+		log.info("==============Exception Log Start================");
+		log.info("");
+		log.info("예외 발생 시간 => {}", LocalDateTime.now());
+		log.info("HTTP Request 메소드 => {}", request.getMethod());
+		log.info("HTTP Request URL => " + requestURL);
+		log.info("Client => {}", request.getRemoteHost());
+	}
+
+	private void printUserDefineExceptionLog(UserDefineException exception) {
+		log.info("UserDefineErrorMessage => {}", exception.getMessage());
+		log.info("OriginalErrorMessage => {}", exception.getOriginalErrorMessage());
+		log.info("");
+		log.info("==============Exception Log End=================");
+	}
+
+	private void printUnknownExceptionLog(Exception exception) {
+		log.info("UserDefineErrorMessage => {}", "UnKnown Exception");
+		log.info("OriginalErrorMessage => {}", exception.getMessage());
+		log.info("");
+		log.info("==============Exception Log End=================");
 	}
 
 }
