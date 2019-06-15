@@ -5,6 +5,7 @@ import com.youngman.mop.domain.entity.Club;
 import com.youngman.mop.domain.dto.ClubCreateRequestDto;
 import com.youngman.mop.repository.ClubRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,8 +17,16 @@ import org.springframework.stereotype.Service;
 public class ClubUpdateService {
 
 	private final ClubRepository clubRepository;
+	private final RedisTemplate redisTemplate;
+
 
 	public void updateClub(ClubCreateRequestDto clubCreateRequestDto) {
+		String key = "club_" + clubCreateRequestDto.getClubId();
+		boolean hasKey = redisTemplate.hasKey(key);
+		if(hasKey) {
+			redisTemplate.delete(key);
+		}
+
 		Club club = findById(clubCreateRequestDto.getClubId());
 		club.updateClub(clubCreateRequestDto);
 		clubRepository.save(club);
