@@ -15,6 +15,7 @@ public class ErrorResponseDto {
 	private String userDefineErrorMessage;
 	private String originalErrorMessage;
 
+
 	@Builder
 	public ErrorResponseDto(String userDefineErrorMessage, String originalErrorMessage) {
 		this.userDefineErrorMessage = userDefineErrorMessage;

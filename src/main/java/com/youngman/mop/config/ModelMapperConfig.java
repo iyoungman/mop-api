@@ -1,4 +1,4 @@
-package com.youngman.mop.configuration;
+package com.youngman.mop.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-public class ModelMapperConfiguration {
+public class ModelMapperConfig {
 
 	@Bean
 	public ModelMapper modelMapper() {

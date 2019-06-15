@@ -16,6 +16,7 @@ public class MyClubCreateRequestDto {
 	private String email;
 	private Long clubId;
 
+
 	@Builder
 	public MyClubCreateRequestDto(String email, Long clubId) {
 		this.email = email;

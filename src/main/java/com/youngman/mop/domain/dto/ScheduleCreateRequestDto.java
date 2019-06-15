@@ -22,8 +22,10 @@ public class ScheduleCreateRequestDto {
 	private LocalDateTime meetingTime;
 	private Long clubId;
 
+
 	@Builder
-	public ScheduleCreateRequestDto(String name, String content, String region, LocalDateTime meetingTime, String writer, Long clubId) {
+	public ScheduleCreateRequestDto(String name, String content, String region,
+									LocalDateTime meetingTime, String writer, Long clubId) {
 		this.name = name;
 		this.content = content;
 		this.region = region;

@@ -19,6 +19,7 @@ public class ClubInfoResponseDto implements Serializable {
 	private ClubDto clubDto;
 	private List<MemberDto> memberDtos = new ArrayList<>();
 
+
 	@Builder
 	public ClubInfoResponseDto(ClubDto clubDto, List<MemberDto> memberDtos) {
 		this.clubDto = clubDto;

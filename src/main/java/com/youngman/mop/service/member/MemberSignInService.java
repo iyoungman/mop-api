@@ -4,6 +4,7 @@ import com.youngman.mop.exception.UserDefineException;
 import com.youngman.mop.domain.entity.Member;
 import com.youngman.mop.domain.dto.MemberSignInRequestDto;
 import com.youngman.mop.repository.MemberRepository;
+import com.youngman.mop.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class MemberSignInService {
 
 	private final MemberRepository memberRepository;
+	private final JwtService jwtService;
+
 
 	public boolean singIn(MemberSignInRequestDto memberSignInRequestDto) {
 		Member member = findByEmail(memberSignInRequestDto.getEmail());

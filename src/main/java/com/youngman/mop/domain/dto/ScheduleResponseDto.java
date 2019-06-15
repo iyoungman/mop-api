@@ -23,7 +23,8 @@ public class ScheduleResponseDto {
 	private LocalDateTime meetingTime;
 
 	@Builder
-	public ScheduleResponseDto(Long id, String name, String content, String region, String writer, LocalDateTime meetingTime) {
+	public ScheduleResponseDto(Long id, String name, String content,
+							   String region, String writer, LocalDateTime meetingTime) {
 		this.id = id;
 		this.name = name;
 		this.content = content;

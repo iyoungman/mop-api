@@ -30,6 +30,7 @@ public class MemberServiceTest {
 	@Autowired
 	private MemberCreateService memberCreateService;
 
+
 	@Test
 	public void signUp() throws Exception {
 

@@ -16,6 +16,7 @@ public class MemberSignInRequestDto {
 	private String email;
 	private String pw;
 
+
 	@Builder
 	public MemberSignInRequestDto(String email, String pw) {
 		this.email = email;

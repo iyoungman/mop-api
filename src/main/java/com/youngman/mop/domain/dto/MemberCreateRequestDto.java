@@ -20,6 +20,7 @@ public class MemberCreateRequestDto {
 	private String mobile;
 	private String address;
 
+
 	@Builder
 	public MemberCreateRequestDto(String email, String pw, String name, String mobile, String address) {
 		this.email = email;

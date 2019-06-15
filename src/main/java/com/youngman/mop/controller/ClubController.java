@@ -8,6 +8,7 @@ import com.youngman.mop.service.club.ClubDeleteService;
 import com.youngman.mop.service.club.ClubFetchService;
 import com.youngman.mop.service.club.ClubUpdateService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by YoungMan on 2019-05-24.
  */
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mop/club")
@@ -40,6 +42,7 @@ public class ClubController {
 
 	@GetMapping("/info")
 	public ClubInfoResponseDto fetchClubInfoById(@RequestParam("clubId") Long clubId) {
+		log.info("clubId => {}", clubId);
 		return clubFetchService.fetchClubInfoById(clubId);
 	}
 

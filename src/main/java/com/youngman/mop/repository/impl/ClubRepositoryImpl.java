@@ -19,6 +19,7 @@ import javax.persistence.PersistenceContext;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.youngman.mop.domain.entity.QClub.club;
 import static com.youngman.mop.domain.entity.QMember.member;
@@ -70,16 +71,18 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 		return club.region.eq(address);
 	}
 
-	public Club fetchClubInfoById(Long clubId) {
+	public Optional<Club> fetchClubInfoById(Long clubId) {
 		JPAQuery<Club> jpaQuery = new JPAQuery<>(entityManager);
 
-		return jpaQuery.select(club)
+		Club fetchClub = jpaQuery.select(club)
 				.from(club)
 				.leftJoin(club.myClubs, myClub).fetchJoin()
 				.innerJoin(myClub.member, member).fetchJoin()
 //				.leftJoin(club.schedule, schedule).fetchJoin()
 				.where(eqClubId(clubId))
 				.fetchOne();
+
+		return Optional.ofNullable(fetchClub);
 	}
 
 	private BooleanExpression eqClubId(Long clubId) {

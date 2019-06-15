@@ -20,6 +20,7 @@ public class PagingClubResponseDto {
 	private boolean isEmpty;
 	private List<MyClubResponseDto> myClubResponseDtos;
 
+
 	@Builder
 	public PagingClubResponseDto(boolean isLast, boolean isEmpty, List<MyClubResponseDto> myClubResponseDtos) {
 		this.isLast = isLast;

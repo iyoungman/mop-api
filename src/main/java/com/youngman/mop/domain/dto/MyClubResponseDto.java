@@ -24,14 +24,10 @@ public class MyClubResponseDto {
 	private String hobby;
 	private LocalDateTime upComingMeetingDate;
 
+
 	@Builder
-	public MyClubResponseDto(Long clubId,
-							 String name,
-							 String introduce,
-							 LocalDate createDate,
-							 String region,
-							 String hobby,
-							 LocalDateTime upComingMeetingDate) {
+	public MyClubResponseDto(Long clubId, String name, String introduce, LocalDate createDate,
+							 String region, String hobby, LocalDateTime upComingMeetingDate) {
 		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;

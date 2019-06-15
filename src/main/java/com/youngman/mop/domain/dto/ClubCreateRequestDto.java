@@ -19,6 +19,7 @@ public class ClubCreateRequestDto {
 	private String region;
 	private String hobby;
 
+
 	@Builder
 	public ClubCreateRequestDto(Long clubId, String name, String introduce, String region, String hobby) {
 		this.clubId = clubId;
