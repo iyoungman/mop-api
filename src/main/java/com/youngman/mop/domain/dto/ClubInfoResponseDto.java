@@ -2,6 +2,7 @@ package com.youngman.mop.domain.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ import java.util.List;
  */
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ClubInfoResponseDto {
+@NoArgsConstructor
+public class ClubInfoResponseDto implements Serializable {
 
 	private ClubDto clubDto;
 	private List<MemberDto> memberDtos = new ArrayList<>();
@@ -25,9 +26,10 @@ public class ClubInfoResponseDto {
 	}
 
 
-	@Getter @Setter
+	@Getter
+	@Setter
 	@NoArgsConstructor
-	public static class ClubDto {
+	public static class ClubDto implements Serializable {
 		private Long clubId;
 		private String name;
 		private String introduce;
@@ -50,9 +52,10 @@ public class ClubInfoResponseDto {
 	}
 
 
-	@Getter @Setter
+	@Getter
+	@Setter
 	@NoArgsConstructor
-	public static class MemberDto {
+	public static class MemberDto implements Serializable {
 		private String email;
 		private String name;
 		private String mobile;
