@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.review;
+package com.youngman.mop.domain.board.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -15,21 +16,26 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "review_tbl")
+@Table(name = "board_tbl")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
+public class Board implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "review_id")
+	@Column(name = "board_id")
 	private Long id;
+
+	private String title;
 
 	@Lob
 	private String content;
 
+	private String writer;
+
 	@CreationTimestamp
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate createDate;
+
 
 }

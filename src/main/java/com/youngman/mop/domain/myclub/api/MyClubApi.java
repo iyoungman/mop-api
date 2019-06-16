@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.myclub.controller;
+package com.youngman.mop.domain.myclub.api;
 
 import com.youngman.mop.domain.myclub.dto.MyClubCreateRequest;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/mop/myclub")
-public class MyClubController {
+public class MyClubApi {
 
 	private final MyClubCreateService myClubCreateService;
 	private final MyClubFetchService myClubFetchService;

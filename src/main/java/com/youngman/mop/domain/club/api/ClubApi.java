@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.club.controller;
+package com.youngman.mop.domain.club.api;
 
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mop/club")
-public class ClubController {
+public class ClubApi {
 
 	private final ClubCreateService clubCreateService;
 	private final ClubFetchService clubFetchService;

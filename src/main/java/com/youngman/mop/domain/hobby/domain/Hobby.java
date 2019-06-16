@@ -1,6 +1,6 @@
-package com.youngman.mop.domain.hobby;
+package com.youngman.mop.domain.hobby.domain;
 
-import com.youngman.mop.domain.myhobby.MyHobby;
+import com.youngman.mop.domain.myhobby.domain.MyHobby;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

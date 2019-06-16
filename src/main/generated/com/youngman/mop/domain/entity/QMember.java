@@ -10,7 +10,7 @@ import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.myclub.domain.MyClub;
-import com.youngman.mop.domain.myhobby.MyHobby;
+import com.youngman.mop.domain.myhobby.domain.MyHobby;
 
 
 /**

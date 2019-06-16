@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.schedule.controller;
+package com.youngman.mop.domain.schedule.api;
 
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.service.ScheduleCreateService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mop/schedule")
-public class ScheduleController {
+public class ScheduleApi {
 
 	private final ScheduleCreateService scheduleCreateService;
 	private final ScheduleFetchService scheduleFetchService;

@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.member.controller;
+package com.youngman.mop.domain.member.api;
 
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
 import com.youngman.mop.domain.member.dto.MemberCreateRequest;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/mop/member")
-public class MemberController {
+public class MemberApi {
 
 	private final MemberSignInService memberSignInService;
 	private final MemberCreateService memberCreateService;
