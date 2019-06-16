@@ -1,8 +1,8 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.dto.MemberCreateRequestDto;
-import com.youngman.mop.repository.MemberRepository;
-import com.youngman.mop.service.member.MemberCreateService;
+import com.youngman.mop.domain.member.dto.MemberCreateRequest;
+import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.member.service.MemberCreateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class MemberServiceTest {
 	public void signUp() throws Exception {
 
 		//given
-		MemberCreateRequestDto memberCreateRequestDto = MemberCreateRequestDto.builder()
+		MemberCreateRequest memberCreateRequest = MemberCreateRequest.builder()
 				.email("Test@email.com")
 				.name("이영준")
 				.pw("PW")
@@ -44,13 +44,13 @@ public class MemberServiceTest {
 				.build();
 
 		//when
-		memberCreateService.createMember(memberCreateRequestDto);
+		memberCreateService.createMember(memberCreateRequest);
 
 		//then
-		assertThat(memberRepository.findByEmail(memberCreateRequestDto.getEmail()).get(),
+		assertThat(memberRepository.findByEmail(memberCreateRequest.getEmail()).get(),
 				is(notNullValue()));
-		assertThat(memberRepository.findByEmail(memberCreateRequestDto.getEmail()).get().getEmail(),
-				is(memberCreateRequestDto.getEmail()));
+		assertThat(memberRepository.findByEmail(memberCreateRequest.getEmail()).get().getEmail(),
+				is(memberCreateRequest.getEmail()));
 
 	}
 }

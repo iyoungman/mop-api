@@ -1,8 +1,8 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.dto.ClubCreateRequestDto;
-import com.youngman.mop.repository.ClubRepository;
-import com.youngman.mop.service.club.ClubCreateService;
+import com.youngman.mop.domain.club.dto.ClubCreateRequest;
+import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.club.service.ClubCreateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class ClubServiceTest {
 	public void createClub() throws Exception {
 
 		//given
-		ClubCreateRequestDto clubCreateRequestDto = ClubCreateRequestDto.builder()
+		ClubCreateRequest clubCreateRequest = ClubCreateRequest.builder()
 				.name("동호회2")
 				.hobby("볼링")
 				.introduce("한게임 해요")
@@ -38,7 +38,7 @@ public class ClubServiceTest {
 				.build();
 
 		//when
-		clubCreateService.createClub(clubCreateRequestDto);
+		clubCreateService.createClub(clubCreateRequest);
 
 		//then
 

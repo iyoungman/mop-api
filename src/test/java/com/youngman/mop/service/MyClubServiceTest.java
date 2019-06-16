@@ -1,12 +1,12 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.entity.Club;
-import com.youngman.mop.domain.entity.Member;
-import com.youngman.mop.domain.dto.MyClubCreateRequestDto;
-import com.youngman.mop.repository.ClubRepository;
-import com.youngman.mop.repository.MemberRepository;
-import com.youngman.mop.repository.MyClubRepository;
-import com.youngman.mop.service.myclub.MyClubCreateService;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.domain.myclub.dto.MyClubCreateRequest;
+import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.myclub.repository.MyClubRepository;
+import com.youngman.mop.domain.myclub.service.MyClubCreateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,13 +60,13 @@ public class MyClubServiceTest {
 		given(clubRepository.findById(1L))
 				.willReturn(Optional.of(club));
 
-		MyClubCreateRequestDto myClubCreateRequestDto = MyClubCreateRequestDto.builder()
+		MyClubCreateRequest myClubCreateRequest = MyClubCreateRequest.builder()
 				.email("Test@email.com")
 				.clubId(1L)
 				.build();
 
 		//when
-		myClubCreateService.createMyClub(myClubCreateRequestDto);
+		myClubCreateService.createMyClub(myClubCreateRequest);
 
 		//then
 		assertThat(myClubRepository.findAll(), is(notNullValue()));

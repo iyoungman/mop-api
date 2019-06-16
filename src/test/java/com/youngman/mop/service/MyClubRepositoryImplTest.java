@@ -1,7 +1,7 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.dto.MyClubResponseDto;
-import com.youngman.mop.repository.MyClubRepository;
+import com.youngman.mop.domain.myclub.dto.MyClubResponse;
+import com.youngman.mop.domain.myclub.repository.MyClubRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class MyClubRepositoryImplTest {
 
 	@Test
 	public void fetchMyClubsByMemberEmail() throws Exception {
-		List<MyClubResponseDto> myClubs =  myClubRepository.fetchMyClubsByMemberEmail("test");
+		List<MyClubResponse> myClubs =  myClubRepository.fetchMyClubsByMemberEmail("test");
 		System.out.println(myClubs.size());
 	}
 }

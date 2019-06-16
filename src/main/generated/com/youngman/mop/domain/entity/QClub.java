@@ -8,6 +8,9 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.myclub.domain.MyClub;
+import com.youngman.mop.domain.schedule.domain.Schedule;
 
 
 /**

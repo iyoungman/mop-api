@@ -1,6 +1,6 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.service.jwt.JwtService;
+import com.youngman.mop.domain.member.service.JwtService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

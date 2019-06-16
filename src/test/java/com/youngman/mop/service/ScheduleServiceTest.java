@@ -1,10 +1,10 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.entity.Club;
-import com.youngman.mop.domain.dto.ScheduleCreateRequestDto;
-import com.youngman.mop.repository.ClubRepository;
-import com.youngman.mop.repository.ScheduleRepository;
-import com.youngman.mop.service.schedule.ScheduleCreateService;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
+import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.schedule.repository.ScheduleRepository;
+import com.youngman.mop.domain.schedule.service.ScheduleCreateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class ScheduleServiceTest {
 		given(clubRepository.findById(1L))
 				.willReturn(Optional.of(club));
 
-		ScheduleCreateRequestDto scheduleCreateRequestDto = ScheduleCreateRequestDto.builder()
+		ScheduleCreateRequest scheduleCreateRequest = ScheduleCreateRequest.builder()
 				.name("축구모임1")
 				.content("22명 모집합니다")
 				.region("서울")
@@ -59,7 +59,7 @@ public class ScheduleServiceTest {
 				.build();
 
 		//when
-		scheduleCreateService.createSchedule(scheduleCreateRequestDto);
+		scheduleCreateService.createSchedule(scheduleCreateRequest);
 
 		//then
 		assertThat(scheduleRepository.findAll().get(0).getName(), is("축구모임1"));

@@ -1,8 +1,8 @@
 package com.youngman.mop.service;
 
-import com.youngman.mop.domain.dto.ClubInfoResponseDto;
-import com.youngman.mop.repository.impl.ClubRepositoryImpl;
-import com.youngman.mop.service.club.ClubFetchService;
+import com.youngman.mop.domain.club.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.repository.ClubRepositoryImpl;
+import com.youngman.mop.domain.club.service.ClubFetchService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
@@ -32,15 +32,15 @@ public class ClubRepositoryImplTest {
 		/*Club list = clubRepository.fetchClubInfoById(1L);
 		System.out.println(list);*/
 
-		/*modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponseDto.ClubDto>() {
+		/*modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubDto>() {
 			protected void configure() {
 				map().setClubId(source.getId());
 			}
 		});
 
-		ClubInfoResponseDto.ClubDto clubDto = modelMapper.map(list, ClubInfoResponseDto.ClubDto.class);
+		ClubInfoResponse.ClubDto clubDto = modelMapper.map(list, ClubInfoResponse.ClubDto.class);
 
-		ClubInfoResponseDto.MemberDto memberDto = modelMapper.map(list.getMyClubs().get(0).getMember(), ClubInfoResponseDto.MemberDto.class);
+		ClubInfoResponse.MemberDto memberDto = modelMapper.map(list.getMyClubs().get(0).getMember(), ClubInfoResponse.MemberDto.class);
 		System.out.println(memberDto);
 
 
@@ -50,14 +50,14 @@ public class ClubRepositoryImplTest {
 				.map(i -> i.getMember())
 				.collect(Collectors.toList());
 
-		ClubInfoResponseDto clubInfoResponseDto =  ClubInfoResponseDto.builder()
+		ClubInfoResponse clubInfoResponse =  ClubInfoResponse.builder()
 				.club(list)
 				.members(members)
 				.build();
 
 		System.out.println("haha");*/
 
-		ClubInfoResponseDto clubInfoResponseDto = clubFetchService.fetchClubInfoById(1L);
+		ClubInfoResponse clubInfoResponse = clubFetchService.fetchClubInfoById(1L);
 		System.out.println("haha");
 	}
 }
