@@ -19,14 +19,14 @@
 
 ## Specification
 * Spring Boot
-* Maven
-* Spring Data JPA
-* H2
-* Restful API
-* Lombok
-* QueryDSL
-* MySQL
+* Maven(Build Tool)
+* Spring Data JPA, QueryDSL
+* H2(Test), MySQL(RDBMS), Redis(Cache)
+* JWT(Authorization)
+* AOP(Request Logging, Exception Logging)
+* Jenkins 연동
+* ETC..
 
 ## Test
-* BDD(Behaviour-Driven Development) 방식
+* BDD(Behaviour-Driven Development)
 * JUnit + Mockito 
