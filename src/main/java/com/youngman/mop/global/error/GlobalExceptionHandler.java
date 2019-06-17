@@ -1,5 +1,7 @@
 package com.youngman.mop.global.error;
 
+import com.youngman.mop.global.error.exception.BusinessLogicException;
+import com.youngman.mop.global.error.exception.ErrorCodeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,27 +26,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	private UrlPathHelper urlPathHelper;
 
 
-	@ExceptionHandler(UserDefineException.class)
-	public ResponseEntity handleUserDefineException(HttpServletRequest request, UserDefineException exception) {
+	@ExceptionHandler(BusinessLogicException.class)
+	public ResponseEntity handleBusinessLoginException(HttpServletRequest request, BusinessLogicException e) {
 		printHttpRequestLog(request);
-		printUserDefineExceptionLog(exception);
+		printBusinessLogicExceptionLog(e);
 
-		return new ResponseEntity<>(ErrorResponseDto.builder()
-				.userDefineErrorMessage(exception.getMessage())
-				.originalErrorMessage(exception.getOriginalErrorMessage())
-				.build(), HttpStatus.BAD_REQUEST);
+		ErrorCodeType codeType = e.getErrorCodeType();
+		ErrorResponse response = ErrorResponse.of(codeType);
+		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity handleUnknownException(HttpServletRequest request, Exception exception) {
+	public ResponseEntity<ErrorResponse> handleUnknownException(HttpServletRequest request, Exception e) {
 		printHttpRequestLog(request);
-		printUnknownExceptionLog(exception);
+		printUnknownExceptionLog(e);
 
-		return new ResponseEntity<>(ErrorResponseDto.builder()
-				.userDefineErrorMessage("UnKnown Exception")
-				.originalErrorMessage(exception.toString())
-				.build(), HttpStatus.BAD_REQUEST);
+		ErrorCodeType codeType = ErrorCodeType.UNKNOWN;
+		ErrorResponse response = ErrorResponse.of(codeType);
+		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
 	}
+
 
 	private void printHttpRequestLog(HttpServletRequest request) {
 		String requestURL = urlPathHelper.getOriginatingRequestUri(request);
@@ -56,16 +57,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		log.info("Client => {}", request.getRemoteHost());
 	}
 
-	private void printUserDefineExceptionLog(UserDefineException exception) {
-		log.info("UserDefineErrorMessage => {}", exception.getMessage());
-		log.info("OriginalErrorMessage => {}", exception.getOriginalErrorMessage());
+	private void printBusinessLogicExceptionLog(BusinessLogicException e) {
+		log.info("BusinessLogicException => {}", e.getMessage());
+		log.info("OriginalErrorMessage => {}", e.getErrorCodeType().getMessage());
 		log.info("");
 		log.info("==============Exception Log End=================");
 	}
 
-	private void printUnknownExceptionLog(Exception exception) {
+	private void printUnknownExceptionLog(Exception e) {
 		log.info("UserDefineErrorMessage => {}", "UnKnown Exception");
-		log.info("OriginalErrorMessage => {}", exception.getMessage());
+		log.info("OriginalErrorMessage => {}", e.getMessage());
 		log.info("");
 		log.info("==============Exception Log End=================");
 	}

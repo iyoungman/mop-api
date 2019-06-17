@@ -16,21 +16,21 @@ import java.util.List;
 @NoArgsConstructor
 public class ClubInfoResponse implements Serializable {
 
-	private ClubDto clubDto;
-	private List<MemberDto> memberDtos = new ArrayList<>();
+	private ClubInfo clubInfo;
+	private List<MemberInfo> memberInfos = new ArrayList<>();
 
 
 	@Builder
-	public ClubInfoResponse(ClubDto clubDto, List<MemberDto> memberDtos) {
-		this.clubDto = clubDto;
-		this.memberDtos = memberDtos;
+	public ClubInfoResponse(ClubInfo clubInfo, List<MemberInfo> memberInfos) {
+		this.clubInfo = clubInfo;
+		this.memberInfos = memberInfos;
 	}
 
 
 	@Getter
 	@Setter
 	@NoArgsConstructor
-	public static class ClubDto implements Serializable {
+	public static class ClubInfo implements Serializable {
 		private Long clubId;
 		private String name;
 		private String introduce;
@@ -40,8 +40,8 @@ public class ClubInfoResponse implements Serializable {
 		private LocalDateTime upComingMeetingDate;
 
 		@Builder
-		public ClubDto(Long clubId, String name, String introduce, LocalDate createDate,
-					   String region, String hobby, LocalDateTime upComingMeetingDate) {
+		public ClubInfo(Long clubId, String name, String introduce, LocalDate createDate,
+						String region, String hobby, LocalDateTime upComingMeetingDate) {
 			this.clubId = clubId;
 			this.name = name;
 			this.introduce = introduce;
@@ -56,7 +56,7 @@ public class ClubInfoResponse implements Serializable {
 	@Getter
 	@Setter
 	@NoArgsConstructor
-	public static class MemberDto implements Serializable {
+	public static class MemberInfo implements Serializable {
 		private String email;
 		private String name;
 		private String mobile;
@@ -64,7 +64,7 @@ public class ClubInfoResponse implements Serializable {
 		private String introduce;
 
 		@Builder
-		public MemberDto(String email, String name, String mobile, String hobby, String introduce) {
+		public MemberInfo(String email, String name, String mobile, String hobby, String introduce) {
 			this.email = email;
 			this.name = name;
 			this.mobile = mobile;

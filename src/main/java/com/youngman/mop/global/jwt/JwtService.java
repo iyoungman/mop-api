@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.member.service;
+package com.youngman.mop.global.jwt;
 
 import com.youngman.mop.global.error.UserDefineException;
 import io.jsonwebtoken.*;

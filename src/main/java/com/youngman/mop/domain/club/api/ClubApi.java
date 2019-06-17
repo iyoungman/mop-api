@@ -42,7 +42,6 @@ public class ClubApi {
 
 	@GetMapping("/info")
 	public ClubInfoResponse fetchClubInfoById(@RequestParam("clubId") Long clubId) {
-		log.info("clubId => {}", clubId);
 		return clubFetchService.fetchClubInfoById(clubId);
 	}
 

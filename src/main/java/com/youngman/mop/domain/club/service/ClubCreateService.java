@@ -16,6 +16,7 @@ public class ClubCreateService {
 
 	private final ClubRepository clubRepository;
 
+
 	public void createClub(ClubCreateRequest clubCreateRequest) {
 		clubRepository.save(Club.of(clubCreateRequest));
 	}

@@ -25,8 +25,8 @@ public class MemberApi {
 
 
 	@PostMapping("/signin")
-	public Boolean signIn(@RequestBody MemberSignInRequest memberSignInRequest) {
-		return memberSignInService.singIn(memberSignInRequest);
+	public String signInMember(@RequestBody MemberSignInRequest memberSignInRequest) {
+		return memberSignInService.singInMember(memberSignInRequest);
 	}
 
 	@PostMapping
@@ -35,7 +35,9 @@ public class MemberApi {
 	}
 
 	@PutMapping
-	public void updateMember(@RequestBody MemberCreateRequest memberCreateRequest) {
+	public void updateMember(@RequestBody MemberCreateRequest memberCreateRequest,
+							 @RequestHeader("token") String token) {
+
 		memberUpdateService.updateMember(memberCreateRequest);
 	}
 

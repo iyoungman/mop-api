@@ -33,7 +33,7 @@ public class ClubPagingResponse {
 		return ClubPagingResponse.builder()
 				.isLast(pagingMyClubResponseDto.isLast())
 				.isEmpty(pagingMyClubResponseDto.isEmpty())
-				.myClubResponseDtos(pagingMyClubResponseDto.getContent())
+				.myClubResponses(pagingMyClubResponseDto.getContent())
 				.build();
 	}
 }

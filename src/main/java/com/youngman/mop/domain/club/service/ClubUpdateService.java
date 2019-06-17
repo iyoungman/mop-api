@@ -1,5 +1,7 @@
 package com.youngman.mop.domain.club.service;
 
+import com.youngman.mop.domain.club.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.repository.ClubFindDao;
 import com.youngman.mop.global.error.UserDefineException;
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
@@ -17,7 +19,8 @@ import org.springframework.stereotype.Service;
 public class ClubUpdateService {
 
 	private final ClubRepository clubRepository;
-	private final RedisTemplate redisTemplate;
+	private final ClubFindDao clubFindDao;
+	private final RedisTemplate<String, ClubInfoResponse> redisTemplate;
 
 
 	public void updateClub(ClubCreateRequest clubCreateRequest) {
@@ -27,14 +30,9 @@ public class ClubUpdateService {
 			redisTemplate.delete(key);
 		}
 
-		Club club = findById(clubCreateRequest.getClubId());
+		Club club = clubFindDao.findById(clubCreateRequest.getClubId());
 		club.updateClub(clubCreateRequest);
 		clubRepository.save(club);
 	}
 
-	private Club findById(Long clubId) {
-		return clubRepository.findById(clubId).orElseThrow(
-				() -> new UserDefineException("존재하지 않는 동호회입니다.")
-		);
-	}
 }

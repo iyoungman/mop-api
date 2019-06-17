@@ -1,5 +1,7 @@
 package com.youngman.mop.domain.club.service;
 
+import com.youngman.mop.domain.club.dto.ClubCreateRequest;
+import com.youngman.mop.domain.club.dto.ClubInfoResponse;
 import com.youngman.mop.domain.club.repository.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ClubDeleteService {
 
 	private final ClubRepository clubRepository;
-	private final RedisTemplate redisTemplate;
+	private final RedisTemplate<String, ClubInfoResponse> redisTemplate;
 
 
 	public void deleteClub(Long clubId) {

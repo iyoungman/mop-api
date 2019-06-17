@@ -14,6 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
+	private static final String[] EXCLUDE_PATHS = {
+			"/mop/member/signin"
+	};
+
 	private final JwtInterceptor jwtInterceptor;
 
 
@@ -21,6 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(jwtInterceptor)
 				.addPathPatterns("/**")
+				.excludePathPatterns(EXCLUDE_PATHS)
 		;
 	}
 }

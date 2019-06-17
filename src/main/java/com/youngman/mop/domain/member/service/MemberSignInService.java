@@ -1,9 +1,10 @@
 package com.youngman.mop.domain.member.service;
 
-import com.youngman.mop.global.error.UserDefineException;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
-import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.member.exception.InvalidPasswordException;
+import com.youngman.mop.domain.member.repository.MemberFindDao;
+import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +16,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberSignInService {
 
-	private final MemberRepository memberRepository;
+	private final MemberFindDao memberFindDao;
 	private final JwtService jwtService;
 
 
-	public boolean singIn(MemberSignInRequest memberSignInRequest) {
-		Member member = findByEmail(memberSignInRequest.getEmail());
+	public String singInMember(MemberSignInRequest memberSignInRequest) {
+		Member member = memberFindDao.findByEmail(memberSignInRequest.getEmail());
 
-		if(!isEqualPw(member.getPw(), memberSignInRequest.getPw())) {
-			throw new UserDefineException("비밀번호가 틀렸습니다.");
+		if(isEqualPw(member.getPw(), memberSignInRequest.getPw())) {
+			return jwtService.createJwt(member.getEmail());
 		}
-		return true;
+		throw new InvalidPasswordException();
 	}
 
-	private Member findByEmail(String email) {
-		return memberRepository.findByEmail(email).orElseThrow(
-				() -> new UserDefineException("존재하지 않는 회원입니다.")
-		);
-	}
 
 	private boolean isEqualPw(String pw, String signInPw) {
 		return pw.equals(signInPw);

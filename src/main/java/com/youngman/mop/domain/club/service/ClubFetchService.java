@@ -1,6 +1,7 @@
 package com.youngman.mop.domain.club.service;
 
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
+import com.youngman.mop.domain.member.repository.MemberFindDao;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import com.youngman.mop.domain.club.dto.ClubPagingResponse;
 import com.youngman.mop.domain.club.domain.Club;
@@ -31,20 +32,16 @@ import java.util.stream.Collectors;
 public class ClubFetchService {
 
 	private final ClubRepository clubRepository;
-	private final MemberRepository memberRepository;
+	private final MemberFindDao memberFindDao;
 	private final ModelMapper modelMapper;
-	private final RedisTemplate redisTemplate;
+	private final RedisTemplate<String, ClubInfoResponse> redisTemplate;
 
 
 	public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
 		Page<MyClubResponse> pagingMyClubResponseDto = clubRepository.fetchPagingClubsByMember(email,
-				findAddressByEmail(email), pageable);
+				memberFindDao.findAddressByEmail(email), pageable);
 
 		return ClubPagingResponse.of(pagingMyClubResponseDto);
-	}
-
-	private String findAddressByEmail(String email) {
-		return memberRepository.findByEmail(email).get().getAddress();
 	}
 
 	public ClubInfoResponse fetchClubInfoById(Long clubId) {
@@ -70,9 +67,9 @@ public class ClubFetchService {
 	}
 
 	private void prepareModelMapper() {
-		TypeMap<Club, ClubInfoResponse.ClubDto> typeMap = modelMapper.getTypeMap(Club.class, ClubInfoResponse.ClubDto.class);
+		TypeMap<Club, ClubInfoResponse.ClubInfo> typeMap = modelMapper.getTypeMap(Club.class, ClubInfoResponse.ClubInfo.class);
 		if (typeMap == null) {
-			modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubDto>() {
+			modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
 				protected void configure() {
 					map().setClubId(source.getId());
 				}
@@ -81,14 +78,14 @@ public class ClubFetchService {
 	}
 
 	private ClubInfoResponse convertModelToDto(Club club) {
-		ClubInfoResponse.ClubDto clubDto = modelMapper.map(club, ClubInfoResponse.ClubDto.class);
-		List<ClubInfoResponse.MemberDto> memberDtos = club.getMyClubs().stream()
-				.map(i -> modelMapper.map(i.getMember(), ClubInfoResponse.MemberDto.class))
+		ClubInfoResponse.ClubInfo clubInfo = modelMapper.map(club, ClubInfoResponse.ClubInfo.class);
+		List<ClubInfoResponse.MemberInfo> memberInfos = club.getMyClubs().stream()
+				.map(i -> modelMapper.map(i.getMember(), ClubInfoResponse.MemberInfo.class))
 				.collect(Collectors.toList());
 
 		return ClubInfoResponse.builder()
-				.clubDto(clubDto)
-				.memberDtos(memberDtos)
+				.clubInfo(clubInfo)
+				.memberInfos(memberInfos)
 				.build();
 	}
 

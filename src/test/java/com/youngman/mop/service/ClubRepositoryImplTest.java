@@ -32,15 +32,15 @@ public class ClubRepositoryImplTest {
 		/*Club list = clubRepository.fetchClubInfoById(1L);
 		System.out.println(list);*/
 
-		/*modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubDto>() {
+		/*modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
 			protected void configure() {
 				map().setClubId(source.getId());
 			}
 		});
 
-		ClubInfoResponse.ClubDto clubDto = modelMapper.map(list, ClubInfoResponse.ClubDto.class);
+		ClubInfoResponse.ClubInfo clubDto = modelMapper.map(list, ClubInfoResponse.ClubInfo.class);
 
-		ClubInfoResponse.MemberDto memberDto = modelMapper.map(list.getMyClubs().get(0).getMember(), ClubInfoResponse.MemberDto.class);
+		ClubInfoResponse.MemberInfo memberDto = modelMapper.map(list.getMyClubs().get(0).getMember(), ClubInfoResponse.MemberInfo.class);
 		System.out.println(memberDto);
 
 

@@ -1,7 +1,7 @@
 package com.youngman.mop.global.interceptor;
 
 import com.youngman.mop.global.error.UserDefineException;
-import com.youngman.mop.domain.member.service.JwtService;
+import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
