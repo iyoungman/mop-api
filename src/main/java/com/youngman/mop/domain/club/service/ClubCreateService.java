@@ -2,7 +2,7 @@ package com.youngman.mop.domain.club.service;
 
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
-import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.club.dao.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ public class ClubCreateService {
 
 
 	public void createClub(ClubCreateRequest clubCreateRequest) {
-		clubRepository.save(Club.of(clubCreateRequest));
+		Club createClub = Club.of(clubCreateRequest);
+		clubRepository.save(createClub);
 	}
 }

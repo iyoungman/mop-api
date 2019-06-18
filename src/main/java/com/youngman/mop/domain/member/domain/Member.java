@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.member.domain;
 
+import com.youngman.mop.domain.model.BaseDate;
 import com.youngman.mop.domain.myclub.domain.MyClub;
 import com.youngman.mop.domain.myhobby.domain.MyHobby;
 import com.youngman.mop.domain.member.dto.MemberCreateRequest;
@@ -24,9 +25,8 @@ import java.util.List;
 @Entity
 @Table(name = "member_tbl")
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member implements Serializable {
+public class Member extends BaseDate implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "member_id")
@@ -44,10 +44,6 @@ public class Member implements Serializable {
 	private String address;
 
 	private String introduce;
-
-	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate createDate;
 
 	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();

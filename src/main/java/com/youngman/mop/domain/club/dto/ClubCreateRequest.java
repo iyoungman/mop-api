@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Created by YoungMan on 2019-05-23.
+ * Update : clubId
  */
 
 @Getter

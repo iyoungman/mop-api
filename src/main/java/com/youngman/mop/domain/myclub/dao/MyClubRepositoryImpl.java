@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.myclub.repository;
+package com.youngman.mop.domain.myclub.dao;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;

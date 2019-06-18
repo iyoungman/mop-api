@@ -1,11 +1,10 @@
 package com.youngman.mop.domain.club.service;
 
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
-import com.youngman.mop.domain.club.repository.ClubFindDao;
-import com.youngman.mop.global.error.UserDefineException;
+import com.youngman.mop.domain.club.dao.ClubFindDao;
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
-import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.club.dao.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

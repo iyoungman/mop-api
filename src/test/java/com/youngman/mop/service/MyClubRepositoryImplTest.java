@@ -1,7 +1,7 @@
 package com.youngman.mop.service;
 
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
-import com.youngman.mop.domain.myclub.repository.MyClubRepository;
+import com.youngman.mop.domain.myclub.dao.MyClubRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

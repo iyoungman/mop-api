@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.schedule.repository;
+package com.youngman.mop.domain.schedule.dao;
 
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;

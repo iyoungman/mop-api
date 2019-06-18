@@ -1,6 +1,8 @@
 package com.youngman.mop.domain.club.domain;
 
+import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
+import com.youngman.mop.domain.model.BaseDate;
 import com.youngman.mop.domain.myclub.domain.MyClub;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import lombok.AccessLevel;
@@ -26,9 +28,8 @@ import java.util.List;
 @Entity
 @Table(name = "club_tbl")
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Club implements Serializable {
+public class Club extends BaseDate implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "club_id")
@@ -42,10 +43,6 @@ public class Club implements Serializable {
 
 	private String hobby;
 
-	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate createDate;
-
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
@@ -53,6 +50,11 @@ public class Club implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Schedule> schedule = new ArrayList<>();
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+	private List<Board> boards = new ArrayList<>();
+
 
 	@Builder
 	public Club(String name, String introduce, String region, String hobby, List<MyClub> myClubs) {

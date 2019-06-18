@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.member.repository;
+package com.youngman.mop.domain.member.dao;
 
 import com.youngman.mop.domain.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

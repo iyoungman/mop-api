@@ -22,9 +22,10 @@ public class JwtService {
 	private final long EXPIRE_TIME = 1000 * 60 * 60;
 
 
-	public String createJwt(String email) {
+	public String createJwt(String email, String name) {
 		Map<String, Object> claimMap = new HashMap<String, Object>();
 		claimMap.put("EMAIL", email);
+		claimMap.put("NAME", name);
 
 		Date expireTime = new Date();
 		expireTime.setTime(expireTime.getTime() + EXPIRE_TIME);
@@ -59,6 +60,15 @@ public class JwtService {
 				.getBody();
 
 		return (String) claims.get("EMAIL");
+	}
+
+	public String findNameByJwt(String jwt) {
+		Claims claims = Jwts.parser()
+				.setSigningKey(generateKey())
+				.parseClaimsJws(jwt)
+				.getBody();
+
+		return (String) claims.get("NAME");
 	}
 
 	private byte[] generateKey() {

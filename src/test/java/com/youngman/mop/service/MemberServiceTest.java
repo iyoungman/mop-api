@@ -1,7 +1,7 @@
 package com.youngman.mop.service;
 
 import com.youngman.mop.domain.member.dto.MemberCreateRequest;
-import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.member.dao.MemberRepository;
 import com.youngman.mop.domain.member.service.MemberCreateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

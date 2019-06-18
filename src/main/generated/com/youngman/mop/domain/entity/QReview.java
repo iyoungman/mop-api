@@ -7,14 +7,14 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
-import com.youngman.mop.domain.review.domain.Review;
+import com.youngman.mop.domain.comment.domain.Comment;
 
 
 /**
- * QReview is a Querydsl query type for Review
+ * QReview is a Querydsl query type for Comment
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QReview extends EntityPathBase<Review> {
+public class QReview extends EntityPathBase<Comment> {
 
     private static final long serialVersionUID = -1740973026L;
 
@@ -27,15 +27,15 @@ public class QReview extends EntityPathBase<Review> {
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public QReview(String variable) {
-        super(Review.class, forVariable(variable));
+        super(Comment.class, forVariable(variable));
     }
 
-    public QReview(Path<? extends Review> path) {
+    public QReview(Path<? extends Comment> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QReview(PathMetadata metadata) {
-        super(Review.class, metadata);
+        super(Comment.class, metadata);
     }
 
 }

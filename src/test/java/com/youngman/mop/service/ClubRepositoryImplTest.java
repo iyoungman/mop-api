@@ -1,7 +1,7 @@
 package com.youngman.mop.service;
 
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
-import com.youngman.mop.domain.club.repository.ClubRepositoryImpl;
+import com.youngman.mop.domain.club.dao.ClubRepositoryImpl;
 import com.youngman.mop.domain.club.service.ClubFetchService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

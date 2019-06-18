@@ -15,12 +15,18 @@ public enum ErrorCodeType {
 	//Member
 	EMAIL_DUPLICATION(400, "M001", "Email Is Duplication"),
 	MEMBER_NOT_FOUND(400, "M002", "Member Not Found"),
-	PASSWORD_INVALID(400, "M003", "Password is Invalid"),
+	PASSWORD_INVALID(400, "M003", "Password Is Invalid"),
 
 	//Club
-	CLUB_NOT_FOUND(400, "C001", "Club Not Found");
+	CLUB_NOT_FOUND(400, "C001", "Club Not Found"),
 
 	//MyClub
+
+	//BOARD
+	BOARD_NOT_FOUND(400, "B001", "Board Not Found"),
+	WRITER_INVALID(400, "B002", "Writer Is Invalid");
+
+
 
 
 	private int status;

@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.myclub.repository;
+package com.youngman.mop.domain.myclub.dao;
 
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 

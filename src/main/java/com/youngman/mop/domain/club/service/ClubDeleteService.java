@@ -1,8 +1,7 @@
 package com.youngman.mop.domain.club.service;
 
-import com.youngman.mop.domain.club.dto.ClubCreateRequest;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
-import com.youngman.mop.domain.club.repository.ClubRepository;
+import com.youngman.mop.domain.club.dao.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

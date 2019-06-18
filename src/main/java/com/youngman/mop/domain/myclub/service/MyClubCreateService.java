@@ -1,15 +1,10 @@
 package com.youngman.mop.domain.myclub.service;
 
-import com.youngman.mop.domain.club.repository.ClubFindDao;
-import com.youngman.mop.domain.member.repository.MemberFindDao;
-import com.youngman.mop.global.error.UserDefineException;
-import com.youngman.mop.domain.club.domain.Club;
-import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.domain.club.dao.ClubFindDao;
+import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.domain.myclub.domain.MyClub;
 import com.youngman.mop.domain.myclub.dto.MyClubCreateRequest;
-import com.youngman.mop.domain.club.repository.ClubRepository;
-import com.youngman.mop.domain.member.repository.MemberRepository;
-import com.youngman.mop.domain.myclub.repository.MyClubRepository;
+import com.youngman.mop.domain.myclub.dao.MyClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

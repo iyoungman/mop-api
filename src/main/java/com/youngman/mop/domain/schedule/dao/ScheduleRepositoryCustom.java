@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.schedule.repository;
+package com.youngman.mop.domain.schedule.dao;
 
 /**
  * Created by YoungMan on 2019-05-25.

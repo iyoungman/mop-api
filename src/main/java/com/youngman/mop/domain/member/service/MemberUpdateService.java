@@ -2,8 +2,8 @@ package com.youngman.mop.domain.member.service;
 
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.dto.MemberCreateRequest;
-import com.youngman.mop.domain.member.repository.MemberFindDao;
-import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.member.dao.MemberFindDao;
+import com.youngman.mop.domain.member.dao.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -21,11 +21,11 @@ public class WebConfig implements WebMvcConfigurer {
 	private final JwtInterceptor jwtInterceptor;
 
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(jwtInterceptor)
-				.addPathPatterns("/**")
-				.excludePathPatterns(EXCLUDE_PATHS)
-		;
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(jwtInterceptor)
+//				.addPathPatterns("/**")
+//				.excludePathPatterns(EXCLUDE_PATHS)
+//		;
+//	}
 }

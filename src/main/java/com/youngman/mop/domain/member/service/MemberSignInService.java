@@ -3,7 +3,7 @@ package com.youngman.mop.domain.member.service;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
 import com.youngman.mop.domain.member.exception.InvalidPasswordException;
-import com.youngman.mop.domain.member.repository.MemberFindDao;
+import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class MemberSignInService {
 		Member member = memberFindDao.findByEmail(memberSignInRequest.getEmail());
 
 		if(isEqualPw(member.getPw(), memberSignInRequest.getPw())) {
-			return jwtService.createJwt(member.getEmail());
+			return jwtService.createJwt(member.getEmail(), member.getName());
 		}
 		throw new InvalidPasswordException();
 	}

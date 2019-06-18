@@ -1,6 +1,7 @@
 package com.youngman.mop.domain.schedule.domain;
 
 import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.model.BaseTime;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,9 +21,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "schedule_tbl")
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Schedule {
+public class Schedule extends BaseTime {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "schedule_id")
@@ -40,22 +40,19 @@ public class Schedule {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime meetingTime;
 
-	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-	private LocalDateTime createTime;
-
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
 	@Builder
-	public Schedule(String name, String content, String region, String writer, LocalDateTime meetingTime, LocalDateTime createTime, Club club) {
+	public Schedule(String name, String content, String region,
+					String writer, LocalDateTime meetingTime, Club club) {
+
 		this.name = name;
 		this.content = content;
 		this.region = region;
 		this.writer = writer;
 		this.meetingTime = meetingTime;
-		this.createTime = createTime;
 		this.club = club;
 	}
 

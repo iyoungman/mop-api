@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.member.repository;
+package com.youngman.mop.domain.member.dao;
 
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.exception.MemberNotFoundException;
@@ -19,9 +19,9 @@ public class MemberFindDao {
 
 
 	public Member findByEmail(String email) {
-		return memberRepository.findByEmail(email)
-				.orElseThrow(MemberNotFoundException::new)
-		;
+		Optional<Member> member =  memberRepository.findByEmail(email);
+		member.orElseThrow(MemberNotFoundException::new);
+		return member.get();
 	}
 
 	public String findAddressByEmail(String email) {

@@ -1,12 +1,11 @@
 package com.youngman.mop.domain.club.service;
 
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
-import com.youngman.mop.domain.member.repository.MemberFindDao;
+import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import com.youngman.mop.domain.club.dto.ClubPagingResponse;
 import com.youngman.mop.domain.club.domain.Club;
-import com.youngman.mop.domain.club.repository.ClubRepository;
-import com.youngman.mop.domain.member.repository.MemberRepository;
+import com.youngman.mop.domain.club.dao.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
