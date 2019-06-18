@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.review.domain;
+package com.youngman.mop.domain.comment.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;

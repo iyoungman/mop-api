@@ -22,53 +22,18 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@Autowired
-	private UrlPathHelper urlPathHelper;
-
-
 	@ExceptionHandler(BusinessLogicException.class)
-	public ResponseEntity handleBusinessLoginException(HttpServletRequest request, BusinessLogicException e) {
-		printHttpRequestLog(request);
-		printBusinessLogicExceptionLog(e);
-
+	public ResponseEntity handleBusinessLoginException(BusinessLogicException e) {
 		ErrorCodeType codeType = e.getErrorCodeType();
 		ErrorResponse response = ErrorResponse.of(codeType);
 		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorResponse> handleUnknownException(HttpServletRequest request, Exception e) {
-		printHttpRequestLog(request);
-		printUnknownExceptionLog(e);
-
+	public ResponseEntity<ErrorResponse> handleUnknownException(Exception e) {
 		ErrorCodeType codeType = ErrorCodeType.UNKNOWN;
 		ErrorResponse response = ErrorResponse.of(codeType);
 		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
-	}
-
-
-	private void printHttpRequestLog(HttpServletRequest request) {
-		String requestURL = urlPathHelper.getOriginatingRequestUri(request);
-		log.info("==============Exception Log Start================");
-		log.info("");
-		log.info("예외 발생 시간 => {}", LocalDateTime.now());
-		log.info("HTTP Request 메소드 => {}", request.getMethod());
-		log.info("HTTP Request URL => " + requestURL);
-		log.info("Client => {}", request.getRemoteHost());
-	}
-
-	private void printBusinessLogicExceptionLog(BusinessLogicException e) {
-		log.info("BusinessLogicException => {}", e.getMessage());
-		log.info("OriginalErrorMessage => {}", e.getErrorCodeType().getMessage());
-		log.info("");
-		log.info("==============Exception Log End=================");
-	}
-
-	private void printUnknownExceptionLog(Exception e) {
-		log.info("UserDefineErrorMessage => {}", "UnKnown Exception");
-		log.info("OriginalErrorMessage => {}", e.getMessage());
-		log.info("");
-		log.info("==============Exception Log End=================");
 	}
 
 }
