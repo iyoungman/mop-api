@@ -1,8 +1,15 @@
 package com.youngman.mop.domain.board.dto;
 
+import com.youngman.mop.domain.board.domain.Board;
+import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by YoungMan on 2019-06-18.
@@ -14,6 +21,16 @@ public class BoardPagingResponse {
 
 	private boolean isLast;
 	private boolean isEmpty;
-	//공지사항
-	//게시판글
+	private List<Board> notices = new ArrayList<>();
+	private List<Board> posts = new ArrayList<>();
+
+
+	@Builder
+	public BoardPagingResponse(boolean isLast, boolean isEmpty,
+							   List<Board> notices, List<Board> posts) {
+		this.isLast = isLast;
+		this.isEmpty = isEmpty;
+		this.notices = notices;
+		this.posts = posts;
+	}
 }

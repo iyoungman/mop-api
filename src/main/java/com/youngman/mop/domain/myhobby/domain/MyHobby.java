@@ -29,4 +29,5 @@ public class MyHobby {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "hobby_id")
 	private Hobby hobby;
+
 }

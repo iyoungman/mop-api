@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.youngman.mop.domain.entity.QClub.club;
-import static com.youngman.mop.domain.entity.QMember.member;
-import static com.youngman.mop.domain.entity.QMyClub.myClub;
-import static com.youngman.mop.domain.entity.QSchedule.schedule;
+import static com.youngman.mop.domain.club.domain.QClub.club;
+import static com.youngman.mop.domain.member.domain.QMember.member;
+import static com.youngman.mop.domain.myclub.domain.QMyClub.myClub;
+import static com.youngman.mop.domain.schedule.domain.QSchedule.schedule;
 
 /**
  * Created by YoungMan on 2019-05-25.
@@ -45,7 +45,7 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 		JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
 		jpaQuery = jpaQuery.select(Projections.constructor(MyClubResponse.class,
-				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, schedule.meetingTime.min()))
+				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, schedule.meetingTime.min()))
 				.from(myClub)
 				.innerJoin(myClub.member, member)
 				.innerJoin(myClub.club, club)

@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.entity;
+package com.youngman.mop.domain.myclub.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,7 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.youngman.mop.domain.myclub.domain.MyClub;
 
 
 /**
@@ -17,17 +16,17 @@ import com.youngman.mop.domain.myclub.domain.MyClub;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QMyClub extends EntityPathBase<MyClub> {
 
-    private static final long serialVersionUID = -1867164344L;
+    private static final long serialVersionUID = -1562109781L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMyClub myClub = new QMyClub("myClub");
 
-    public final QClub club;
+    public final com.youngman.mop.domain.club.domain.QClub club;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QMember member;
+    public final com.youngman.mop.domain.member.domain.QMember member;
 
     public QMyClub(String variable) {
         this(MyClub.class, forVariable(variable), INITS);
@@ -47,8 +46,8 @@ public class QMyClub extends EntityPathBase<MyClub> {
 
     public QMyClub(Class<? extends MyClub> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.club = inits.isInitialized("club") ? new QClub(forProperty("club")) : null;
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.club = inits.isInitialized("club") ? new com.youngman.mop.domain.club.domain.QClub(forProperty("club")) : null;
+        this.member = inits.isInitialized("member") ? new com.youngman.mop.domain.member.domain.QMember(forProperty("member")) : null;
     }
 
 }

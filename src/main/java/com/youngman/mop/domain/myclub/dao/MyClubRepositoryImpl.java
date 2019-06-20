@@ -14,10 +14,10 @@ import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.youngman.mop.domain.entity.QClub.club;
-import static com.youngman.mop.domain.entity.QMember.member;
-import static com.youngman.mop.domain.entity.QMyClub.myClub;
-import static com.youngman.mop.domain.entity.QSchedule.schedule;
+import static com.youngman.mop.domain.club.domain.QClub.club;
+import static com.youngman.mop.domain.member.domain.QMember.member;
+import static com.youngman.mop.domain.myclub.domain.QMyClub.myClub;
+import static com.youngman.mop.domain.schedule.domain.QSchedule.schedule;
 
 /**
  * Created by YoungMan on 2019-05-23.
@@ -39,7 +39,7 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
 		JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
 		return  jpaQuery.select(Projections.constructor(MyClubResponse.class,
-				club.id, club.name, club.introduce, club.createDate, club.region, club.hobby, new CaseBuilder()
+				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, new CaseBuilder()
 						.when(isAfterSchedule())
 						.then(schedule.meetingTime.min())
 						.otherwise((LocalDateTime) null).as("meetingTime"))

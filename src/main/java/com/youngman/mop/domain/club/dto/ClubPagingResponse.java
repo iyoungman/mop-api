@@ -29,11 +29,11 @@ public class ClubPagingResponse {
 		this.myClubResponses = myClubResponses;
 	}
 
-	public static ClubPagingResponse of(Page<MyClubResponse> pagingMyClubResponseDto) {
+	public static ClubPagingResponse of(Page<MyClubResponse> pagingMyClubResponse) {
 		return ClubPagingResponse.builder()
-				.isLast(pagingMyClubResponseDto.isLast())
-				.isEmpty(pagingMyClubResponseDto.isEmpty())
-				.myClubResponses(pagingMyClubResponseDto.getContent())
+				.isLast(pagingMyClubResponse.isLast())
+				.isEmpty(pagingMyClubResponse.isEmpty())
+				.myClubResponses(pagingMyClubResponse.getContent())
 				.build();
 	}
 }

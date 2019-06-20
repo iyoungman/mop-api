@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.entity;
+package com.youngman.mop.domain.myhobby.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,7 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.youngman.mop.domain.myhobby.domain.MyHobby;
 
 
 /**
@@ -17,17 +16,17 @@ import com.youngman.mop.domain.myhobby.domain.MyHobby;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QMyHobby extends EntityPathBase<MyHobby> {
 
-    private static final long serialVersionUID = -2042830976L;
+    private static final long serialVersionUID = -877466385L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QMyHobby myHobby = new QMyHobby("myHobby");
 
-    public final QHobby hobby;
+    public final com.youngman.mop.domain.hobby.domain.QHobby hobby;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QMember member;
+    public final com.youngman.mop.domain.member.domain.QMember member;
 
     public QMyHobby(String variable) {
         this(MyHobby.class, forVariable(variable), INITS);
@@ -47,8 +46,8 @@ public class QMyHobby extends EntityPathBase<MyHobby> {
 
     public QMyHobby(Class<? extends MyHobby> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.hobby = inits.isInitialized("hobby") ? new QHobby(forProperty("hobby")) : null;
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.hobby = inits.isInitialized("hobby") ? new com.youngman.mop.domain.hobby.domain.QHobby(forProperty("hobby")) : null;
+        this.member = inits.isInitialized("member") ? new com.youngman.mop.domain.member.domain.QMember(forProperty("member")) : null;
     }
 
 }

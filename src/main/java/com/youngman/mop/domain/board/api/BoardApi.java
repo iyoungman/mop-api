@@ -1,14 +1,16 @@
 package com.youngman.mop.domain.board.api;
 
+import com.youngman.mop.domain.board.dto.BoardCreateRequest;
 import com.youngman.mop.domain.board.dto.BoardPagingResponse;
+import com.youngman.mop.domain.board.dto.BoardUpdateRequest;
+import com.youngman.mop.domain.board.service.BoardCreateService;
+import com.youngman.mop.domain.board.service.BoardDeleteService;
 import com.youngman.mop.domain.board.service.BoardFetchService;
+import com.youngman.mop.domain.board.service.BoardUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by YoungMan on 2019-06-18.
@@ -20,13 +22,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/mop/board")
 public class BoardApi {
 
+	private final BoardCreateService boardCreateService;
 	private final BoardFetchService boardFetchService;
+	private final BoardUpdateService boardUpdateService;
+	private final BoardDeleteService boardDeleteService;
 
+
+	@PostMapping
+	public void createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
+		boardCreateService.createBoard(boardCreateRequest);
+	}
 
 	@GetMapping("/club")
 	public BoardPagingResponse fetchPagingBoardsByClub(@RequestParam("clubId") Long clubId,
 													   @RequestParam("pageNo") int pageNo) {
 
 		return boardFetchService.fetchPagingBoardsByClub(clubId, PageRequest.of(pageNo - 1, 24));
+	}
+
+	@PutMapping
+	public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest,
+							@RequestHeader("token") String token) {
+
+		boardUpdateService.updateBoard(boardUpdateRequest, token);
+	}
+
+	@DeleteMapping
+	public void deleteBoard(@RequestParam("boardId") Long boardId,
+							@RequestHeader("token") String token) {
+
+		boardDeleteService.deleteBoard(boardId, token);
 	}
 }

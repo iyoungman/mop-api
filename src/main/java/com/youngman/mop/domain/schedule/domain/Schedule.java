@@ -3,6 +3,7 @@ package com.youngman.mop.domain.schedule.domain;
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.model.BaseTime;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
+import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -22,7 +24,7 @@ import java.time.LocalDateTime;
 @Table(name = "schedule_tbl")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Schedule extends BaseTime {
+public class Schedule extends BaseTime implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "schedule_id")
@@ -65,5 +67,13 @@ public class Schedule extends BaseTime {
 				.meetingTime(scheduleCreateRequest.getMeetingTime())
 				.club(club)
 				.build();
+	}
+
+	public void updateSchedule(ScheduleUpdateRequest scheduleUpdateRequest) {
+		this.name = scheduleUpdateRequest.getName();
+		this.content = scheduleUpdateRequest.getContent();
+		this.region = scheduleUpdateRequest.getRegion();
+		this.writer = scheduleUpdateRequest.getWriter();
+		this.meetingTime = scheduleUpdateRequest.getMeetingTime();
 	}
 }

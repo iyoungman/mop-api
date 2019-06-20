@@ -24,4 +24,10 @@ public class BoardFindDao {
 		return board.get();
 	}
 
+	public String findWriterById(Long id) {
+		Optional<Board> board = boardRepository.findById(id);
+		board.orElseThrow(BoardNotFoundException::new);
+		return board.get().getWriter();
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.entity;
+package com.youngman.mop.domain.hobby.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,8 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.youngman.mop.domain.hobby.domain.Hobby;
-import com.youngman.mop.domain.myhobby.domain.MyHobby;
 
 
 /**
@@ -18,7 +16,7 @@ import com.youngman.mop.domain.myhobby.domain.MyHobby;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QHobby extends EntityPathBase<Hobby> {
 
-    private static final long serialVersionUID = 1043261516L;
+    private static final long serialVersionUID = -360048241L;
 
     public static final QHobby hobby = new QHobby("hobby");
 
@@ -26,7 +24,7 @@ public class QHobby extends EntityPathBase<Hobby> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final ListPath<MyHobby, QMyHobby> myHobbies = this.<MyHobby, QMyHobby>createList("myHobbies", MyHobby.class, QMyHobby.class, PathInits.DIRECT2);
+    public final ListPath<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby> myHobbies = this.<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby>createList("myHobbies", com.youngman.mop.domain.myhobby.domain.MyHobby.class, com.youngman.mop.domain.myhobby.domain.QMyHobby.class, PathInits.DIRECT2);
 
     public final StringPath subCategory = createString("subCategory");
 

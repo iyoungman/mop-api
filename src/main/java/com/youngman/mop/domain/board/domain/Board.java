@@ -41,7 +41,7 @@ public class Board extends BaseTime implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private BoardType boardType;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 

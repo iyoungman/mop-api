@@ -22,11 +22,12 @@ public enum ErrorCodeType {
 
 	//MyClub
 
-	//BOARD
+	//Board
 	BOARD_NOT_FOUND(400, "B001", "Board Not Found"),
-	WRITER_INVALID(400, "B002", "Writer Is Invalid");
+	WRITER_INVALID(400, "B002", "Writer Is Invalid"),
 
-
+	//Schedule
+	SCHEDULE_NOT_FOUND(400, "S001", "Schedule Not Found");
 
 
 	private int status;

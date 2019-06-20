@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.entity;
+package com.youngman.mop.domain.member.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,9 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.youngman.mop.domain.member.domain.Member;
-import com.youngman.mop.domain.myclub.domain.MyClub;
-import com.youngman.mop.domain.myhobby.domain.MyHobby;
 
 
 /**
@@ -19,13 +16,16 @@ import com.youngman.mop.domain.myhobby.domain.MyHobby;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = -1884393632L;
+    private static final long serialVersionUID = -1674150149L;
 
     public static final QMember member = new QMember("member1");
 
+    public final com.youngman.mop.domain.model.QBaseDate _super = new com.youngman.mop.domain.model.QBaseDate(this);
+
     public final StringPath address = createString("address");
 
-    public final DatePath<java.time.LocalDate> createDate = createDate("createDate", java.time.LocalDate.class);
+    //inherited
+    public final DatePath<java.time.LocalDate> createdDate = _super.createdDate;
 
     public final StringPath email = createString("email");
 
@@ -35,9 +35,12 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath mobile = createString("mobile");
 
-    public final ListPath<MyClub, QMyClub> myClubs = this.<MyClub, QMyClub>createList("myClubs", MyClub.class, QMyClub.class, PathInits.DIRECT2);
+    //inherited
+    public final DatePath<java.time.LocalDate> modifiedDate = _super.modifiedDate;
 
-    public final ListPath<MyHobby, QMyHobby> myHobbies = this.<MyHobby, QMyHobby>createList("myHobbies", MyHobby.class, QMyHobby.class, PathInits.DIRECT2);
+    public final ListPath<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub> myClubs = this.<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub>createList("myClubs", com.youngman.mop.domain.myclub.domain.MyClub.class, com.youngman.mop.domain.myclub.domain.QMyClub.class, PathInits.DIRECT2);
+
+    public final ListPath<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby> myHobbies = this.<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby>createList("myHobbies", com.youngman.mop.domain.myhobby.domain.MyHobby.class, com.youngman.mop.domain.myhobby.domain.QMyHobby.class, PathInits.DIRECT2);
 
     public final StringPath name = createString("name");
 

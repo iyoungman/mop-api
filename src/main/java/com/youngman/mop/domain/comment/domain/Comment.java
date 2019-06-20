@@ -1,7 +1,9 @@
 package com.youngman.mop.domain.comment.domain;
 
 import com.youngman.mop.domain.board.domain.Board;
+import com.youngman.mop.domain.model.BaseTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,9 +21,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "comment_tbl")
 @Getter
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comment implements Serializable {
+public class Comment extends BaseTime implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "comment_id")
@@ -32,11 +33,15 @@ public class Comment implements Serializable {
 
 	private String writer;
 
-	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate createDate;
-
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id", nullable = false)
 	private Board board;
+
+
+	@Builder
+	public Comment(String content, String writer, Board board) {
+		this.content = content;
+		this.writer = writer;
+		this.board = board;
+	}
 }

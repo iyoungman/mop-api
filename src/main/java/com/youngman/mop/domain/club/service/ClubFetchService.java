@@ -37,10 +37,10 @@ public class ClubFetchService {
 
 
 	public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
-		Page<MyClubResponse> pagingMyClubResponseDto = clubRepository.fetchPagingClubsByMember(email,
+		Page<MyClubResponse> pagingMyClubResponse = clubRepository.fetchPagingClubsByMember(email,
 				memberFindDao.findAddressByEmail(email), pageable);
 
-		return ClubPagingResponse.of(pagingMyClubResponseDto);
+		return ClubPagingResponse.of(pagingMyClubResponse);
 	}
 
 	public ClubInfoResponse fetchClubInfoById(Long clubId) {
