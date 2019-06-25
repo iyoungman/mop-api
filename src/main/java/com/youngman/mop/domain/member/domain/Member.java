@@ -45,6 +45,8 @@ public class Member extends BaseDate implements Serializable {
 
 	private String introduce;
 
+	private String deviceToken;
+
 	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
 
@@ -52,13 +54,16 @@ public class Member extends BaseDate implements Serializable {
 	private List<MyHobby> myHobbies = new ArrayList<>();
 
 	@Builder
-	public Member(String email, String pw, String name, String mobile, String address, String introduce) {
+	public Member(String email, String pw, String name, String mobile,
+				  String address, String introduce, String deviceToken) {
+
 		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.mobile = mobile;
 		this.address = address;
 		this.introduce = introduce;
+		this.deviceToken = deviceToken;
 	}
 
 	public static Member of(MemberCreateRequest memberCreateRequest) {
@@ -68,6 +73,7 @@ public class Member extends BaseDate implements Serializable {
 				.name(memberCreateRequest.getName())
 				.mobile(memberCreateRequest.getMobile())
 				.address(memberCreateRequest.getAddress())
+				.deviceToken(memberCreateRequest.getDeviceToken())
 				.build();
 	}
 
