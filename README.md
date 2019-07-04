@@ -1,5 +1,5 @@
 # Product Name
-> MoP(Meeting of People) Server
+> MoP(Meeting of People) API Server
 
 ## Motivation
 기존 동호회 관련 어플리케이션은 다양한 동호회 분류와 채팅, 게시판 기능에 집중되어 있었다. 하지만 자전거 동호회, 산악 동호회 같이 안정성과 편의성을 이유로 
