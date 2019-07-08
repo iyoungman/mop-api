@@ -45,7 +45,7 @@ public class Board extends BaseTime implements Serializable {
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<Comment> comments = new ArrayList<>();
 

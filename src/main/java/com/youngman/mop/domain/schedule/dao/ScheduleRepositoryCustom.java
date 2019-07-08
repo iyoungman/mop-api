@@ -2,6 +2,7 @@ package com.youngman.mop.domain.schedule.dao;
 
 import com.youngman.mop.domain.schedule.domain.Schedule;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -10,8 +11,6 @@ import java.util.List;
 
 public interface ScheduleRepositoryCustom {
 
-	List<Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId);
+	List<Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId, LocalDate date);
 
-
-	//해당 동호회의 가장 최신 일정 가져오기
 }

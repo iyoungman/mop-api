@@ -29,10 +29,11 @@ import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 public class MyClubServiceTest {
 
-	@MockBean(name = "myClubRepository")
+//	@MockBean(name = "myClubRepository")
+	@Autowired
 	private MyClubRepository myClubRepository;
 
 	@MockBean(name = "memberRepository")
@@ -45,7 +46,7 @@ public class MyClubServiceTest {
 	private MyClubCreateService myClubCreateService;
 
 	@Test
-	public void createMyClub() throws Exception {
+	public void createMyClub() {
 
 		//given
 		Member member = Member.builder()

@@ -1,35 +1,27 @@
 package com.youngman.mop.domain.schedule.dto;
 
+import com.youngman.mop.domain.schedule.domain.Schedule;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by YoungMan on 2019-05-25.
+ * Created by YoungMan on 2019-07-08.
  */
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ScheduleResponse {
 
-	private Long id;
-	private String name;
-	private String content;
-	private String region;
-	private String writer;
-	private LocalDateTime meetingTime;
+	private Map<String, Schedule> scheduleMap = new HashMap<>();
+
 
 	@Builder
-	public ScheduleResponse(Long id, String name, String content,
-							String region, String writer, LocalDateTime meetingTime) {
-		this.id = id;
-		this.name = name;
-		this.content = content;
-		this.region = region;
-		this.writer = writer;
-		this.meetingTime = meetingTime;
+	public ScheduleResponse(Map<String, Schedule> scheduleMap) {
+		this.scheduleMap = scheduleMap;
 	}
 }

@@ -24,6 +24,8 @@ public class QClub extends EntityPathBase<Club> {
 
     public final ListPath<com.youngman.mop.domain.board.domain.Board, com.youngman.mop.domain.board.domain.QBoard> boards = this.<com.youngman.mop.domain.board.domain.Board, com.youngman.mop.domain.board.domain.QBoard>createList("boards", com.youngman.mop.domain.board.domain.Board.class, com.youngman.mop.domain.board.domain.QBoard.class, PathInits.DIRECT2);
 
+    public final StringPath chairEmail = createString("chairEmail");
+
     //inherited
     public final DatePath<java.time.LocalDate> createdDate = _super.createdDate;
 

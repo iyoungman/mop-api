@@ -19,14 +19,17 @@ public class MemberCreateRequest {
 	private String name;
 	private String mobile;
 	private String address;
+	private String fcmToken;
 
 
 	@Builder
-	public MemberCreateRequest(String email, String pw, String name, String mobile, String address) {
+	public MemberCreateRequest(String email, String pw, String name,
+							   String mobile, String address, String fcmToken) {
 		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.mobile = mobile;
 		this.address = address;
+		this.fcmToken = fcmToken;
 	}
 }

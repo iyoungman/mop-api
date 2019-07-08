@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Aspect
 public class ExceptionLogAspect {
 
-	@AfterThrowing(value = "execution(* com.youngman.mop.domain.member.api.MemberApi.*(..))", throwing = "e")
+	@AfterThrowing(value = "execution(* com.youngman.mop.domain.*.api.*.*(..))", throwing = "e")
 	public void printExceptionLog(JoinPoint joinPoint, Exception e) {
 		log.info("==============Exception Log Start=================");
 		log.info("");

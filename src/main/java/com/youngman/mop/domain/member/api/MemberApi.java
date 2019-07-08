@@ -2,6 +2,7 @@ package com.youngman.mop.domain.member.api;
 
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
 import com.youngman.mop.domain.member.dto.MemberCreateRequest;
+import com.youngman.mop.domain.member.dto.MemberSignInResponse;
 import com.youngman.mop.domain.member.service.MemberCreateService;
 import com.youngman.mop.domain.member.service.MemberDeleteService;
 import com.youngman.mop.domain.member.service.MemberSignInService;
@@ -25,11 +26,11 @@ public class MemberApi {
 
 
 	@PostMapping("/signin")
-	public String signInMember(@RequestBody MemberSignInRequest memberSignInRequest) {
+	public MemberSignInResponse signInMember(@RequestBody MemberSignInRequest memberSignInRequest) {
 		return memberSignInService.singInMember(memberSignInRequest);
 	}
 
-	@PostMapping
+	@PostMapping("/signup")
 	public void createMember(@RequestBody MemberCreateRequest memberCreateRequest) {
 		memberCreateService.createMember(memberCreateRequest);
 	}

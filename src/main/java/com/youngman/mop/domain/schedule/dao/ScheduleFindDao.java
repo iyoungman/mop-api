@@ -1,5 +1,7 @@
 package com.youngman.mop.domain.schedule.dao;
 
+import com.youngman.mop.domain.board.domain.Board;
+import com.youngman.mop.domain.board.exception.BoardNotFoundException;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.domain.schedule.exception.ScheduleNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +24,11 @@ public class ScheduleFindDao {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
 		schedule.orElseThrow(ScheduleNotFoundException::new);
 		return schedule.get();
+	}
+
+	public String findWriterById(Long id) {
+		Optional<Schedule> schedule = scheduleRepository.findById(id);
+//		board.orElseThrow(BoardNotFoundException::new);
+		return schedule.get().getWriter();
 	}
 }

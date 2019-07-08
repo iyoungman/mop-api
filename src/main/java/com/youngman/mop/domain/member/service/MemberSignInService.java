@@ -2,6 +2,7 @@ package com.youngman.mop.domain.member.service;
 
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
+import com.youngman.mop.domain.member.dto.MemberSignInResponse;
 import com.youngman.mop.domain.member.exception.InvalidPasswordException;
 import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.global.jwt.JwtService;
@@ -20,11 +21,16 @@ public class MemberSignInService {
 	private final JwtService jwtService;
 
 
-	public String singInMember(MemberSignInRequest memberSignInRequest) {
+	public MemberSignInResponse singInMember(MemberSignInRequest memberSignInRequest) {
 		Member member = memberFindDao.findByEmail(memberSignInRequest.getEmail());
 
 		if(isEqualPw(member.getPw(), memberSignInRequest.getPw())) {
-			return jwtService.createJwt(member.getEmail(), member.getName());
+			String token = jwtService.createJwt(member.getEmail(), member.getName());
+			return MemberSignInResponse.builder()
+					.token(token)
+					.email(member.getEmail())
+					.name(member.getName())
+					.build();
 		}
 		throw new InvalidPasswordException();
 	}

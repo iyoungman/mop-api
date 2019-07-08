@@ -22,11 +22,19 @@ public class QMyClub extends EntityPathBase<MyClub> {
 
     public static final QMyClub myClub = new QMyClub("myClub");
 
+    public final com.youngman.mop.domain.model.QBaseDate _super = new com.youngman.mop.domain.model.QBaseDate(this);
+
     public final com.youngman.mop.domain.club.domain.QClub club;
+
+    //inherited
+    public final DatePath<java.time.LocalDate> createdDate = _super.createdDate;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final com.youngman.mop.domain.member.domain.QMember member;
+
+    //inherited
+    public final DatePath<java.time.LocalDate> modifiedDate = _super.modifiedDate;
 
     public QMyClub(String variable) {
         this(MyClub.class, forVariable(variable), INITS);

@@ -43,25 +43,28 @@ public class Club extends BaseDate implements Serializable {
 
 	private String hobby;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
+	private String chairEmail;
+
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
 
-	@LazyCollection(LazyCollectionOption.FALSE)
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Schedule> schedule = new ArrayList<>();
 
-	@LazyCollection(LazyCollectionOption.FALSE)
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Board> boards = new ArrayList<>();
 
 
 	@Builder
-	public Club(String name, String introduce, String region, String hobby, List<MyClub> myClubs) {
+	public Club(String name, String introduce, String region, String hobby, String chairEmail, List<MyClub> myClubs) {
 		this.name = name;
 		this.introduce = introduce;
 		this.region = region;
 		this.hobby = hobby;
+		this.chairEmail = chairEmail;
 		this.myClubs = myClubs;
 	}
 
@@ -71,8 +74,8 @@ public class Club extends BaseDate implements Serializable {
 				.introduce(clubCreateRequest.getIntroduce())
 				.region(clubCreateRequest.getRegion())
 				.hobby(clubCreateRequest.getHobby())
-				.build()
-		;
+				.chairEmail(clubCreateRequest.getChairEmail())
+				.build();
 	}
 
 	public void updateClub(ClubCreateRequest clubCreateRequest) {
@@ -80,6 +83,7 @@ public class Club extends BaseDate implements Serializable {
 		this.introduce = clubCreateRequest.getIntroduce();
 		this.region = clubCreateRequest.getRegion();
 		this.hobby = clubCreateRequest.getHobby();
+		this.chairEmail = clubCreateRequest.getChairEmail();
 	}
 
 }

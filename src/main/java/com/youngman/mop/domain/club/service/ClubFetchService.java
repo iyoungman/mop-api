@@ -71,6 +71,7 @@ public class ClubFetchService {
 			modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
 				protected void configure() {
 					map().setClubId(source.getId());
+					map().setCreateDate(source.getCreatedDate());
 				}
 			});
 		}

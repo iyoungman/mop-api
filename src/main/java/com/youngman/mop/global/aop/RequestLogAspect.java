@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Aspect
 public class RequestLogAspect {
 
-	@Pointcut("within(com.youngman.mop.domain.member.api.MemberApi)")
+	@Pointcut("within(com.youngman.mop.domain.*.api.*)")
 	public void onRequest() {
 	}
 

@@ -30,4 +30,6 @@ public class MyClubCreateService {
 		myClubRepository.save(myClub);
 	}
 
+	//이미 가입되어있는지 조회하기
+
 }

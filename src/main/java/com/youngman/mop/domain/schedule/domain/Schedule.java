@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.schedule.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.model.BaseTime;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
@@ -42,13 +43,19 @@ public class Schedule extends BaseTime implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime meetingTime;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
+
 	@Builder
-	public Schedule(String name, String content, String region,
-					String writer, LocalDateTime meetingTime, Club club) {
+	public Schedule(String name,
+					String content,
+					String region,
+					String writer,
+					LocalDateTime meetingTime,
+					Club club) {
 
 		this.name = name;
 		this.content = content;

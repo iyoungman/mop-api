@@ -8,13 +8,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +41,7 @@ public class Member extends BaseDate implements Serializable {
 
 	private String introduce;
 
-	private String deviceToken;
+	private String fcmToken;
 
 	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
@@ -55,7 +51,7 @@ public class Member extends BaseDate implements Serializable {
 
 	@Builder
 	public Member(String email, String pw, String name, String mobile,
-				  String address, String introduce, String deviceToken) {
+				  String address, String introduce, String fcmToken) {
 
 		this.email = email;
 		this.pw = pw;
@@ -63,7 +59,7 @@ public class Member extends BaseDate implements Serializable {
 		this.mobile = mobile;
 		this.address = address;
 		this.introduce = introduce;
-		this.deviceToken = deviceToken;
+		this.fcmToken = fcmToken;
 	}
 
 	public static Member of(MemberCreateRequest memberCreateRequest) {
@@ -73,7 +69,7 @@ public class Member extends BaseDate implements Serializable {
 				.name(memberCreateRequest.getName())
 				.mobile(memberCreateRequest.getMobile())
 				.address(memberCreateRequest.getAddress())
-				.deviceToken(memberCreateRequest.getDeviceToken())
+				.fcmToken(memberCreateRequest.getFcmToken())
 				.build();
 	}
 
@@ -83,7 +79,5 @@ public class Member extends BaseDate implements Serializable {
 		this.mobile = memberCreateRequest.getMobile();
 		this.address = memberCreateRequest.getAddress();
 	}
-
-	//Introduce 는 설정에서
 
 }

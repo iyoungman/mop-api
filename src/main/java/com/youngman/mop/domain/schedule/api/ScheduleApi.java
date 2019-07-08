@@ -1,6 +1,5 @@
 package com.youngman.mop.domain.schedule.api;
 
-import com.youngman.mop.domain.schedule.dao.ScheduleRepository;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
@@ -9,14 +8,18 @@ import com.youngman.mop.domain.schedule.service.ScheduleDeleteService;
 import com.youngman.mop.domain.schedule.service.ScheduleFetchService;
 import com.youngman.mop.domain.schedule.service.ScheduleUpdateService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Map;
 
 /**
  * Created by YoungMan on 2019-05-24.
  */
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mop/schedule")
@@ -34,17 +37,25 @@ public class ScheduleApi {
 	}
 
 	@GetMapping("/monthly")
-	public List<Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId) {
-		return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId);
+	public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
+																  @DateTimeFormat(pattern = "yyyy-MM-dd")
+																  @RequestParam("date") LocalDate date) {
+
+		return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, date);
 	}
 
 	@PutMapping
-	public void updateSchedule(@RequestBody ScheduleUpdateRequest scheduleUpdateRequest) {
-		scheduleFetchService.updateSchedule(scheduleUpdateRequest);
+	public void updateSchedule(@RequestBody ScheduleUpdateRequest scheduleUpdateRequest,
+							   @RequestHeader("token") String token) {
+
+		scheduleUpdateService.updateSchedule(scheduleUpdateRequest, token);
 	}
 
 	@DeleteMapping
-	public void deleteSchedule() {
+	public void deleteSchedule(@RequestParam("scheduleId") Long scheduleId,
+							   @RequestHeader("token") String token) {
+
+		scheduleDeleteService.deleteSchedule(scheduleId, token);
 	}
 
 }
