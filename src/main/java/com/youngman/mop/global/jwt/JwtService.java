@@ -46,10 +46,7 @@ public class JwtService {
 					.parseClaimsJws(jwt);
 			return true;
 		} catch (ExpiredJwtException e) {
-			throw UserDefineException.builder()
-					.message("사용기간이 만료되었습니다")
-					.originalErrorMessage(e.getMessage())
-					.build();
+			return false;
 		}
 	}
 

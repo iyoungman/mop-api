@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Aspect
 public class RequestLogAspect {
 
-	@Pointcut("within(com.youngman.mop.domain.*.api.*)")
+	@Pointcut("within(com.youngman.mop.domain.*.api.*)")//jwtApi 도 추가할 것
 	public void onRequest() {
 	}
 
@@ -43,12 +43,12 @@ public class RequestLogAspect {
 			long end = System.currentTimeMillis();
 
 			log.info("==============Request Log Start================");
-			log.info("");
-			log.info("Request Time => {}", LocalDateTime.now());
-			log.info("Request URL => {} {}{}", request.getMethod(), request.getRequestURI(), params);
-			log.info("Request Host => {}", request.getRemoteHost());
-			log.info("Take Time => {}ms", end - start);
-			log.info("");
+			log.info("|");
+			log.info("| Request Time => {}", LocalDateTime.now());
+			log.info("| Request URL => {} {}{}", request.getMethod(), request.getRequestURI(), params);
+			log.info("| Request Host => {}", request.getRemoteHost());
+			log.info("| Take Time => {}ms", end - start);
+			log.info("|");
 			log.info("===============Request Log End=================");
 		}
 	}

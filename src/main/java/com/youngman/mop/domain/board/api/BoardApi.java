@@ -33,7 +33,7 @@ public class BoardApi {
 		boardCreateService.createBoard(boardCreateRequest);
 	}
 
-	@GetMapping("/club")
+	@GetMapping
 	public BoardPagingResponse fetchPagingBoardsByClub(@RequestParam("clubId") Long clubId,
 													   @RequestParam("pageNo") int pageNo) {
 

@@ -20,11 +20,11 @@ public class ExceptionLogAspect {
 	@AfterThrowing(value = "execution(* com.youngman.mop.domain.*.api.*.*(..))", throwing = "e")
 	public void printExceptionLog(JoinPoint joinPoint, Exception e) {
 		log.info("==============Exception Log Start=================");
-		log.info("");
-		log.info("Exception Time => {}", LocalDateTime.now());
-		log.info("Exception Method => {}", joinPoint.getSignature().getName());
-		log.info("Exception Message => {}", e.getMessage());
-		log.info("");
+		log.info("|");
+		log.info("| Exception Time => {}", LocalDateTime.now());
+		log.info("| Exception Method => {}", joinPoint.getSignature().getName());
+		log.info("| Exception Message => {}", e.getMessage());
+		log.info("|");
 		log.info("===============Exception Log End==================");
 	}
 }

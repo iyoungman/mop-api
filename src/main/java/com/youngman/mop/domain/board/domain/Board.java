@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.youngman.mop.domain.board.dto.BoardCreateRequest;
 import com.youngman.mop.domain.board.dto.BoardUpdateRequest;
 import com.youngman.mop.domain.club.domain.Club;
@@ -41,11 +42,12 @@ public class Board extends BaseTime implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private BoardType boardType;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
-//	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<Comment> comments = new ArrayList<>();
 
