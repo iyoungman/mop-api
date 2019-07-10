@@ -21,6 +21,7 @@ public enum ErrorCodeType {
 	CLUB_NOT_FOUND(400, "C001", "동호회를 찾을 수 없습니다"),
 
 	//MyClub
+	MYCLUB_ALREADY_EXIST(400, "MC001", "이미 추가한 동호회 입니다"),
 
 	//Board
 	BOARD_NOT_FOUND(400, "B001", "게시글을 찾을 수 없습니다"),

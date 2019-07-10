@@ -5,6 +5,7 @@ import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.domain.myclub.domain.MyClub;
 import com.youngman.mop.domain.myclub.dto.MyClubCreateRequest;
 import com.youngman.mop.domain.myclub.dao.MyClubRepository;
+import com.youngman.mop.domain.myclub.exception.MyClubAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class MyClubCreateService {
 
 
 	public void createMyClub(MyClubCreateRequest myClubCreateRequest) {
+		if(myClubRepository.isExistMyClubByMemberEmailAndClubId(myClubCreateRequest.getEmail(), myClubCreateRequest.getClubId())) {
+			throw new MyClubAlreadyExistException();
+		}
+
 		MyClub myClub = MyClub.of(
 				memberFindDao.findByEmail(myClubCreateRequest.getEmail()),
 				clubFindDao.findById(myClubCreateRequest.getClubId())
@@ -29,7 +34,4 @@ public class MyClubCreateService {
 
 		myClubRepository.save(myClub);
 	}
-
-	//이미 가입되어있는지 조회하기
-
 }
