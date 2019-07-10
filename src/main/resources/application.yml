@@ -93,6 +93,7 @@ spring:
       enabled: true
       force: true
 
+
   redis:
     host: 54.180.67.243
     port: 6379
