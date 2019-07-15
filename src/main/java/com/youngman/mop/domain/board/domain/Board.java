@@ -28,7 +28,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseTime implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "board_id")
 	private Long id;
 
@@ -53,8 +54,12 @@ public class Board extends BaseTime implements Serializable {
 
 
 	@Builder
-	public Board(String title, String content, String writer,
-				 BoardType boardType, Club club, List<Comment> comments) {
+	public Board(String title,
+				 String content,
+				 String writer,
+				 BoardType boardType,
+				 Club club,
+				 List<Comment> comments) {
 
 		this.title = title;
 		this.content = content;
@@ -78,4 +83,5 @@ public class Board extends BaseTime implements Serializable {
 		this.title = boardUpdateRequest.getTitle();
 		this.content = boardUpdateRequest.getContent();
 	}
+
 }

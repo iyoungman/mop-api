@@ -97,6 +97,11 @@ spring:
     host: 54.180.67.243
     port: 6379
 
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
 server:
   port: 8092
 

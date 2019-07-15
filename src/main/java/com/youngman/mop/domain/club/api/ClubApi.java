@@ -3,14 +3,15 @@ package com.youngman.mop.domain.club.api;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
 import com.youngman.mop.domain.club.dto.ClubPagingResponse;
-import com.youngman.mop.domain.club.service.ClubCreateService;
-import com.youngman.mop.domain.club.service.ClubDeleteService;
-import com.youngman.mop.domain.club.service.ClubFetchService;
-import com.youngman.mop.domain.club.service.ClubUpdateService;
+import com.youngman.mop.domain.club.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by YoungMan on 2019-05-24.
@@ -26,6 +27,7 @@ public class ClubApi {
 	private final ClubFetchService clubFetchService;
 	private final ClubUpdateService clubUpdateService;
 	private final ClubDeleteService clubDeleteService;
+	private final ClubImageService clubImageService;
 
 
 	@PostMapping
@@ -51,8 +53,18 @@ public class ClubApi {
 	}
 
 	@DeleteMapping
-	public void deleteClub(@RequestParam("id") Long id) {
-		clubDeleteService.deleteClub(id);
+	public void deleteClub(@RequestParam("clubId") Long clubId) {
+		clubDeleteService.deleteClub(clubId);
 	}
 
+	@PostMapping("/image")
+	public Map<String, String> uploadClubImage(@RequestPart("clubId") Long clubId,
+											   @RequestPart("image") MultipartFile imageFile) {
+
+		String imageUri = clubImageService.uploadClubImage(clubId, imageFile);
+		Map<String, String> map = new HashMap<>();
+		map.put("imageUri", imageUri);
+
+		return map;
+	}
 }

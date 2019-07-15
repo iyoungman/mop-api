@@ -14,6 +14,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,7 +32,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Club extends BaseDate implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "club_id")
 	private Long id;
 
@@ -45,27 +47,30 @@ public class Club extends BaseDate implements Serializable {
 
 	private String chairEmail;
 
-//	@LazyCollection(LazyCollectionOption.FALSE)
+	private String imagePath;
+
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<MyClub> myClubs = new ArrayList<>();
 
-//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Schedule> schedule = new ArrayList<>();
 
-//	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
 	private List<Board> boards = new ArrayList<>();
 
 
 	@Builder
-	public Club(String name, String introduce, String region, String hobby, String chairEmail, List<MyClub> myClubs) {
+	public Club(String name,
+				String introduce,
+				String region,
+				String hobby,
+				String chairEmail) {
+
 		this.name = name;
 		this.introduce = introduce;
 		this.region = region;
 		this.hobby = hobby;
 		this.chairEmail = chairEmail;
-		this.myClubs = myClubs;
 	}
 
 	public static Club of(ClubCreateRequest clubCreateRequest) {
@@ -84,6 +89,18 @@ public class Club extends BaseDate implements Serializable {
 		this.region = clubCreateRequest.getRegion();
 		this.hobby = clubCreateRequest.getHobby();
 		this.chairEmail = clubCreateRequest.getChairEmail();
+	}
+
+	public void updateClubImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public String getClubImageUri() {
+		String imageUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+				.path("/mop/club/image/" + id + "_" + "image.png")
+				.toUriString();
+
+		return imagePath.equals("") ? "" : imageUri;
 	}
 
 }

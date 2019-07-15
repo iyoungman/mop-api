@@ -24,6 +24,11 @@
             <id>jcenter</id>
             <url>http://jcenter.bintray.com</url>
         </repository>
+
+        <repository>
+            <id>repository.spring.milestone</id>
+            <url>https://repo.spring.io/libs-milestone</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -133,6 +138,28 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-aws -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws</artifactId>
+            <version>2.0.0.RC2</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>
