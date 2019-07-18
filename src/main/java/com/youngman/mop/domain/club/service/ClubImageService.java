@@ -21,9 +21,11 @@ public class ClubImageService {
 	private final ClubRepository clubRepository;
 	private final ClubFindDao clubFindDao;
 	private final S3Uploader s3Uploader;
+	private final ClubCache clubCache;
 
 
 	public String uploadClubImage(Long clubId, MultipartFile imageFile) {
+		clubCache.delete(clubId);
 		Club club = clubFindDao.findById(clubId);
 		String imageUri = s3Uploader.uploadFile(imageFile, generateFileName(clubId));
 		club.updateClubImagePath(imageUri);
