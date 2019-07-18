@@ -45,15 +45,18 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 		JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
 		jpaQuery = jpaQuery.select(Projections.constructor(MyClubResponse.class,
-				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, schedule.meetingTime.min()))
+				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, null))
 				.from(myClub)
 				.innerJoin(myClub.member, member)
 				.innerJoin(myClub.club, club)
 				.leftJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email), eqMemberAddress(address));
+				.where(eqMemberAddress(address));
 
-		List<MyClubResponse> accounts = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
-		return new PageImpl<>(accounts, pageable, jpaQuery.fetchCount());
+		List<MyClubResponse> myClubResponses = Objects.requireNonNull(getQuerydsl())
+				.applyPagination(pageable, jpaQuery)
+				.fetch();
+
+		return new PageImpl<>(myClubResponses, pageable, jpaQuery.fetchCount());
 	}
 
 	private BooleanExpression eqMemberEmail(String email) {
@@ -77,7 +80,6 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 				.from(club)
 				.leftJoin(club.myClubs, myClub).fetchJoin()
 				.innerJoin(myClub.member, member).fetchJoin()
-//				.leftJoin(club.schedule, schedule).fetchJoin()
 				.where(eqClubId(clubId))
 				.fetchOne();
 
@@ -90,9 +92,4 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 		}
 		return club.id.eq(clubId);
 	}
-
-	/*public void fetchPagingClubsBySearch(String email, String address, int pageNo) {
-
-	}*/
-
 }
