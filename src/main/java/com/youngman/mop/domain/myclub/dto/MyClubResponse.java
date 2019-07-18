@@ -22,18 +22,27 @@ public class MyClubResponse {
 	private LocalDate createDate;
 	private String region;
 	private String hobby;
+	private String imageUri;
 	private LocalDateTime upComingMeetingDate;
 
 
 	@Builder
-	public MyClubResponse(Long clubId, String name, String introduce, LocalDate createDate,
-						  String region, String hobby, LocalDateTime upComingMeetingDate) {
+	public MyClubResponse(Long clubId,
+						  String name,
+						  String introduce,
+						  LocalDate createDate,
+						  String region,
+						  String hobby,
+						  String imageUri,
+						  LocalDateTime upComingMeetingDate) {
+
 		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;
 		this.createDate = createDate;
 		this.region = region;
 		this.hobby = hobby;
+		this.imageUri = imageUri;
 		this.upComingMeetingDate = upComingMeetingDate;
 	}
 }

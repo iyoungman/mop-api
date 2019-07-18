@@ -154,12 +154,11 @@
             <version>3.9</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-aws -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-aws-context -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-aws</artifactId>
-            <version>2.0.0.RC2</version>
-            <type>pom</type>
+            <artifactId>spring-cloud-aws-context</artifactId>
+            <version>2.1.2.RELEASE</version>
         </dependency>
 
     </dependencies>

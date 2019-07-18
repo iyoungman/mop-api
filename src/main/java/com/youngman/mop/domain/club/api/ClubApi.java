@@ -62,9 +62,8 @@ public class ClubApi {
 											   @RequestPart("image") MultipartFile imageFile) {
 
 		String imageUri = clubImageService.uploadClubImage(clubId, imageFile);
-		Map<String, String> map = new HashMap<>();
-		map.put("imageUri", imageUri);
-
-		return map;
+		Map<String, String> response = new HashMap<>();
+		response.put("imageUri", imageUri);
+		return response;
 	}
 }

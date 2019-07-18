@@ -33,6 +33,8 @@ public class QClub extends EntityPathBase<Club> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final StringPath imagePath = createString("imagePath");
+
     public final StringPath introduce = createString("introduce");
 
     //inherited
