@@ -40,6 +40,7 @@ public class ClubMapper {
 				protected void configure() {
 					map().setClubId(source.getId());
 					map().setCreateDate(source.getCreatedDate());
+					map().setImageUri(source.getImagePath());
 				}
 			});
 		}

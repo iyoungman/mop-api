@@ -9,16 +9,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,13 +87,4 @@ public class Club extends BaseDate implements Serializable {
 	public void updateClubImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
-	public String getClubImageUri() {
-		String imageUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-				.path("/mop/club/image/" + id + "_" + "image.png")
-				.toUriString();
-
-		return imagePath.equals("") ? "" : imageUri;
-	}
-
 }
