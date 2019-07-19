@@ -6,6 +6,7 @@ import com.youngman.mop.domain.myclub.service.MyClubCreateService;
 import com.youngman.mop.domain.myclub.service.MyClubDeleteService;
 import com.youngman.mop.domain.myclub.service.MyClubFetchService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by YoungMan on 2019-05-24.
  */
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/mop/myclub")
@@ -25,7 +27,7 @@ public class MyClubApi {
 
 
 	@PostMapping
-	public void createMyClub(MyClubCreateRequest myClubCreateRequest) {
+	public void createMyClub(@RequestBody MyClubCreateRequest myClubCreateRequest) {
 		myClubCreateService.createMyClub(myClubCreateRequest);
 	}
 
