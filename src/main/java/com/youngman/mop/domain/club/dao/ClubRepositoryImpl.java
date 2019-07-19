@@ -4,6 +4,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.club.dto.ClubResponse;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,6 +17,7 @@ import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,22 +43,18 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 
 
 	@Override
-	public Page<MyClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
-		JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
+	public Page<ClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
+		JPAQuery<ClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
-		jpaQuery = jpaQuery.select(Projections.constructor(MyClubResponse.class,
-				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, null))
-				.from(myClub)
-				.innerJoin(myClub.member, member)
-				.innerJoin(myClub.club, club)
-				.leftJoin(club.schedule, schedule)
-				.where(eqMemberAddress(address));
+		jpaQuery = jpaQuery.select(Projections.constructor(ClubResponse.class,
+				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath))
+				.from(club);
 
-		List<MyClubResponse> myClubResponses = Objects.requireNonNull(getQuerydsl())
+		List<ClubResponse> clubResponses = getQuerydsl()
 				.applyPagination(pageable, jpaQuery)
 				.fetch();
 
-		return new PageImpl<>(myClubResponses, pageable, jpaQuery.fetchCount());
+		return new PageImpl<>(clubResponses, pageable, jpaQuery.fetchCount());
 	}
 
 	private BooleanExpression eqMemberEmail(String email) {

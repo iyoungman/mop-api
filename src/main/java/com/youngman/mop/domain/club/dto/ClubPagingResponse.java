@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,21 +20,21 @@ public class ClubPagingResponse {
 
 	private boolean isLast;
 	private boolean isEmpty;
-	private List<MyClubResponse> myClubResponses;
+	private List<ClubResponse> clubResponses = new ArrayList<>();
 
 
 	@Builder
-	public ClubPagingResponse(boolean isLast, boolean isEmpty, List<MyClubResponse> myClubResponses) {
+	public ClubPagingResponse(boolean isLast, boolean isEmpty, List<ClubResponse> clubResponses) {
 		this.isLast = isLast;
 		this.isEmpty = isEmpty;
-		this.myClubResponses = myClubResponses;
+		this.clubResponses = clubResponses;
 	}
 
-	public static ClubPagingResponse of(Page<MyClubResponse> pagingMyClubResponse) {
+	public static ClubPagingResponse of(Page<ClubResponse> pagingClubResponse) {
 		return ClubPagingResponse.builder()
-				.isLast(pagingMyClubResponse.isLast())
-				.isEmpty(pagingMyClubResponse.isEmpty())
-				.myClubResponses(pagingMyClubResponse.getContent())
+				.isLast(pagingClubResponse.isLast())
+				.isEmpty(pagingClubResponse.isEmpty())
+				.clubResponses(pagingClubResponse.getContent())
 				.build();
 	}
 }

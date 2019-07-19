@@ -1,6 +1,7 @@
 package com.youngman.mop.domain.club.service;
 
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.dto.ClubResponse;
 import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import com.youngman.mop.domain.club.dto.ClubPagingResponse;
@@ -31,12 +32,10 @@ public class ClubFetchService {
 
 
 	public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
-		Page<MyClubResponse> pagingMyClubResponse = clubRepository.fetchPagingClubsByMember(
-				email,
-				memberFindDao.findAddressByEmail(email),
-				pageable);
+		Page<ClubResponse> pagingClubResponse = clubRepository.fetchPagingClubsByMember(
+				email, memberFindDao.findAddressByEmail(email), pageable);
 
-		return ClubPagingResponse.of(pagingMyClubResponse);
+		return ClubPagingResponse.of(pagingClubResponse);
 	}
 
 	public ClubInfoResponse fetchClubInfoById(Long clubId) {
