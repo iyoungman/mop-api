@@ -18,3 +18,6 @@
 ## Test
 * BDD(Behaviour-Driven Development)
 * JUnit + Mockito 
+
+## Todo
+* 객체 지향적으로 설계 진화시키기
