@@ -31,7 +31,6 @@ public class MyClubCreateService {
 				memberFindDao.findByEmail(myClubCreateRequest.getEmail()),
 				clubFindDao.findById(myClubCreateRequest.getClubId())
 		);
-
 		myClubRepository.save(myClub);
 	}
 }

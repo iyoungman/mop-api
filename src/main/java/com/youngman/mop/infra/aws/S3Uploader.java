@@ -75,6 +75,7 @@ public class S3Uploader {
 	private ObjectMetadata setObjectMetadata() {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType("text/plain");
+		objectMetadata.setCacheControl("no-cache");
 		return objectMetadata;
 	}
 

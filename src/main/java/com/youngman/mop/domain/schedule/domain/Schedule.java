@@ -2,7 +2,9 @@ package com.youngman.mop.domain.schedule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.model.BaseTime;
+import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
 import lombok.AccessLevel;
@@ -16,6 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by YoungMan on 2019-05-23.
@@ -48,6 +52,8 @@ public class Schedule extends BaseTime implements Serializable {
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
+	@OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
+	private List<Participant> participants = new ArrayList<>();
 
 	@Builder
 	public Schedule(String name,

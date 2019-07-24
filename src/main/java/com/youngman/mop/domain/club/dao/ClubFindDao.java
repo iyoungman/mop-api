@@ -23,4 +23,10 @@ public class ClubFindDao {
 		club.orElseThrow(ClubNotFoundException::new);
 		return club.get();
 	}
+
+	public boolean isClubChair(Long clubId, String email) {
+		Optional<Club> club = clubRepository.findById(clubId);
+		club.orElseThrow(ClubNotFoundException::new);
+		return club.get().getChairEmail().equals(email);
+	}
 }

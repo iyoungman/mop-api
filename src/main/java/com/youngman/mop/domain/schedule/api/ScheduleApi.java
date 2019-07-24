@@ -38,8 +38,7 @@ public class ScheduleApi {
 
 	@GetMapping("/monthly")
 	public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
-																  @DateTimeFormat(pattern = "yyyy-MM-dd")
-																  @RequestParam("date") LocalDate date) {
+																  @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("date") LocalDate date) {
 
 		return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, date);
 	}

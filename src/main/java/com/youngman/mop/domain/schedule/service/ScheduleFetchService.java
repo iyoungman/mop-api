@@ -22,10 +22,6 @@ public class ScheduleFetchService {
 	private final ScheduleRepository scheduleRepository;
 
 
-//	public List<Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId) {
-//		return scheduleRepository.fetchSchedulesByClubIdAndMonthly(clubId);
-//	}
-
 	public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId, LocalDate date) {
 		List<Schedule> schedules = scheduleRepository.fetchSchedulesByClubIdAndMonthly(clubId, date);
 		return convertListToMap(schedules);

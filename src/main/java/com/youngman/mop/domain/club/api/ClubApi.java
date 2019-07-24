@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.club.api;
 
+import com.youngman.mop.domain.club.dao.ClubFindDao;
 import com.youngman.mop.domain.club.dto.ClubCreateRequest;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
 import com.youngman.mop.domain.club.dto.ClubPagingResponse;
@@ -28,11 +29,19 @@ public class ClubApi {
 	private final ClubUpdateService clubUpdateService;
 	private final ClubDeleteService clubDeleteService;
 	private final ClubImageService clubImageService;
+	private final ClubFindDao clubFindDao;
 
 
 	@PostMapping
 	public void createClub(@RequestBody ClubCreateRequest clubCreateRequest) {
 		clubCreateService.createClub(clubCreateRequest);
+	}
+
+	@GetMapping("/chair")
+	public boolean isClubChair(@RequestParam("clubId") Long clubId,
+							   @RequestParam("email") String email) {
+
+		return clubFindDao.isClubChair(clubId, email);
 	}
 
 	@GetMapping("/member")

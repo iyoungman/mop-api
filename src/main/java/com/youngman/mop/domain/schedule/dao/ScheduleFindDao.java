@@ -28,7 +28,7 @@ public class ScheduleFindDao {
 
 	public String findWriterById(Long id) {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
-//		board.orElseThrow(BoardNotFoundException::new);
+		schedule.orElseThrow(ScheduleNotFoundException::new);
 		return schedule.get().getWriter();
 	}
 }
