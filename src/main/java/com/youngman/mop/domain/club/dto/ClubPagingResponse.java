@@ -1,6 +1,5 @@
 package com.youngman.mop.domain.club.dto;
 
-import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

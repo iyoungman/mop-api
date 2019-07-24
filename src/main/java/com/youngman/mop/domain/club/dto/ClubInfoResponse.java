@@ -38,7 +38,6 @@ public class ClubInfoResponse implements Serializable {
 		private String region;
 		private String hobby;
 		private String imageUri;
-		private LocalDateTime upComingMeetingDate;
 
 		@Builder
 		public ClubInfo(Long clubId,
@@ -47,8 +46,7 @@ public class ClubInfoResponse implements Serializable {
 						LocalDate createDate,
 						String region,
 						String hobby,
-						String imageUri,
-						LocalDateTime upComingMeetingDate) {
+						String imageUri) {
 
 			this.clubId = clubId;
 			this.name = name;
@@ -57,7 +55,6 @@ public class ClubInfoResponse implements Serializable {
 			this.region = region;
 			this.hobby = hobby;
 			this.imageUri = imageUri;
-			this.upComingMeetingDate = upComingMeetingDate;
 		}
 	}
 
