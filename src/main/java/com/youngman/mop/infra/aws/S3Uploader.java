@@ -64,7 +64,7 @@ public class S3Uploader {
 	}
 
 	private String putS3(InputStream inputStream, String fileName) {
-		PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, fileName, inputStream, setObjectMetadata());
+		PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, fileName, inputStream, setObjectMetadata(fileName));
 		putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
 		PutObjectResult putObjectResult = amazonS3Client.putObject(putObjectRequest);
 		IOUtils.closeQuietly(inputStream);
@@ -72,10 +72,11 @@ public class S3Uploader {
 		return amazonS3Client.getUrl(bucket, fileName).toString();
 	}
 
-	private ObjectMetadata setObjectMetadata() {
+	private ObjectMetadata setObjectMetadata(String fileName) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType("image/png");
 		objectMetadata.setCacheControl("no-cache");
+		objectMetadata.setHeader(fileName, fileName);
 		return objectMetadata;
 	}
 
