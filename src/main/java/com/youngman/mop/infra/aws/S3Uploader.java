@@ -74,9 +74,8 @@ public class S3Uploader {
 
 	private ObjectMetadata setObjectMetadata(String fileName) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
-		objectMetadata.setContentType("image/png");
-		objectMetadata.setCacheControl("no-cache");
-		objectMetadata.setHeader(fileName, fileName);
+		objectMetadata.setContentType("text/plain");
+		objectMetadata.setContentDisposition(fileName);
 		return objectMetadata;
 	}
 
