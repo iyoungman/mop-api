@@ -5,6 +5,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.club.dto.ClubResponse;
+import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.myclub.dto.MyClubResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -89,5 +90,16 @@ public class ClubRepositoryImpl extends QuerydslRepositorySupport implements Clu
 			return null;
 		}
 		return club.id.eq(clubId);
+	}
+
+	public List<Member> fetchClubMembers(Long clubId) {
+		JPAQuery<Member> jpaQuery = new JPAQuery<>(entityManager);
+		return jpaQuery.select(member)
+				.from(club)
+				.innerJoin(club.myClubs, myClub)
+				.innerJoin(myClub.member, member)
+				.where(eqClubId(clubId))
+				.orderBy(member.email.asc())
+				.fetch();
 	}
 }

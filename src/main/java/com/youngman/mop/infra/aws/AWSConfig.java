@@ -1,7 +1,5 @@
 package com.youngman.mop.infra.aws;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -33,7 +31,7 @@ public class AWSConfig {
 
 	@Bean
 	public AmazonS3Client amazonS3Client() {
-//		AmazonS3Client amazonS3Client = new AmazonS3Client(awsCredentials);
+//		AmazonS3Client amazonS3Client = new AmazonS3Client(basicAWSCredentials());
 		AmazonS3Client amazonS3Client = new AmazonS3Client();
 		amazonS3Client.setRegion(Region.getRegion(Regions.fromName(region)));
 		return amazonS3Client;

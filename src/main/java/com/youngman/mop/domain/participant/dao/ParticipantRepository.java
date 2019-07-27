@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 
-	@Query("select p from Participant p where p.schedule.id = :scheduleId")
+	@Query("select p from Participant p where p.schedule.id = :scheduleId order by p.email asc")
 	List<Participant> findBySchedule(@Param("scheduleId") Long scheduleId);
 
 	@Query("select p from Participant p where p.email = :email and p.schedule.id = :scheduleId")

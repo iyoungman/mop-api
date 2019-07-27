@@ -1,15 +1,14 @@
 package com.youngman.mop.domain.participant.api;
 
-import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.participant.dto.ParticipantCreateRequest;
+import com.youngman.mop.domain.participant.dto.ParticipantResponse;
 import com.youngman.mop.domain.participant.service.ParticipantCreateService;
-import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
+import com.youngman.mop.domain.participant.service.ParticipantFetchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by YoungMan on 2019-07-25.
@@ -22,10 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class ParticipantApi {
 
 	private final ParticipantCreateService participantCreateService;
+	private final ParticipantFetchService participantFetchService;
 
 
 	@PostMapping
 	public int createParticipant(@RequestBody ParticipantCreateRequest participantCreateRequest) {
 		return participantCreateService.createParticipant(participantCreateRequest);
+	}
+
+	@GetMapping
+	public List<ParticipantResponse> fetchParticipants(@RequestParam("scheduleId") Long scheduleId,
+													   @RequestParam("clubId") Long clubId) {
+
+		return participantFetchService.fetchParticipants(scheduleId, clubId);
 	}
 }

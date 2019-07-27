@@ -1,6 +1,5 @@
 package com.youngman.mop.domain.participant.service;
 
-import com.youngman.mop.domain.myclub.exception.MyClubAlreadyExistException;
 import com.youngman.mop.domain.participant.dao.ParticipantFindDao;
 import com.youngman.mop.domain.participant.dao.ParticipantRepository;
 import com.youngman.mop.domain.participant.domain.Participant;

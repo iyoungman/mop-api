@@ -40,6 +40,8 @@ public class QSchedule extends EntityPathBase<Schedule> {
 
     public final StringPath name = createString("name");
 
+    public final ListPath<com.youngman.mop.domain.participant.domain.Participant, com.youngman.mop.domain.participant.domain.QParticipant> participants = this.<com.youngman.mop.domain.participant.domain.Participant, com.youngman.mop.domain.participant.domain.QParticipant>createList("participants", com.youngman.mop.domain.participant.domain.Participant.class, com.youngman.mop.domain.participant.domain.QParticipant.class, PathInits.DIRECT2);
+
     public final StringPath region = createString("region");
 
     public final StringPath writer = createString("writer");

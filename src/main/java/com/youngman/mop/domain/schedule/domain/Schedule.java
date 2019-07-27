@@ -52,6 +52,7 @@ public class Schedule extends BaseTime implements Serializable {
 	@JoinColumn(name = "club_id", nullable = false)
 	private Club club;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
 	private List<Participant> participants = new ArrayList<>();
 
