@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.schedule.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +20,8 @@ public class ScheduleCreateRequest {
 	private String content;
 	private String region;
 	private String writer;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime meetingTime;
 	private Long clubId;
 
