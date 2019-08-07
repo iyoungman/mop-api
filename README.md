@@ -13,6 +13,7 @@
 * JWT(Authorization)
 * AOP(Request Logging, Exception Logging)
 * Jenkins 연동
+* AWS S3 연동(Image Upload)
 * ETC..
 
 ## Todo
