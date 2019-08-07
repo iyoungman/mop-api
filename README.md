@@ -1,4 +1,4 @@
-# Product Name
+# mop-api
 > MoP(Meeting of People) API 서버  
 
 ## Fuction
