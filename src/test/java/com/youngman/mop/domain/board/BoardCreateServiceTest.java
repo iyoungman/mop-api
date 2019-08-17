@@ -27,52 +27,52 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class BoardCreateServiceTest {
 
-	@InjectMocks
-	private BoardCreateService boardCreateService;
+    @InjectMocks
+    private BoardCreateService boardCreateService;
 
-	@Mock
-	private BoardRepository boardRepository;
+    @Mock
+    private BoardRepository boardRepository;
 
-	@Mock
-	private ClubFindDao clubFindDao;
+    @Mock
+    private ClubFindDao clubFindDao;
 
-	private Long CLUB_ID = 1L;
-	private Club club;
-	private BoardCreateRequest boardCreateRequest;
-	private Board board;
+    private Long CLUB_ID = 1L;
+    private Club club;
+    private BoardCreateRequest boardCreateRequest;
+    private Board board;
 
 
-	@BeforeEach
-	void setUp() {
-		club = Club.builder()
-				.name("name")
-				.region("region")
-				.chairEmail("chairEmail")
-				.hobby("hobby")
-				.introduce("introduce")
-				.build();
+    @BeforeEach
+    void setUp() {
+        club = Club.builder()
+                .name("name")
+                .region("region")
+                .chairEmail("chairEmail")
+                .hobby("hobby")
+                .introduce("introduce")
+                .build();
 
-		boardCreateRequest = BoardCreateRequest.builder()
-				.clubId(CLUB_ID)
-				.title("title")
-				.writer("writer")
-				.content("content")
-				.boardType(BoardType.POST)
-				.build();
+        boardCreateRequest = BoardCreateRequest.builder()
+                .clubId(CLUB_ID)
+                .title("title")
+                .writer("writer")
+                .content("content")
+                .boardType(BoardType.POST)
+                .build();
 
-		board = boardCreateRequest.toEntity(club);
-	}
+        board = boardCreateRequest.toEntity(club);
+    }
 
-	@Test
-	void 게시글_저장() {
-		//given
-		when(clubFindDao.findById(CLUB_ID)).thenReturn(club);
-		when(boardRepository.save(board)).thenReturn(board);
+    @Test
+    void 게시글_저장() {
+        //given
+        when(clubFindDao.findById(CLUB_ID)).thenReturn(club);
+        when(boardRepository.save(board)).thenReturn(board);
 
-		//when
-		boardCreateService.createBoard(boardCreateRequest);
+        //when
+        boardCreateService.createBoard(boardCreateRequest);
 
-		//then
-		verify(boardRepository).save(refEq(board));
-	}
+        //then
+        verify(boardRepository).save(refEq(board));
+    }
 }
