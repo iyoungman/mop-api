@@ -25,7 +25,7 @@ public class BoardCreateRequest {
 
 	@Builder
 	public BoardCreateRequest(String title, String content, String writer, 
-							  BoardType boardType, Long clubId) {
+				  BoardType boardType, Long clubId) {
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
