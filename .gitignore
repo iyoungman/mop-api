@@ -32,6 +32,6 @@ HELP.md
 .mvn/*
 mvnw
 mvnw.cmd
-/src/test/java/com/youngman/mop/
+#/src/test/java/com/youngman/mop/
 
 aws.yml
