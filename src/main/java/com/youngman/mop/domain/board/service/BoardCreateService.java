@@ -4,14 +4,18 @@ import com.youngman.mop.domain.board.dao.BoardRepository;
 import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.dto.BoardCreateRequest;
 import com.youngman.mop.domain.club.dao.ClubFindDao;
+import com.youngman.mop.domain.club.domain.Club;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by YoungMan on 2019-06-18.
  */
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BoardCreateService {
 
@@ -20,7 +24,8 @@ public class BoardCreateService {
 
 
 	public void createBoard(BoardCreateRequest boardCreateRequest) {
-		Board createBoard = Board.of(boardCreateRequest, clubFindDao.findById(boardCreateRequest.getClubId()));
-		boardRepository.save(createBoard);
+		Club club = clubFindDao.findById(boardCreateRequest.getClubId());
+		Board board = boardCreateRequest.toEntity(club);
+		boardRepository.save(board);
 	}
 }

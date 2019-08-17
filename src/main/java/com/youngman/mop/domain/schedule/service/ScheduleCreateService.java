@@ -27,19 +27,9 @@ public class ScheduleCreateService {
 
 
 	public void createSchedule(ScheduleCreateRequest scheduleCreateRequest) {
-		timeValidationCheck(scheduleCreateRequest.getMeetingTime());
+		scheduleCreateRequest.timeValidationCheck();
 
-		scheduleRepository.save(Schedule.of(scheduleCreateRequest,
-				clubFindDao.findById(scheduleCreateRequest.getClubId()))
-		);
+		Club club = clubFindDao.findById(scheduleCreateRequest.getClubId());
+		scheduleRepository.save(scheduleCreateRequest.toEntity(club));
 	}
-
-	private void timeValidationCheck(LocalDateTime meetingTime) {
-		Predicate<LocalDateTime> predicate = time -> time.isAfter(LocalDateTime.now());
-		if (!predicate.test(meetingTime)) {
-			throw new InvalidMeetingTimeException();
-		}
-	}
-
-
 }

@@ -53,27 +53,13 @@ public class Club extends BaseDate implements Serializable {
 
 
 	@Builder
-	public Club(String name,
-				String introduce,
-				String region,
-				String hobby,
-				String chairEmail) {
-
+	public Club(String name, String introduce,
+				String region, String hobby, String chairEmail) {
 		this.name = name;
 		this.introduce = introduce;
 		this.region = region;
 		this.hobby = hobby;
 		this.chairEmail = chairEmail;
-	}
-
-	public static Club of(ClubCreateRequest clubCreateRequest) {
-		return Club.builder()
-				.name(clubCreateRequest.getName())
-				.introduce(clubCreateRequest.getIntroduce())
-				.region(clubCreateRequest.getRegion())
-				.hobby(clubCreateRequest.getHobby())
-				.chairEmail(clubCreateRequest.getChairEmail())
-				.build();
 	}
 
 	public void updateClub(ClubCreateRequest clubCreateRequest) {

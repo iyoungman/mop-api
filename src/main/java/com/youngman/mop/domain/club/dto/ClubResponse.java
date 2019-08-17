@@ -25,14 +25,8 @@ public class ClubResponse {
 
 
 	@Builder
-	public ClubResponse(Long clubId,
-						String name,
-						String introduce,
-						LocalDate createDate,
-						String region,
-						String hobby,
-						String imageUri) {
-
+	public ClubResponse(Long clubId, String name, String introduce, LocalDate createDate,
+						String region, String hobby, String imageUri) {
 		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;

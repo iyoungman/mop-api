@@ -57,13 +57,8 @@ public class Schedule extends BaseTime implements Serializable {
 	private List<Participant> participants = new ArrayList<>();
 
 	@Builder
-	public Schedule(String name,
-					String content,
-					String region,
-					String writer,
-					LocalDateTime meetingTime,
-					Club club) {
-
+	public Schedule(String name, String content, String region,
+					String writer, LocalDateTime meetingTime, Club club) {
 		this.name = name;
 		this.content = content;
 		this.region = region;

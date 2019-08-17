@@ -1,12 +1,16 @@
 package com.youngman.mop.domain.schedule.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.schedule.domain.Schedule;
+import com.youngman.mop.domain.schedule.exception.InvalidMeetingTimeException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.function.Predicate;
 
 /**
  * Created by YoungMan on 2019-05-24.
@@ -35,5 +39,23 @@ public class ScheduleCreateRequest {
 		this.meetingTime = meetingTime;
 		this.writer = writer;
 		this.clubId = clubId;
+	}
+
+	public Schedule toEntity(Club club) {
+		return Schedule.builder()
+				.name(name)
+				.content(content)
+				.region(region)
+				.writer(writer)
+				.meetingTime(meetingTime)
+				.club(club)
+				.build();
+	}
+
+	public void timeValidationCheck() {
+		Predicate<LocalDateTime> predicate = time -> time.isAfter(LocalDateTime.now());
+		if (!predicate.test(meetingTime)) {
+			throw new InvalidMeetingTimeException();
+		}
 	}
 }

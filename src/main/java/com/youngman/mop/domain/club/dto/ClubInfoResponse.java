@@ -40,14 +40,8 @@ public class ClubInfoResponse implements Serializable {
 		private String imageUri;
 
 		@Builder
-		public ClubInfo(Long clubId,
-						String name,
-						String introduce,
-						LocalDate createDate,
-						String region,
-						String hobby,
-						String imageUri) {
-
+		public ClubInfo(Long clubId, String name, String introduce,
+						LocalDate createDate, String region, String hobby, String imageUri) {
 			this.clubId = clubId;
 			this.name = name;
 			this.introduce = introduce;
@@ -70,12 +64,8 @@ public class ClubInfoResponse implements Serializable {
 		private String introduce;
 
 		@Builder
-		public MemberInfo(String email,
-						  String name,
-						  String mobile,
-						  String hobby,
-						  String introduce) {
-
+		public MemberInfo(String email, String name, String mobile,
+						  String hobby, String introduce) {
 			this.email = email;
 			this.name = name;
 			this.mobile = mobile;

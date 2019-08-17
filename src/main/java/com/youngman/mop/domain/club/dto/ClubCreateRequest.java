@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.club.dto;
 
+import com.youngman.mop.domain.club.domain.Club;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,8 @@ public class ClubCreateRequest {
 
 
 	@Builder
-	public ClubCreateRequest(Long clubId, String name, String introduce, String region, String hobby, String chairEmail) {
+	public ClubCreateRequest(Long clubId, String name, String introduce,
+							 String region, String hobby, String chairEmail) {
 		this.clubId = clubId;
 		this.name = name;
 		this.introduce = introduce;
@@ -31,4 +33,15 @@ public class ClubCreateRequest {
 		this.hobby = hobby;
 		this.chairEmail = chairEmail;
 	}
+
+	public Club toEntity() {
+		return Club.builder()
+				.name(name)
+				.introduce(introduce)
+				.region(region)
+				.hobby(hobby)
+				.chairEmail(chairEmail)
+				.build();
+	}
+
 }

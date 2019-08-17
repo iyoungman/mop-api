@@ -69,19 +69,9 @@ public class Board extends BaseTime implements Serializable {
 		this.comments = comments;
 	}
 
-	public static Board of(BoardCreateRequest boardCreateRequest, Club club) {
-		return Board.builder()
-				.title(boardCreateRequest.getTitle())
-				.content(boardCreateRequest.getContent())
-				.writer(boardCreateRequest.getWriter())
-				.boardType(boardCreateRequest.getBoardType())
-				.club(club)
-				.build();
-	}
-
-	public void updateBoard(BoardUpdateRequest boardUpdateRequest) {
-		this.title = boardUpdateRequest.getTitle();
-		this.content = boardUpdateRequest.getContent();
+	public void updateBoard(String title, String content) {
+		this.title = title;
+		this.content = content;
 	}
 
 }

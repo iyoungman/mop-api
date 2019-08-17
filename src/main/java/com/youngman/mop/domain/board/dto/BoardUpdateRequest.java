@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * Created by YoungMan on 2019-06-18.
- * Update 할 수 있는것 중 그전 내용들 다 받기
  */
 
 @Getter
@@ -25,4 +24,6 @@ public class BoardUpdateRequest {
 		this.title = title;
 		this.content = content;
 	}
+
+
 }

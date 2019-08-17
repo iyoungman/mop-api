@@ -36,18 +36,21 @@ public class BoardApi {
 	@GetMapping
 	public BoardPagingResponse fetchPagingBoardsByClub(@RequestParam("clubId") Long clubId,
 													   @RequestParam("pageNo") int pageNo) {
+
 		return boardFetchService.fetchPagingBoardsByClub(clubId, PageRequest.of(pageNo - 1, 24));
 	}
 
 	@PutMapping
 	public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest,
 							@RequestHeader("token") String token) {
+
 		boardUpdateService.updateBoard(boardUpdateRequest, token);
 	}
 
 	@DeleteMapping
 	public void deleteBoard(@RequestParam("boardId") Long boardId,
 							@RequestHeader("token") String token) {
+
 		boardDeleteService.deleteBoard(boardId, token);
 	}
 }

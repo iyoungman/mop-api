@@ -25,7 +25,7 @@ public class BoardUpdateService {
 	public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
 		Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
 		checkValidateWriter(board.getWriter(), jwtService.findNameByJwt(token));
-		board.updateBoard(boardUpdateRequest);
+		board.updateBoard(boardUpdateRequest.getTitle(), boardUpdateRequest.getContent());
 		boardRepository.save(board);
 	}
 
