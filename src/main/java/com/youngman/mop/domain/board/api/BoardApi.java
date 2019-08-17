@@ -22,35 +22,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mop/board")
 public class BoardApi {
 
-	private final BoardCreateService boardCreateService;
-	private final BoardFetchService boardFetchService;
-	private final BoardUpdateService boardUpdateService;
-	private final BoardDeleteService boardDeleteService;
+    private final BoardCreateService boardCreateService;
+    private final BoardFetchService boardFetchService;
+    private final BoardUpdateService boardUpdateService;
+    private final BoardDeleteService boardDeleteService;
 
 
-	@PostMapping
-	public void createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
-		boardCreateService.createBoard(boardCreateRequest);
-	}
+    @PostMapping
+    public void createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
+        boardCreateService.createBoard(boardCreateRequest);
+    }
 
-	@GetMapping
-	public BoardPagingResponse fetchPagingBoardsByClub(@RequestParam("clubId") Long clubId,
-													   @RequestParam("pageNo") int pageNo) {
+    @GetMapping
+    public BoardPagingResponse fetchPagingBoardsByClub(@RequestParam("clubId") Long clubId,
+                                                       @RequestParam("pageNo") int pageNo) {
+        return boardFetchService.fetchPagingBoardsByClub(clubId, PageRequest.of(pageNo - 1, 24));
+    }
 
-		return boardFetchService.fetchPagingBoardsByClub(clubId, PageRequest.of(pageNo - 1, 24));
-	}
+    @PutMapping
+    public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest,
+                            @RequestHeader("token") String token) {
+        boardUpdateService.updateBoard(boardUpdateRequest, token);
+    }
 
-	@PutMapping
-	public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest,
-							@RequestHeader("token") String token) {
-
-		boardUpdateService.updateBoard(boardUpdateRequest, token);
-	}
-
-	@DeleteMapping
-	public void deleteBoard(@RequestParam("boardId") Long boardId,
-							@RequestHeader("token") String token) {
-
-		boardDeleteService.deleteBoard(boardId, token);
-	}
+    @DeleteMapping
+    public void deleteBoard(@RequestParam("boardId") Long boardId,
+                            @RequestHeader("token") String token) {
+        boardDeleteService.deleteBoard(boardId, token);
+    }
 }

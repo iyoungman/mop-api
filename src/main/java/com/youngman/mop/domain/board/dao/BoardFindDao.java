@@ -15,19 +15,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BoardFindDao {
 
-	private final BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
 
-	public Board findById(Long id) {
-		Optional<Board> board = boardRepository.findById(id);
-		board.orElseThrow(BoardNotFoundException::new);
-		return board.get();
-	}
+    public Board findById(Long id) {
+        Optional<Board> board = boardRepository.findById(id);
+        board.orElseThrow(BoardNotFoundException::new);
+        return board.get();
+    }
 
-	public String findWriterById(Long id) {
-		Optional<Board> board = boardRepository.findById(id);
-		board.orElseThrow(BoardNotFoundException::new);
-		return board.get().getWriter();
-	}
+    public String findWriterById(Long id) {
+        Optional<Board> board = boardRepository.findById(id);
+        board.orElseThrow(BoardNotFoundException::new);
+        return board.get().getWriter();
+    }
 
 }

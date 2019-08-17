@@ -17,23 +17,23 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ScheduleUpdateService {
 
-	private final ScheduleRepository scheduleRepository;
-	private final ScheduleFindDao scheduleFindDao;
-	private final JwtService jwtService;
+    private final ScheduleRepository scheduleRepository;
+    private final ScheduleFindDao scheduleFindDao;
+    private final JwtService jwtService;
 
 
-	public void updateSchedule(ScheduleUpdateRequest scheduleUpdateRequest, String token) {
-		Schedule schedule = scheduleFindDao.findById(scheduleUpdateRequest.getScheduleId());
-		checkValidateWriter(schedule.getWriter(), jwtService.findNameByJwt(token));
-		schedule.updateSchedule(scheduleUpdateRequest);
-		scheduleRepository.save(schedule);
-	}
+    public void updateSchedule(ScheduleUpdateRequest scheduleUpdateRequest, String token) {
+        Schedule schedule = scheduleFindDao.findById(scheduleUpdateRequest.getScheduleId());
+        checkValidateWriter(schedule.getWriter(), jwtService.findNameByJwt(token));
+        schedule.updateSchedule(scheduleUpdateRequest);
+        scheduleRepository.save(schedule);
+    }
 
-	private void checkValidateWriter(String scheduleWriterName, String updateWriterName) {
-		if(scheduleWriterName.equals(updateWriterName)) {
-			return;
-		}
-		throw new InvalidWriterException();
-	}
+    private void checkValidateWriter(String scheduleWriterName, String updateWriterName) {
+        if (scheduleWriterName.equals(updateWriterName)) {
+            return;
+        }
+        throw new InvalidWriterException();
+    }
 
 }

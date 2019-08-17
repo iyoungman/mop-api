@@ -16,30 +16,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardCreateRequest {
 
-	private String title;
-	private String content;
-	private String writer;
-	private BoardType boardType;
-	private Long clubId;
+    private String title;
+    private String content;
+    private String writer;
+    private BoardType boardType;
+    private Long clubId;
 
 
-	@Builder
-	public BoardCreateRequest(String title, String content, String writer,
-							  BoardType boardType, Long clubId) {
-		this.title = title;
-		this.content = content;
-		this.writer = writer;
-		this.boardType = boardType;
-		this.clubId = clubId;
-	}
+    @Builder
+    public BoardCreateRequest(String title, String content, String writer,
+                              BoardType boardType, Long clubId) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.boardType = boardType;
+        this.clubId = clubId;
+    }
 
-	public Board toEntity(Club club) {
-		return Board.builder()
-				.title(title)
-				.content(content)
-				.writer(writer)
-				.boardType(boardType)
-				.club(club)
-				.build();
-	}
+    public Board toEntity(Club club) {
+        return Board.builder()
+                .title(title)
+                .content(content)
+                .writer(writer)
+                .boardType(boardType)
+                .club(club)
+                .build();
+    }
 }

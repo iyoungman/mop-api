@@ -28,35 +28,35 @@ import static com.youngman.mop.domain.club.domain.QClub.club;
 @Component
 public class BoardRepositoryImpl extends QuerydslRepositorySupport implements BoardRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public BoardRepositoryImpl() {
-		super(Board.class);
-	}
+    public BoardRepositoryImpl() {
+        super(Board.class);
+    }
 
 
-	@Override
-	public Page<Board> fetchPagingBoardsByClub(Long clubId, PageRequest pageable) {
-		JPAQuery<Board> jpaQuery = new JPAQuery<>(entityManager);
+    @Override
+    public Page<Board> fetchPagingBoardsByClub(Long clubId, PageRequest pageable) {
+        JPAQuery<Board> jpaQuery = new JPAQuery<>(entityManager);
 
-		jpaQuery = jpaQuery.from(board)
-				.innerJoin(board.club, club)
-				.where(eqClubId(clubId))
-				.orderBy(board.boardType.asc(), board.id.desc());
+        jpaQuery = jpaQuery.from(board)
+                .innerJoin(board.club, club)
+                .where(eqClubId(clubId))
+                .orderBy(board.boardType.asc(), board.id.desc());
 
-		List<Board> boards = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
-		return new PageImpl<>(boards, pageable, jpaQuery.fetchCount());
-	}
+        List<Board> boards = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, jpaQuery).fetch();
+        return new PageImpl<>(boards, pageable, jpaQuery.fetchCount());
+    }
 
-	private BooleanExpression eqClubId(Long clubId) {
-		if (ObjectUtils.isEmpty(clubId)) {
-			return null;
-		}
-		return club.id.eq(clubId);
-	}
+    private BooleanExpression eqClubId(Long clubId) {
+        if (ObjectUtils.isEmpty(clubId)) {
+            return null;
+        }
+        return club.id.eq(clubId);
+    }
 
-	private BooleanExpression eqNotice() {
-		return board.boardType.eq(BoardType.NOTICE);
-	}
+    private BooleanExpression eqNotice() {
+        return board.boardType.eq(BoardType.NOTICE);
+    }
 }

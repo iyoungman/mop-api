@@ -19,24 +19,23 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ScheduleFetchService {
 
-	private final ScheduleRepository scheduleRepository;
+    private final ScheduleRepository scheduleRepository;
 
 
-	public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId, LocalDate date) {
-		List<Schedule> schedules = scheduleRepository.fetchSchedulesByClubIdAndMonthly(clubId, date);
-		return convertListToMap(schedules);
-	}
+    public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(Long clubId, LocalDate date) {
+        List<Schedule> schedules = scheduleRepository.fetchSchedulesByClubIdAndMonthly(clubId, date);
+        return convertListToMap(schedules);
+    }
 
-	private Map<String, Schedule> convertListToMap(List<Schedule> schedules) {
-		return schedules.stream()
-				.collect(Collectors.toMap(s -> convertTimeToDateStr(s.getMeetingTime()), s -> s));
-	}
+    private Map<String, Schedule> convertListToMap(List<Schedule> schedules) {
+        return schedules.stream()
+                .collect(Collectors.toMap(s -> convertTimeToDateStr(s.getMeetingTime()), s -> s));
+    }
 
-	private String convertTimeToDateStr(LocalDateTime localDateTime) {
-		return localDateTime.toLocalDate()
-				.toString();
-	}
-
+    private String convertTimeToDateStr(LocalDateTime localDateTime) {
+        return localDateTime.toLocalDate()
+                .toString();
+    }
 
 
 }

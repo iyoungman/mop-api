@@ -16,20 +16,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ParticipantCreateService {
 
-	private final ParticipantRepository participantRepository;
-	private final ParticipantFindDao participantFindDao;
-	private final ScheduleFindDao scheduleFindDao;
+    private final ParticipantRepository participantRepository;
+    private final ParticipantFindDao participantFindDao;
+    private final ScheduleFindDao scheduleFindDao;
 
 
-	public int createParticipant(ParticipantCreateRequest participantCreateRequest) {
-		if(participantFindDao.isExistByEmailAndSchedule(participantCreateRequest.getEmail(), participantCreateRequest.getScheduleId())) {
-			return -1;
-		}
+    public int createParticipant(ParticipantCreateRequest participantCreateRequest) {
+        if (participantFindDao.isExistByEmailAndSchedule(participantCreateRequest.getEmail(), participantCreateRequest.getScheduleId())) {
+            return -1;
+        }
 
-		Participant participant = Participant.of(participantCreateRequest,
-				scheduleFindDao.findById(participantCreateRequest.getScheduleId())
-		);
-		participantRepository.save(participant);
-		return participantFindDao.findCountBySchedule(participantCreateRequest.getScheduleId());
-	}
+        Participant participant = Participant.of(participantCreateRequest,
+                scheduleFindDao.findById(participantCreateRequest.getScheduleId())
+        );
+        participantRepository.save(participant);
+        return participantFindDao.findCountBySchedule(participantCreateRequest.getScheduleId());
+    }
 }

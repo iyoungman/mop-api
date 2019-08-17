@@ -20,45 +20,45 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ClubMapper {
 
-	private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
 
-	public ClubInfoResponse mapFrom(Club club) {
-		prepareModelMapper();
+    public ClubInfoResponse mapFrom(Club club) {
+        prepareModelMapper();
 
-		return ClubInfoResponse.builder()
-				.clubInfo(toClubInfo(club))
-				.memberInfos(toMemberInfos(club))
-				.build();
-	}
+        return ClubInfoResponse.builder()
+                .clubInfo(toClubInfo(club))
+                .memberInfos(toMemberInfos(club))
+                .build();
+    }
 
-	private void prepareModelMapper() {
-		TypeMap<Club, ClubInfoResponse.ClubInfo> typeMap = modelMapper.getTypeMap(Club.class, ClubInfoResponse.ClubInfo.class);
+    private void prepareModelMapper() {
+        TypeMap<Club, ClubInfoResponse.ClubInfo> typeMap = modelMapper.getTypeMap(Club.class, ClubInfoResponse.ClubInfo.class);
 
-		if (typeMap == null) {
-			modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
-				protected void configure() {
-					map().setClubId(source.getId());
-					map().setCreateDate(source.getCreatedDate());
-					map().setImageUri(source.getImagePath());
-				}
-			});
-		}
-	}
+        if (typeMap == null) {
+            modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
+                protected void configure() {
+                    map().setClubId(source.getId());
+                    map().setCreateDate(source.getCreatedDate());
+                    map().setImageUri(source.getImagePath());
+                }
+            });
+        }
+    }
 
-	private ClubInfoResponse.ClubInfo toClubInfo(Club club) {
-		return modelMapper.map(club, ClubInfoResponse.ClubInfo.class);
-	}
+    private ClubInfoResponse.ClubInfo toClubInfo(Club club) {
+        return modelMapper.map(club, ClubInfoResponse.ClubInfo.class);
+    }
 
-	private List<ClubInfoResponse.MemberInfo> toMemberInfos(Club club) {
-		return club.getMyClubs()
-				.stream()
-				.map(c -> toMemberInfo(c.getMember()))
-				.collect(Collectors.toList());
-	}
+    private List<ClubInfoResponse.MemberInfo> toMemberInfos(Club club) {
+        return club.getMyClubs()
+                .stream()
+                .map(c -> toMemberInfo(c.getMember()))
+                .collect(Collectors.toList());
+    }
 
-	private ClubInfoResponse.MemberInfo toMemberInfo(Member member) {
-		return modelMapper.map(member, ClubInfoResponse.MemberInfo.class);
-	}
+    private ClubInfoResponse.MemberInfo toMemberInfo(Member member) {
+        return modelMapper.map(member, ClubInfoResponse.MemberInfo.class);
+    }
 
 }

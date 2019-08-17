@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClubCreateService {
 
-	private final ClubRepository clubRepository;
+    private final ClubRepository clubRepository;
 
 
-	public void createClub(ClubCreateRequest clubCreateRequest) {
-		Club createClub = clubCreateRequest.toEntity();
-		clubRepository.save(createClub);
-	}
+    public void createClub(ClubCreateRequest clubCreateRequest) {
+        Club createClub = clubCreateRequest.toEntity();
+        clubRepository.save(createClub);
+    }
 }

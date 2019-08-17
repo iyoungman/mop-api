@@ -50,14 +50,8 @@ public class Member extends BaseDate implements Serializable {
 	private List<MyHobby> myHobbies = new ArrayList<>();
 
 	@Builder
-	public Member(String email,
-				  String pw,
-				  String name,
-				  String mobile,
-				  String address,
-				  String introduce,
-				  String fcmToken) {
-
+	public Member(String email, String pw, String name, String mobile,
+				  String address, String introduce, String fcmToken) {
 		this.email = email;
 		this.pw = pw;
 		this.name = name;

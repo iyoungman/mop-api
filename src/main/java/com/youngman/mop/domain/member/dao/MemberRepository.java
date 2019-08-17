@@ -9,13 +9,13 @@ import java.util.Optional;
  * Created by YoungMan on 2019-05-08.
  */
 
-public interface MemberRepository extends JpaRepository<Member,Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-	Boolean existsByEmail(String email);
+    Boolean existsByEmail(String email);
 
-	Optional<Member> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 
-	void deleteByEmail(String email);
+    void deleteByEmail(String email);
 
 //	@Query(value = "SELECT member.address FROM Member member WHERE member.email = :email")
 //	String findAddressByEmail(@Param("email") String email);

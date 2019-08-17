@@ -13,18 +13,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberDeleteService {
 
-	private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
 
-	public void deleteById(Long id) {
-		memberRepository.deleteById(id);
-	}
+    public void deleteById(Long id) {
+        memberRepository.deleteById(id);
+    }
 
-	public void deleteByEmail(String email) {
-		if (memberRepository.existsByEmail(email)) {
-			memberRepository.deleteByEmail(email);
-			return;
-		}
-		throw new MemberNotFoundException();
-	}
+    public void deleteByEmail(String email) {
+        if (memberRepository.existsByEmail(email)) {
+            memberRepository.deleteByEmail(email);
+            return;
+        }
+        throw new MemberNotFoundException();
+    }
 }

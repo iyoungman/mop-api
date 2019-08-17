@@ -19,31 +19,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/mop/member")
 public class MemberApi {
 
-	private final MemberSignInService memberSignInService;
-	private final MemberCreateService memberCreateService;
-	private final MemberUpdateService memberUpdateService;
-	private final MemberDeleteService memberDeleteService;
+    private final MemberSignInService memberSignInService;
+    private final MemberCreateService memberCreateService;
+    private final MemberUpdateService memberUpdateService;
+    private final MemberDeleteService memberDeleteService;
 
 
-	@PostMapping("/signin")
-	public MemberSignInResponse signInMember(@RequestBody MemberSignInRequest memberSignInRequest) {
-		return memberSignInService.singInMember(memberSignInRequest);
-	}
+    @PostMapping("/signin")
+    public MemberSignInResponse signInMember(@RequestBody MemberSignInRequest memberSignInRequest) {
+        return memberSignInService.singInMember(memberSignInRequest);
+    }
 
-	@PostMapping("/signup")
-	public void createMember(@RequestBody MemberCreateRequest memberCreateRequest) {
-		memberCreateService.createMember(memberCreateRequest);
-	}
+    @PostMapping("/signup")
+    public void createMember(@RequestBody MemberCreateRequest memberCreateRequest) {
+        memberCreateService.createMember(memberCreateRequest);
+    }
 
-	@PutMapping
-	public void updateMember(@RequestBody MemberCreateRequest memberCreateRequest,
-							 @RequestHeader("token") String token) {
+    @PutMapping
+    public void updateMember(@RequestBody MemberCreateRequest memberCreateRequest,
+                             @RequestHeader("token") String token) {
+        memberUpdateService.updateMember(memberCreateRequest);
+    }
 
-		memberUpdateService.updateMember(memberCreateRequest);
-	}
-
-	@DeleteMapping
-	public void deleteMember(@RequestParam("email") String email) {
-		memberDeleteService.deleteByEmail(email);
-	}
+    @DeleteMapping
+    public void deleteMember(@RequestParam("email") String email) {
+        memberDeleteService.deleteByEmail(email);
+    }
 }

@@ -19,13 +19,13 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class BoardCreateService {
 
-	private final BoardRepository boardRepository;
-	private final ClubFindDao clubFindDao;
+    private final BoardRepository boardRepository;
+    private final ClubFindDao clubFindDao;
 
 
-	public void createBoard(BoardCreateRequest boardCreateRequest) {
-		Club club = clubFindDao.findById(boardCreateRequest.getClubId());
-		Board board = boardCreateRequest.toEntity(club);
-		boardRepository.save(board);
-	}
+    public void createBoard(BoardCreateRequest boardCreateRequest) {
+        Club club = clubFindDao.findById(boardCreateRequest.getClubId());
+        Board board = boardCreateRequest.toEntity(club);
+        boardRepository.save(board);
+    }
 }

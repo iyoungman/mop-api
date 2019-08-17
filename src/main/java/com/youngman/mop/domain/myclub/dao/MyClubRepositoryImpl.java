@@ -27,64 +27,64 @@ import static com.youngman.mop.domain.schedule.domain.QSchedule.schedule;
 
 public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements MyClubRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public MyClubRepositoryImpl() {
-		super(MyClub.class);
-	}
+    public MyClubRepositoryImpl() {
+        super(MyClub.class);
+    }
 
 
-	@Override
-	public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
-		JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
+    @Override
+    public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
+        JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
-		return jpaQuery.select(Projections.constructor(MyClubResponse.class,
-				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, new CaseBuilder()
-						.when(isAfterSchedule())
-						.then(schedule.meetingTime.min())
-						.otherwise((LocalDateTime) null).as("meetingTime"))
-		)
-				.from(myClub)
-				.innerJoin(myClub.member, member)
-				.innerJoin(myClub.club, club)
-				.leftJoin(club.schedule, schedule)
-				.where(eqMemberEmail(email))
-				.orderBy(schedule.meetingTime.asc())
-				.groupBy(club.id)
+        return jpaQuery.select(Projections.constructor(MyClubResponse.class,
+                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, new CaseBuilder()
+                        .when(isAfterSchedule())
+                        .then(schedule.meetingTime.min())
+                        .otherwise((LocalDateTime) null).as("meetingTime"))
+        )
+                .from(myClub)
+                .innerJoin(myClub.member, member)
+                .innerJoin(myClub.club, club)
+                .leftJoin(club.schedule, schedule)
+                .where(eqMemberEmail(email))
+                .orderBy(schedule.meetingTime.asc())
+                .groupBy(club.id)
 //				.having(club.id.goe(1))
-				.fetch();
-	}
+                .fetch();
+    }
 
-	private BooleanExpression eqMemberEmail(String email) {
-		if (StringUtils.isEmpty(email)) {
-			return null;
-		}
-		return member.email.eq(email);
-	}
+    private BooleanExpression eqMemberEmail(String email) {
+        if (StringUtils.isEmpty(email)) {
+            return null;
+        }
+        return member.email.eq(email);
+    }
 
-	private BooleanExpression isAfterSchedule() {
-		return schedule.meetingTime.after(LocalDateTime.now());
-	}
+    private BooleanExpression isAfterSchedule() {
+        return schedule.meetingTime.after(LocalDateTime.now());
+    }
 
 
-	public boolean isExistMyClubByMemberEmailAndClubId(String email, Long clubId) {
-		JPAQuery<MyClub> jpaQuery = new JPAQuery<>(entityManager);
+    public boolean isExistMyClubByMemberEmailAndClubId(String email, Long clubId) {
+        JPAQuery<MyClub> jpaQuery = new JPAQuery<>(entityManager);
 
-		List<MyClub> myClubs = jpaQuery.from(myClub)
-				.innerJoin(myClub.member, member)
-				.innerJoin(myClub.club, club)
-				.where(eqMemberEmail(email))
-				.where(eqClubId(clubId))
-				.fetch();
+        List<MyClub> myClubs = jpaQuery.from(myClub)
+                .innerJoin(myClub.member, member)
+                .innerJoin(myClub.club, club)
+                .where(eqMemberEmail(email))
+                .where(eqClubId(clubId))
+                .fetch();
 
-		return myClubs.size() != 0;
-	}
+        return myClubs.size() != 0;
+    }
 
-	private BooleanExpression eqClubId(Long clubId) {
-		if (clubId == null) {
-			return null;
-		}
-		return club.id.eq(clubId);
-	}
+    private BooleanExpression eqClubId(Long clubId) {
+        if (clubId == null) {
+            return null;
+        }
+        return club.id.eq(clubId);
+    }
 }

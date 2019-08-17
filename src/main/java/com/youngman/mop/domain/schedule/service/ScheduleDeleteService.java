@@ -15,24 +15,24 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ScheduleDeleteService {
 
-	private final ScheduleRepository scheduleRepository;
-	private final ScheduleFindDao scheduleFindDao;
-	private final JwtService jwtService;
+    private final ScheduleRepository scheduleRepository;
+    private final ScheduleFindDao scheduleFindDao;
+    private final JwtService jwtService;
 
 
-	public void deleteSchedule(Long scheduleId, String token) {
-		String findWriter = scheduleFindDao.findWriterById(scheduleId);
-		String tokenWriter = jwtService.findNameByJwt(token);
-		checkValidateWriter(findWriter, tokenWriter);
+    public void deleteSchedule(Long scheduleId, String token) {
+        String findWriter = scheduleFindDao.findWriterById(scheduleId);
+        String tokenWriter = jwtService.findNameByJwt(token);
+        checkValidateWriter(findWriter, tokenWriter);
 
-		scheduleRepository.deleteById(scheduleId);
-	}
+        scheduleRepository.deleteById(scheduleId);
+    }
 
-	private void checkValidateWriter(String scheduleWriterName, String updateWriterName) {
-		if(scheduleWriterName.equals(updateWriterName)) {
-			return;
-		}
-		throw new InvalidWriterException();
-	}
+    private void checkValidateWriter(String scheduleWriterName, String updateWriterName) {
+        if (scheduleWriterName.equals(updateWriterName)) {
+            return;
+        }
+        throw new InvalidWriterException();
+    }
 }
 

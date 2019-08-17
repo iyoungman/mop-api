@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberCreateService {
 
-	private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
 
-	public void createMember(MemberCreateRequest memberCreateRequest) {
+    public void createMember(MemberCreateRequest memberCreateRequest) {
 
-		if (!memberRepository.existsByEmail(memberCreateRequest.getEmail())) {
-			memberRepository.save(Member.of(memberCreateRequest));
-			return;
-		}
-		throw new EmailDuplicationException();
-	}
+        if (!memberRepository.existsByEmail(memberCreateRequest.getEmail())) {
+            memberRepository.save(Member.of(memberCreateRequest));
+            return;
+        }
+        throw new EmailDuplicationException();
+    }
 
 }

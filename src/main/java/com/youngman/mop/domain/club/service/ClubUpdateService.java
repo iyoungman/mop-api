@@ -17,17 +17,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClubUpdateService {
 
-	private final ClubRepository clubRepository;
-	private final ClubFindDao clubFindDao;
-	private final ClubCache clubCache;
+    private final ClubRepository clubRepository;
+    private final ClubFindDao clubFindDao;
+    private final ClubCache clubCache;
 
 
-	public void updateClub(ClubCreateRequest clubCreateRequest) {
-		clubCache.delete(clubCreateRequest.getClubId());
+    public void updateClub(ClubCreateRequest clubCreateRequest) {
+        clubCache.delete(clubCreateRequest.getClubId());
 
-		Club club = clubFindDao.findById(clubCreateRequest.getClubId());
-		club.updateClub(clubCreateRequest);
-		clubRepository.save(club);
-	}
+        Club club = clubFindDao.findById(clubCreateRequest.getClubId());
+        club.updateClub(clubCreateRequest);
+        clubRepository.save(club);
+    }
 
 }

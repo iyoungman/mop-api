@@ -25,32 +25,32 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ClubFetchService {
 
-	private final ClubRepository clubRepository;
-	private final MemberFindDao memberFindDao;
-	private final ClubCache clubCache;
-	private final ClubMapper clubMapper;
+    private final ClubRepository clubRepository;
+    private final MemberFindDao memberFindDao;
+    private final ClubCache clubCache;
+    private final ClubMapper clubMapper;
 
 
-	public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
-		Page<ClubResponse> pagingClubResponse = clubRepository.fetchPagingClubsByMember(
-				email, memberFindDao.findAddressByEmail(email), pageable);
+    public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
+        Page<ClubResponse> pagingClubResponse = clubRepository.fetchPagingClubsByMember(
+                email, memberFindDao.findAddressByEmail(email), pageable);
 
-		return ClubPagingResponse.of(pagingClubResponse);
-	}
+        return ClubPagingResponse.of(pagingClubResponse);
+    }
 
-	public ClubInfoResponse fetchClubInfoById(Long clubId) {
-		ClubInfoResponse clubInfoResponse = clubCache.fromCache(clubId);
-		return clubInfoResponse != null ? clubInfoResponse : fromRepository(clubId);
-	}
+    public ClubInfoResponse fetchClubInfoById(Long clubId) {
+        ClubInfoResponse clubInfoResponse = clubCache.fromCache(clubId);
+        return clubInfoResponse != null ? clubInfoResponse : fromRepository(clubId);
+    }
 
-	private ClubInfoResponse fromRepository(Long clubId) {
-		Optional<Club> club = clubRepository.fetchClubInfoById(clubId);
-		if (club.isPresent()) {
-			ClubInfoResponse clubInfoResponse = clubMapper.mapFrom(club.get());
-			clubCache.toCache(clubId, clubInfoResponse);
-			return clubInfoResponse;
-		}
-		return new ClubInfoResponse();
-	}
+    private ClubInfoResponse fromRepository(Long clubId) {
+        Optional<Club> club = clubRepository.fetchClubInfoById(clubId);
+        if (club.isPresent()) {
+            ClubInfoResponse clubInfoResponse = clubMapper.mapFrom(club.get());
+            clubCache.toCache(clubId, clubInfoResponse);
+            return clubInfoResponse;
+        }
+        return new ClubInfoResponse();
+    }
 
 }

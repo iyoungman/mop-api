@@ -16,9 +16,9 @@ import java.util.Optional;
 
 public interface ClubRepositoryCustom {
 
-	Page<ClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable);
+    Page<ClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable);
 
-	Optional<Club> fetchClubInfoById(Long clubId);
+    Optional<Club> fetchClubInfoById(Long clubId);
 
-	List<Member> fetchClubMembers(Long clubId);
+    List<Member> fetchClubMembers(Long clubId);
 }

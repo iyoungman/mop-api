@@ -17,22 +17,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ParticipantFetchService {
 
-	private final ParticipantFindDao participantFindDao;
-	private final ClubRepository clubRepository;
-	private final ParticipantMapper participantMapper;
+    private final ParticipantFindDao participantFindDao;
+    private final ClubRepository clubRepository;
+    private final ParticipantMapper participantMapper;
 
 
-	public List<ParticipantResponse> fetchParticipants(Long scheduleId, Long clubId) {
-		List<String> participateEmails = participantFindDao.findEmailBySchedule(scheduleId);
-		List<Member> allMembers = clubRepository.fetchClubMembers(clubId);
-		return checkParticipate(participateEmails, participantMapper.mapFromMembers(allMembers));
-	}
+    public List<ParticipantResponse> fetchParticipants(Long scheduleId, Long clubId) {
+        List<String> participateEmails = participantFindDao.findEmailBySchedule(scheduleId);
+        List<Member> allMembers = clubRepository.fetchClubMembers(clubId);
+        return checkParticipate(participateEmails, participantMapper.mapFromMembers(allMembers));
+    }
 
-	private List<ParticipantResponse> checkParticipate(List<String> participateEmails, List<ParticipantResponse> allMembers) {
-		allMembers.stream()
-				.filter(p -> participateEmails.contains(p.getEmail()))
-				.forEach(p -> p.isParticipate());
+    private List<ParticipantResponse> checkParticipate(List<String> participateEmails, List<ParticipantResponse> allMembers) {
+        allMembers.stream()
+                .filter(p -> participateEmails.contains(p.getEmail()))
+                .forEach(p -> p.isParticipate());
 
-		return allMembers;
-	}
+        return allMembers;
+    }
 }

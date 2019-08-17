@@ -9,7 +9,7 @@ import com.youngman.mop.global.error.exception.ErrorCodeType;
 
 public class ClubNotFoundException extends BusinessLogicException {
 
-	public ClubNotFoundException() {
-		super(ErrorCodeType.CLUB_NOT_FOUND);
-	}
+    public ClubNotFoundException() {
+        super(ErrorCodeType.CLUB_NOT_FOUND);
+    }
 }

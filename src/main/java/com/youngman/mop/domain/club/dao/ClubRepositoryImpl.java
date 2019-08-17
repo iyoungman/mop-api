@@ -35,71 +35,71 @@ import static com.youngman.mop.domain.schedule.domain.QSchedule.schedule;
 @Component
 public class ClubRepositoryImpl extends QuerydslRepositorySupport implements ClubRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public ClubRepositoryImpl() {
-		super(Club.class);
-	}
+    public ClubRepositoryImpl() {
+        super(Club.class);
+    }
 
 
-	@Override
-	public Page<ClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
-		JPAQuery<ClubResponse> jpaQuery = new JPAQuery<>(entityManager);
+    @Override
+    public Page<ClubResponse> fetchPagingClubsByMember(String email, String address, Pageable pageable) {
+        JPAQuery<ClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
-		jpaQuery = jpaQuery.select(Projections.constructor(ClubResponse.class,
-				club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath))
-				.from(club);
+        jpaQuery = jpaQuery.select(Projections.constructor(ClubResponse.class,
+                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath))
+                .from(club);
 
-		List<ClubResponse> clubResponses = getQuerydsl()
-				.applyPagination(pageable, jpaQuery)
-				.fetch();
+        List<ClubResponse> clubResponses = getQuerydsl()
+                .applyPagination(pageable, jpaQuery)
+                .fetch();
 
-		return new PageImpl<>(clubResponses, pageable, jpaQuery.fetchCount());
-	}
+        return new PageImpl<>(clubResponses, pageable, jpaQuery.fetchCount());
+    }
 
-	private BooleanExpression eqMemberEmail(String email) {
-		if (StringUtils.isEmpty(email)) {
-			return null;
-		}
-		return member.email.eq(email);
-	}
+    private BooleanExpression eqMemberEmail(String email) {
+        if (StringUtils.isEmpty(email)) {
+            return null;
+        }
+        return member.email.eq(email);
+    }
 
-	private BooleanExpression eqMemberAddress(String address) {
-		if (StringUtils.isEmpty(address)) {
-			return null;
-		}
-		return club.region.eq(address);
-	}
+    private BooleanExpression eqMemberAddress(String address) {
+        if (StringUtils.isEmpty(address)) {
+            return null;
+        }
+        return club.region.eq(address);
+    }
 
-	public Optional<Club> fetchClubInfoById(Long clubId) {
-		JPAQuery<Club> jpaQuery = new JPAQuery<>(entityManager);
+    public Optional<Club> fetchClubInfoById(Long clubId) {
+        JPAQuery<Club> jpaQuery = new JPAQuery<>(entityManager);
 
-		Club fetchClub = jpaQuery.select(club)
-				.from(club)
-				.leftJoin(club.myClubs, myClub).fetchJoin()
-				.innerJoin(myClub.member, member).fetchJoin()
-				.where(eqClubId(clubId))
-				.fetchOne();
+        Club fetchClub = jpaQuery.select(club)
+                .from(club)
+                .leftJoin(club.myClubs, myClub).fetchJoin()
+                .innerJoin(myClub.member, member).fetchJoin()
+                .where(eqClubId(clubId))
+                .fetchOne();
 
-		return Optional.ofNullable(fetchClub);
-	}
+        return Optional.ofNullable(fetchClub);
+    }
 
-	private BooleanExpression eqClubId(Long clubId) {
-		if (ObjectUtils.isEmpty(clubId)) {
-			return null;
-		}
-		return club.id.eq(clubId);
-	}
+    private BooleanExpression eqClubId(Long clubId) {
+        if (ObjectUtils.isEmpty(clubId)) {
+            return null;
+        }
+        return club.id.eq(clubId);
+    }
 
-	public List<Member> fetchClubMembers(Long clubId) {
-		JPAQuery<Member> jpaQuery = new JPAQuery<>(entityManager);
-		return jpaQuery.select(member)
-				.from(club)
-				.innerJoin(club.myClubs, myClub)
-				.innerJoin(myClub.member, member)
-				.where(eqClubId(clubId))
-				.orderBy(member.email.asc())
-				.fetch();
-	}
+    public List<Member> fetchClubMembers(Long clubId) {
+        JPAQuery<Member> jpaQuery = new JPAQuery<>(entityManager);
+        return jpaQuery.select(member)
+                .from(club)
+                .innerJoin(club.myClubs, myClub)
+                .innerJoin(myClub.member, member)
+                .where(eqClubId(clubId))
+                .orderBy(member.email.asc())
+                .fetch();
+    }
 }

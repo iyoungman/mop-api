@@ -20,19 +20,18 @@ import java.util.List;
 @RequestMapping(value = "/mop/participant")
 public class ParticipantApi {
 
-	private final ParticipantCreateService participantCreateService;
-	private final ParticipantFetchService participantFetchService;
+    private final ParticipantCreateService participantCreateService;
+    private final ParticipantFetchService participantFetchService;
 
 
-	@PostMapping
-	public int createParticipant(@RequestBody ParticipantCreateRequest participantCreateRequest) {
-		return participantCreateService.createParticipant(participantCreateRequest);
-	}
+    @PostMapping
+    public int createParticipant(@RequestBody ParticipantCreateRequest participantCreateRequest) {
+        return participantCreateService.createParticipant(participantCreateRequest);
+    }
 
-	@GetMapping
-	public List<ParticipantResponse> fetchParticipants(@RequestParam("scheduleId") Long scheduleId,
-													   @RequestParam("clubId") Long clubId) {
-
-		return participantFetchService.fetchParticipants(scheduleId, clubId);
-	}
+    @GetMapping
+    public List<ParticipantResponse> fetchParticipants(@RequestParam("scheduleId") Long scheduleId,
+                                                       @RequestParam("clubId") Long clubId) {
+        return participantFetchService.fetchParticipants(scheduleId, clubId);
+    }
 }

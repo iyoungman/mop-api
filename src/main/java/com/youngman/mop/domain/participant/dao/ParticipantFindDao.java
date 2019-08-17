@@ -18,22 +18,22 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ParticipantFindDao {
 
-	private final ParticipantRepository participantRepository;
+    private final ParticipantRepository participantRepository;
 
-	public List<String> findEmailBySchedule(Long scheduleId) {
-		List<Participant> participants =  participantRepository.findBySchedule(scheduleId);
-		return participants.stream()
-				.map(Participant::getEmail)
-				.collect(Collectors.toList());
-	}
+    public List<String> findEmailBySchedule(Long scheduleId) {
+        List<Participant> participants = participantRepository.findBySchedule(scheduleId);
+        return participants.stream()
+                .map(Participant::getEmail)
+                .collect(Collectors.toList());
+    }
 
-	public int findCountBySchedule(Long scheduleId) {
-		List<Participant> participants = participantRepository.findBySchedule(scheduleId);
-		return participants.size();
-	}
+    public int findCountBySchedule(Long scheduleId) {
+        List<Participant> participants = participantRepository.findBySchedule(scheduleId);
+        return participants.size();
+    }
 
-	public boolean isExistByEmailAndSchedule(String email, Long scheduleId) {
-		Optional<Participant> participant = participantRepository.findByEmailAndSchedule(email, scheduleId);
-		return participant.isPresent();
-	}
+    public boolean isExistByEmailAndSchedule(String email, Long scheduleId) {
+        Optional<Participant> participant = participantRepository.findByEmailAndSchedule(email, scheduleId);
+        return participant.isPresent();
+    }
 }

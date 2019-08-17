@@ -24,42 +24,42 @@ import java.util.stream.Collectors;
 @Aspect
 public class RequestLogAspect {
 
-	@Pointcut("within(com.youngman.mop.domain.*.api.*)")//jwtApi 도 추가할 것
-	public void onRequest() {
-	}
+    @Pointcut("within(com.youngman.mop.domain.*.api.*)")//jwtApi 도 추가할 것
+    public void onRequest() {
+    }
 
-	@Around("com.youngman.mop.global.aop.RequestLogAspect.onRequest()")
-	public Object printRequestLog(ProceedingJoinPoint pjp) throws Throwable {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
-				.currentRequestAttributes())
-				.getRequest();
+    @Around("com.youngman.mop.global.aop.RequestLogAspect.onRequest()")
+    public Object printRequestLog(ProceedingJoinPoint pjp) throws Throwable {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .currentRequestAttributes())
+                .getRequest();
 
-		String params = paramMapToString(request.getParameterMap());
-		long start = System.currentTimeMillis();
+        String params = paramMapToString(request.getParameterMap());
+        long start = System.currentTimeMillis();
 
-		try {
-			return pjp.proceed(pjp.getArgs());
-		} finally {
-			long end = System.currentTimeMillis();
+        try {
+            return pjp.proceed(pjp.getArgs());
+        } finally {
+            long end = System.currentTimeMillis();
 
-			log.info("==============Request Log Start================");
-			log.info("|");
-			log.info("| Request Time => {}", LocalDateTime.now());
-			log.info("| Request URL => {} {}{}", request.getMethod(), request.getRequestURI(), params);
-			log.info("| Request Host => {}", request.getRemoteHost());
-			log.info("| Take Time => {}ms", end - start);
-			log.info("|");
-			log.info("===============Request Log End=================");
-		}
-	}
+            log.info("==============Request Log Start================");
+            log.info("|");
+            log.info("| Request Time => {}", LocalDateTime.now());
+            log.info("| Request URL => {} {}{}", request.getMethod(), request.getRequestURI(), params);
+            log.info("| Request Host => {}", request.getRemoteHost());
+            log.info("| Take Time => {}ms", end - start);
+            log.info("|");
+            log.info("===============Request Log End=================");
+        }
+    }
 
-	private String paramMapToString(Map<String, String[]> paramMap) {
-		if (paramMap.isEmpty()) {
-			return "";
-		}
+    private String paramMapToString(Map<String, String[]> paramMap) {
+        if (paramMap.isEmpty()) {
+            return "";
+        }
 
-		return " [" + paramMap.entrySet().stream()
-				.map(entry -> String.format("%s -> (%s)", entry.getKey(), Joiner.on(",").join(entry.getValue())))
-				.collect(Collectors.joining(", ")) + "]";
-	}
+        return " [" + paramMap.entrySet().stream()
+                .map(entry -> String.format("%s -> (%s)", entry.getKey(), Joiner.on(",").join(entry.getValue())))
+                .collect(Collectors.joining(", ")) + "]";
+    }
 }

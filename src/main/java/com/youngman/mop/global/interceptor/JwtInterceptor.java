@@ -19,19 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class JwtInterceptor implements HandlerInterceptor {
 
-	private final String HEADER_AUTH = "token";
-	private final JwtService jwtService;
+    private final String HEADER_AUTH = "token";
+    private final JwtService jwtService;
 
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
-		final String jwtToken = request.getHeader(HEADER_AUTH);
+        final String jwtToken = request.getHeader(HEADER_AUTH);
 
-		if (jwtToken != null && jwtService.isUsable(jwtToken)) {
-			return true;
-		}
-		throw new UserDefineException("올바르지 않은 JWT 토큰입니다");
-	}
+        if (jwtToken != null && jwtService.isUsable(jwtToken)) {
+            return true;
+        }
+        throw new UserDefineException("올바르지 않은 JWT 토큰입니다");
+    }
 
 }

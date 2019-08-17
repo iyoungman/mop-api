@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface ParticipantRepositoryCustom {
 
-	List<ParticipantResponse> fetchParticipants(Long clubId);
+    List<ParticipantResponse> fetchParticipants(Long clubId);
 }

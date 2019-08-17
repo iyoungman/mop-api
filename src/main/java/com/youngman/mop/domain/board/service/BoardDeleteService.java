@@ -15,22 +15,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BoardDeleteService {
 
-	private final BoardRepository boardRepository;
-	private final BoardFindDao boardFindDao;
-	private final JwtService jwtService;
+    private final BoardRepository boardRepository;
+    private final BoardFindDao boardFindDao;
+    private final JwtService jwtService;
 
 
-	public void deleteBoard(Long boardId, String token) {
-		String findWriter = boardFindDao.findWriterById(boardId);
-		String tokenWriter = jwtService.findNameByJwt(token);
-		checkValidateWriter(findWriter, tokenWriter);
+    public void deleteBoard(Long boardId, String token) {
+        String findWriter = boardFindDao.findWriterById(boardId);
+        String tokenWriter = jwtService.findNameByJwt(token);
+        checkValidateWriter(findWriter, tokenWriter);
 
-		boardRepository.deleteById(boardId);
-	}
+        boardRepository.deleteById(boardId);
+    }
 
-	private void checkValidateWriter(String findWriter, String tokenWriter) {
-		if(!findWriter.equals(tokenWriter)) {
-			throw new InvalidWriterException();
-		}
-	}
+    private void checkValidateWriter(String findWriter, String tokenWriter) {
+        if (!findWriter.equals(tokenWriter)) {
+            throw new InvalidWriterException();
+        }
+    }
 }

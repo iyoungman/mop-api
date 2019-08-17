@@ -17,15 +17,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ParticipantMapper {
 
-	public List<ParticipantResponse> mapFromParticipants(List<Participant> participants) {
-		return participants.stream()
-				.map(ParticipantResponse::ofParticipant)
-				.collect(Collectors.toList());
-	}
+    public List<ParticipantResponse> mapFromParticipants(List<Participant> participants) {
+        return participants.stream()
+                .map(ParticipantResponse::ofParticipant)
+                .collect(Collectors.toList());
+    }
 
-	public List<ParticipantResponse> mapFromMembers(List<Member> members) {
-		return members.stream()
-				.map(ParticipantResponse::ofMember)
-				.collect(Collectors.toList());
-	}
+    public List<ParticipantResponse> mapFromMembers(List<Member> members) {
+        return members.stream()
+                .map(ParticipantResponse::ofMember)
+                .collect(Collectors.toList());
+    }
 }

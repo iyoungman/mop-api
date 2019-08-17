@@ -17,22 +17,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BoardUpdateService {
 
-	private final BoardRepository boardRepository;
-	private final BoardFindDao boardFindDao;
-	private final JwtService jwtService;
+    private final BoardRepository boardRepository;
+    private final BoardFindDao boardFindDao;
+    private final JwtService jwtService;
 
 
-	public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
-		Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
-		checkValidateWriter(board.getWriter(), jwtService.findNameByJwt(token));
-		board.updateBoard(boardUpdateRequest.getTitle(), boardUpdateRequest.getContent());
-		boardRepository.save(board);
-	}
+    public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
+        Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
+        checkValidateWriter(board.getWriter(), jwtService.findNameByJwt(token));
+        board.updateBoard(boardUpdateRequest.getTitle(), boardUpdateRequest.getContent());
+        boardRepository.save(board);
+    }
 
-	private void checkValidateWriter(String boardWriterName, String updateWriterName) {
-		if(boardWriterName.equals(updateWriterName)) {
-			return;
-		}
-		throw new InvalidWriterException();
-	}
+    private void checkValidateWriter(String boardWriterName, String updateWriterName) {
+        if (boardWriterName.equals(updateWriterName)) {
+            return;
+        }
+        throw new InvalidWriterException();
+    }
 }

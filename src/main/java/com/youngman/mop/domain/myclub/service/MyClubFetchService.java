@@ -15,9 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MyClubFetchService {
 
-	private final MyClubRepository myClubRepository;
+    private final MyClubRepository myClubRepository;
 
-	public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
-		return myClubRepository.fetchMyClubsByMemberEmail(email);
-	}
+    public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
+        return myClubRepository.fetchMyClubsByMemberEmail(email);
+    }
 }

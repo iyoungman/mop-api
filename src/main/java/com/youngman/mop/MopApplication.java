@@ -10,20 +10,20 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class MopApplication {
 
-	public static final String APPLICATION_LOCATIONS = "spring.config.location="
-			+ "classpath:application.yml,"
-			+ "classpath:aws.yml";
+    public static final String APPLICATION_LOCATIONS = "spring.config.location="
+            + "classpath:application.yml,"
+            + "classpath:aws.yml";
 
-	@PostConstruct
-	void started() {
-		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-	}
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+    }
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(MopApplication.class)
-				.bannerMode(Banner.Mode.OFF)
-				.properties(APPLICATION_LOCATIONS)
-				.build()
-				.run(args);
-	}
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(MopApplication.class)
+                .bannerMode(Banner.Mode.OFF)
+                .properties(APPLICATION_LOCATIONS)
+                .build()
+                .run(args);
+    }
 }

@@ -7,14 +7,14 @@ import lombok.Getter;
  */
 
 @Getter
-public class BusinessLogicException extends RuntimeException{
+public class BusinessLogicException extends RuntimeException {
 
-	private ErrorCodeType errorCodeType;
+    private ErrorCodeType errorCodeType;
 
 
-	public BusinessLogicException(ErrorCodeType errorCodeType) {
-		super(errorCodeType.getMessage());
-		this.errorCodeType = errorCodeType;
-	}
+    public BusinessLogicException(ErrorCodeType errorCodeType) {
+        super(errorCodeType.getMessage());
+        this.errorCodeType = errorCodeType;
+    }
 
 }

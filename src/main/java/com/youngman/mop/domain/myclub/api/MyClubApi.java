@@ -21,24 +21,24 @@ import java.util.List;
 @RequestMapping(value = "/mop/myclub")
 public class MyClubApi {
 
-	private final MyClubCreateService myClubCreateService;
-	private final MyClubFetchService myClubFetchService;
-	private final MyClubDeleteService myClubDeleteService;
+    private final MyClubCreateService myClubCreateService;
+    private final MyClubFetchService myClubFetchService;
+    private final MyClubDeleteService myClubDeleteService;
 
 
-	@PostMapping
-	public void createMyClub(@RequestBody MyClubCreateRequest myClubCreateRequest) {
-		myClubCreateService.createMyClub(myClubCreateRequest);
-	}
+    @PostMapping
+    public void createMyClub(@RequestBody MyClubCreateRequest myClubCreateRequest) {
+        myClubCreateService.createMyClub(myClubCreateRequest);
+    }
 
-	@GetMapping
-	public List<MyClubResponse> fetchMyClubsByMemberEmail(@RequestParam("email") String email) {
-		return myClubFetchService.fetchMyClubsByMemberEmail(email);
-	}
+    @GetMapping
+    public List<MyClubResponse> fetchMyClubsByMemberEmail(@RequestParam("email") String email) {
+        return myClubFetchService.fetchMyClubsByMemberEmail(email);
+    }
 
-	@DeleteMapping
-	public void deleteMyClub(@RequestParam("email") String email, @RequestParam("clubId") Long clubId) {
-		myClubDeleteService.deleteMyClub(email, clubId);
-	}
+    @DeleteMapping
+    public void deleteMyClub(@RequestParam("email") String email, @RequestParam("clubId") Long clubId) {
+        myClubDeleteService.deleteMyClub(email, clubId);
+    }
 
 }

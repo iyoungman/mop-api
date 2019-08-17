@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberUpdateService {
 
-	private final MemberRepository memberRepository;
-	private final MemberFindDao memberFindDao;
+    private final MemberRepository memberRepository;
+    private final MemberFindDao memberFindDao;
 
 
-	public void updateMember(MemberCreateRequest memberCreateRequest) {
-		Member member = memberFindDao.findByEmail(memberCreateRequest.getEmail());
-		member.updateMember(memberCreateRequest);
-		memberRepository.save(member);
-	}
+    public void updateMember(MemberCreateRequest memberCreateRequest) {
+        Member member = memberFindDao.findByEmail(memberCreateRequest.getEmail());
+        member.updateMember(memberCreateRequest);
+        memberRepository.save(member);
+    }
 
 }

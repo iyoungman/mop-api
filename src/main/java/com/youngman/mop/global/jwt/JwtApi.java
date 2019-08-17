@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/mop/auth/check")
 public class JwtApi {
 
-	private final JwtService jwtService;
+    private final JwtService jwtService;
 
 
-	@GetMapping
-	public boolean isValidToken(@RequestHeader("token") String token) {
-		return jwtService.isUsable(token);
-	}
+    @GetMapping
+    public boolean isValidToken(@RequestHeader("token") String token) {
+        return jwtService.isUsable(token);
+    }
 }

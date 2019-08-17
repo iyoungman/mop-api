@@ -14,10 +14,6 @@ public class MyClubDeleteService {
 
 	private final MyClubRepository myClubRepository;
 
-	/*public void deleteMyClub(Long myClubId) {
-		myClubRepository.deleteById(myClubId);
-	}*/
-
 	public void deleteMyClub(String email, Long clubId) {
 		myClubRepository.deleteByMemberAndAndClub(email, clubId);
 	}

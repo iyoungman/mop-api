@@ -24,55 +24,52 @@ import java.util.Map;
 @RequestMapping("/mop/club")
 public class ClubApi {
 
-	private final ClubCreateService clubCreateService;
-	private final ClubFetchService clubFetchService;
-	private final ClubUpdateService clubUpdateService;
-	private final ClubDeleteService clubDeleteService;
-	private final ClubImageService clubImageService;
-	private final ClubFindDao clubFindDao;
+    private final ClubCreateService clubCreateService;
+    private final ClubFetchService clubFetchService;
+    private final ClubUpdateService clubUpdateService;
+    private final ClubDeleteService clubDeleteService;
+    private final ClubImageService clubImageService;
+    private final ClubFindDao clubFindDao;
 
 
-	@PostMapping
-	public void createClub(@RequestBody ClubCreateRequest clubCreateRequest) {
-		clubCreateService.createClub(clubCreateRequest);
-	}
+    @PostMapping
+    public void createClub(@RequestBody ClubCreateRequest clubCreateRequest) {
+        clubCreateService.createClub(clubCreateRequest);
+    }
 
-	@GetMapping("/chair")
-	public boolean isClubChair(@RequestParam("clubId") Long clubId,
-							   @RequestParam("email") String email) {
+    @GetMapping("/chair")
+    public boolean isClubChair(@RequestParam("clubId") Long clubId,
+                               @RequestParam("email") String email) {
+        return clubFindDao.isClubChair(clubId, email);
+    }
 
-		return clubFindDao.isClubChair(clubId, email);
-	}
+    @GetMapping("/member")
+    public ClubPagingResponse fetchPagingClubsByMember(@RequestParam("email") String email,
+                                                       @RequestParam("pageNo") int pageNo) {
+        return clubFetchService.fetchPagingClubsByMember(email, PageRequest.of(pageNo - 1, 24));
+    }
 
-	@GetMapping("/member")
-	public ClubPagingResponse fetchPagingClubsByMember(@RequestParam("email") String email,
-													   @RequestParam("pageNo") int pageNo) {
+    @GetMapping("/info")
+    public ClubInfoResponse fetchClubInfoById(@RequestParam("clubId") Long clubId) {
+        return clubFetchService.fetchClubInfoById(clubId);
+    }
 
-		return clubFetchService.fetchPagingClubsByMember(email, PageRequest.of(pageNo - 1, 24));
-	}
+    @PutMapping
+    public void updateClub(@RequestBody ClubCreateRequest clubCreateRequest) {
+        clubUpdateService.updateClub(clubCreateRequest);
+    }
 
-	@GetMapping("/info")
-	public ClubInfoResponse fetchClubInfoById(@RequestParam("clubId") Long clubId) {
-		return clubFetchService.fetchClubInfoById(clubId);
-	}
+    @DeleteMapping
+    public void deleteClub(@RequestParam("clubId") Long clubId) {
+        clubDeleteService.deleteClub(clubId);
+    }
 
-	@PutMapping
-	public void updateClub(@RequestBody ClubCreateRequest clubCreateRequest) {
-		clubUpdateService.updateClub(clubCreateRequest);
-	}
-
-	@DeleteMapping
-	public void deleteClub(@RequestParam("clubId") Long clubId) {
-		clubDeleteService.deleteClub(clubId);
-	}
-
-	@PostMapping("/image")
-	public Map<String, String> uploadClubImage(@RequestPart("clubId") Long clubId,
-											   @RequestPart("image") MultipartFile imageFile) {
-
-		String imageUri = clubImageService.uploadClubImage(clubId, imageFile);
-		Map<String, String> response = new HashMap<>();
-		response.put("imageUri", imageUri);
-		return response;
-	}
+    @PostMapping("/image")
+    public Map<String, String> uploadClubImage(@RequestPart("clubId") Long clubId,
+                                               @RequestPart("image") MultipartFile imageFile) {
+        String imageUri = clubImageService.uploadClubImage(clubId, imageFile);
+        Map<String, String> response = new HashMap<>();
+        response.put("imageUri", imageUri);
+        return response;
+    }
 }

@@ -25,36 +25,33 @@ import java.util.Map;
 @RequestMapping("/mop/schedule")
 public class ScheduleApi {
 
-	private final ScheduleCreateService scheduleCreateService;
-	private final ScheduleFetchService scheduleFetchService;
-	private final ScheduleUpdateService scheduleUpdateService;
-	private final ScheduleDeleteService scheduleDeleteService;
+    private final ScheduleCreateService scheduleCreateService;
+    private final ScheduleFetchService scheduleFetchService;
+    private final ScheduleUpdateService scheduleUpdateService;
+    private final ScheduleDeleteService scheduleDeleteService;
 
 
-	@PostMapping
-	public void createSchedule(@RequestBody ScheduleCreateRequest scheduleCreateRequest) {
-		scheduleCreateService.createSchedule(scheduleCreateRequest);
-	}
+    @PostMapping
+    public void createSchedule(@RequestBody ScheduleCreateRequest scheduleCreateRequest) {
+        scheduleCreateService.createSchedule(scheduleCreateRequest);
+    }
 
-	@GetMapping("/monthly")
-	public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
-																  @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("date") LocalDate date) {
+    @GetMapping("/monthly")
+    public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
+                                                                  @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("date") LocalDate date) {
+        return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, date);
+    }
 
-		return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, date);
-	}
+    @PutMapping
+    public void updateSchedule(@RequestBody ScheduleUpdateRequest scheduleUpdateRequest,
+                               @RequestHeader("token") String token) {
+        scheduleUpdateService.updateSchedule(scheduleUpdateRequest, token);
+    }
 
-	@PutMapping
-	public void updateSchedule(@RequestBody ScheduleUpdateRequest scheduleUpdateRequest,
-							   @RequestHeader("token") String token) {
-
-		scheduleUpdateService.updateSchedule(scheduleUpdateRequest, token);
-	}
-
-	@DeleteMapping
-	public void deleteSchedule(@RequestParam("scheduleId") Long scheduleId,
-							   @RequestHeader("token") String token) {
-
-		scheduleDeleteService.deleteSchedule(scheduleId, token);
-	}
+    @DeleteMapping
+    public void deleteSchedule(@RequestParam("scheduleId") Long scheduleId,
+                               @RequestHeader("token") String token) {
+        scheduleDeleteService.deleteSchedule(scheduleId, token);
+    }
 
 }

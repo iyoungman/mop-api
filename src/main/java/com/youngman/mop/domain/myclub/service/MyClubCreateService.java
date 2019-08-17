@@ -17,20 +17,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MyClubCreateService {
 
-	private final MyClubRepository myClubRepository;
-	private final MemberFindDao memberFindDao;
-	private final ClubFindDao clubFindDao;
+    private final MyClubRepository myClubRepository;
+    private final MemberFindDao memberFindDao;
+    private final ClubFindDao clubFindDao;
 
 
-	public void createMyClub(MyClubCreateRequest myClubCreateRequest) {
-		if(myClubRepository.isExistMyClubByMemberEmailAndClubId(myClubCreateRequest.getEmail(), myClubCreateRequest.getClubId())) {
-			throw new MyClubAlreadyExistException();
-		}
+    public void createMyClub(MyClubCreateRequest myClubCreateRequest) {
+        if (myClubRepository.isExistMyClubByMemberEmailAndClubId(myClubCreateRequest.getEmail(), myClubCreateRequest.getClubId())) {
+            throw new MyClubAlreadyExistException();
+        }
 
-		MyClub myClub = MyClub.of(
-				memberFindDao.findByEmail(myClubCreateRequest.getEmail()),
-				clubFindDao.findById(myClubCreateRequest.getClubId())
-		);
-		myClubRepository.save(myClub);
-	}
+        MyClub myClub = MyClub.of(
+                memberFindDao.findByEmail(myClubCreateRequest.getEmail()),
+                clubFindDao.findById(myClubCreateRequest.getClubId())
+        );
+        myClubRepository.save(myClub);
+    }
 }

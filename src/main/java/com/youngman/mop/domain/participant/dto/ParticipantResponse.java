@@ -15,31 +15,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ParticipantResponse {
 
-	private String name;
-	private String email;
-	private Boolean isParticipate = false;
+    private String name;
+    private String email;
+    private Boolean isParticipate = false;
 
-	@Builder
-	public ParticipantResponse(String name, String email) {
-		this.name = name;
-		this.email = email;
-	}
+    @Builder
+    public ParticipantResponse(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
-	public static ParticipantResponse ofParticipant(Participant participant) {
-		return ParticipantResponse.builder()
-				.email(participant.getEmail())
-				.name(participant.getName())
-				.build();
-	}
+    public static ParticipantResponse ofParticipant(Participant participant) {
+        return ParticipantResponse.builder()
+                .email(participant.getEmail())
+                .name(participant.getName())
+                .build();
+    }
 
-	public static ParticipantResponse ofMember(Member member) {
-		return ParticipantResponse.builder()
-				.email(member.getEmail())
-				.name(member.getName())
-				.build();
-	}
+    public static ParticipantResponse ofMember(Member member) {
+        return ParticipantResponse.builder()
+                .email(member.getEmail())
+                .name(member.getName())
+                .build();
+    }
 
-	public void isParticipate() {
-		isParticipate = true;
-	}
+    public void isParticipate() {
+        isParticipate = true;
+    }
 }

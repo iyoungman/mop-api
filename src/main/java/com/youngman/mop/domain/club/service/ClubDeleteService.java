@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClubDeleteService {
 
-	private final ClubRepository clubRepository;
-	private final ClubCache clubCache;
+    private final ClubRepository clubRepository;
+    private final ClubCache clubCache;
 
 
-	public void deleteClub(Long clubId) {
-		clubCache.delete(clubId);
-		clubRepository.deleteById(clubId);
-	}
+    public void deleteClub(Long clubId) {
+        clubCache.delete(clubId);
+        clubRepository.deleteById(clubId);
+    }
 }

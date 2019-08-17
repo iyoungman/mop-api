@@ -22,18 +22,18 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(BusinessLogicException.class)
-	public ResponseEntity handleBusinessLoginException(BusinessLogicException e) {
-		ErrorCodeType codeType = e.getErrorCodeType();
-		ErrorResponse response = ErrorResponse.of(codeType);
-		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
-	}
+    @ExceptionHandler(BusinessLogicException.class)
+    public ResponseEntity handleBusinessLoginException(BusinessLogicException e) {
+        ErrorCodeType codeType = e.getErrorCodeType();
+        ErrorResponse response = ErrorResponse.of(codeType);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
+    }
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorResponse> handleUnknownException(Exception e) {
-		ErrorCodeType codeType = ErrorCodeType.UNKNOWN;
-		ErrorResponse response = ErrorResponse.of(codeType);
-		return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
-	}
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleUnknownException(Exception e) {
+        ErrorCodeType codeType = ErrorCodeType.UNKNOWN;
+        ErrorResponse response = ErrorResponse.of(codeType);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(codeType.getStatus()));
+    }
 
 }

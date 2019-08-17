@@ -15,24 +15,24 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ClubResponse {
 
-	private Long clubId;
-	private String name;
-	private String introduce;
-	private LocalDate createDate;
-	private String region;
-	private String hobby;
-	private String imageUri;
+    private Long clubId;
+    private String name;
+    private String introduce;
+    private LocalDate createDate;
+    private String region;
+    private String hobby;
+    private String imageUri;
 
 
-	@Builder
-	public ClubResponse(Long clubId, String name, String introduce, LocalDate createDate,
-						String region, String hobby, String imageUri) {
-		this.clubId = clubId;
-		this.name = name;
-		this.introduce = introduce;
-		this.createDate = createDate;
-		this.region = region;
-		this.hobby = hobby;
-		this.imageUri = imageUri;
-	}
+    @Builder
+    public ClubResponse(Long clubId, String name, String introduce, LocalDate createDate,
+                        String region, String hobby, String imageUri) {
+        this.clubId = clubId;
+        this.name = name;
+        this.introduce = introduce;
+        this.createDate = createDate;
+        this.region = region;
+        this.hobby = hobby;
+        this.imageUri = imageUri;
+    }
 }

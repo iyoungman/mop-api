@@ -28,50 +28,45 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseTime implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_id")
+    private Long id;
 
-	private String title;
+    private String title;
 
-	@Lob
-	private String content;
+    @Lob
+    private String content;
 
-	private String writer;
+    private String writer;
 
-	@Enumerated(EnumType.STRING)
-	private BoardType boardType;
+    @Enumerated(EnumType.STRING)
+    private BoardType boardType;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "club_id", nullable = false)
-	private Club club;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "club_id", nullable = false)
+    private Club club;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-	private List<Comment> comments = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
 
 
-	@Builder
-	public Board(String title,
-				 String content,
-				 String writer,
-				 BoardType boardType,
-				 Club club,
-				 List<Comment> comments) {
+    @Builder
+    public Board(String title, String content, String writer,
+                 BoardType boardType, Club club, List<Comment> comments) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.boardType = boardType;
+        this.club = club;
+        this.comments = comments;
+    }
 
-		this.title = title;
-		this.content = content;
-		this.writer = writer;
-		this.boardType = boardType;
-		this.club = club;
-		this.comments = comments;
-	}
-
-	public void updateBoard(String title, String content) {
-		this.title = title;
-		this.content = content;
-	}
+    public void updateBoard(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
 }

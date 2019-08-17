@@ -17,18 +17,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ScheduleFindDao {
 
-	private final ScheduleRepository scheduleRepository;
+    private final ScheduleRepository scheduleRepository;
 
 
-	public Schedule findById(Long id) {
-		Optional<Schedule> schedule = scheduleRepository.findById(id);
-		schedule.orElseThrow(ScheduleNotFoundException::new);
-		return schedule.get();
-	}
+    public Schedule findById(Long id) {
+        Optional<Schedule> schedule = scheduleRepository.findById(id);
+        schedule.orElseThrow(ScheduleNotFoundException::new);
+        return schedule.get();
+    }
 
-	public String findWriterById(Long id) {
-		Optional<Schedule> schedule = scheduleRepository.findById(id);
-		schedule.orElseThrow(ScheduleNotFoundException::new);
-		return schedule.get().getWriter();
-	}
+    public String findWriterById(Long id) {
+        Optional<Schedule> schedule = scheduleRepository.findById(id);
+        schedule.orElseThrow(ScheduleNotFoundException::new);
+        return schedule.get().getWriter();
+    }
 }

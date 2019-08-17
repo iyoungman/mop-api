@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberSignInRequest {
 
-	private String email;
-	private String pw;
+    private String email;
+    private String pw;
 
 
-	@Builder
-	public MemberSignInRequest(String email, String pw) {
-		this.email = email;
-		this.pw = pw;
-	}
+    @Builder
+    public MemberSignInRequest(String email, String pw) {
+        this.email = email;
+        this.pw = pw;
+    }
 }

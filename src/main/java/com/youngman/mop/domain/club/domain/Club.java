@@ -25,52 +25,52 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Club extends BaseDate implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "club_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "club_id")
+    private Long id;
 
-	private String name;
+    private String name;
 
-	private String introduce;
+    private String introduce;
 
-	private String region;
+    private String region;
 
-	private String hobby;
+    private String hobby;
 
-	private String chairEmail;
+    private String chairEmail;
 
-	private String imagePath;
+    private String imagePath;
 
-	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
-	private List<MyClub> myClubs = new ArrayList<>();
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    private List<MyClub> myClubs = new ArrayList<>();
 
-	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
-	private List<Schedule> schedule = new ArrayList<>();
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    private List<Schedule> schedule = new ArrayList<>();
 
-	@OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
-	private List<Board> boards = new ArrayList<>();
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    private List<Board> boards = new ArrayList<>();
 
 
-	@Builder
-	public Club(String name, String introduce,
-				String region, String hobby, String chairEmail) {
-		this.name = name;
-		this.introduce = introduce;
-		this.region = region;
-		this.hobby = hobby;
-		this.chairEmail = chairEmail;
-	}
+    @Builder
+    public Club(String name, String introduce,
+                String region, String hobby, String chairEmail) {
+        this.name = name;
+        this.introduce = introduce;
+        this.region = region;
+        this.hobby = hobby;
+        this.chairEmail = chairEmail;
+    }
 
-	public void updateClub(ClubCreateRequest clubCreateRequest) {
-		this.name = clubCreateRequest.getName();
-		this.introduce = clubCreateRequest.getIntroduce();
-		this.region = clubCreateRequest.getRegion();
-		this.hobby = clubCreateRequest.getHobby();
-		this.chairEmail = clubCreateRequest.getChairEmail();
-	}
+    public void updateClub(ClubCreateRequest clubCreateRequest) {
+        this.name = clubCreateRequest.getName();
+        this.introduce = clubCreateRequest.getIntroduce();
+        this.region = clubCreateRequest.getRegion();
+        this.hobby = clubCreateRequest.getHobby();
+        this.chairEmail = clubCreateRequest.getChairEmail();
+    }
 
-	public void updateClubImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+    public void updateClubImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }
