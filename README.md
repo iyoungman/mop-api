@@ -1,5 +1,5 @@
 # mop-api
-> MoP(Meeting of People) API 서버  
+> MoP(Meeting of People) 동호회 애플리케이션 API 서버  
 
 ## Fuction
 * 도메인 별 CRUD
