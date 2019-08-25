@@ -9,11 +9,11 @@
 * Spring Boot
 * Maven(Build Tool)
 * Spring Data JPA, QueryDSL
-* H2(Test), MySQL(RDBMS), Redis(Cache)
+* MySQL(RDBMS), Redis(Cache)
 * JWT(Authorization)
 * AOP(Request Logging, Exception Logging)
 * Jenkins 연동
-* AWS S3 연동(Image Upload)
+* AWS S3 연동
 * ETC..
 
 ## Todo
