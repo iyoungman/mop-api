@@ -2,6 +2,7 @@ package com.youngman.mop.domain.schedule.api;
 
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
+import com.youngman.mop.domain.schedule.dto.ScheduleResponse;
 import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
 import com.youngman.mop.domain.schedule.service.ScheduleCreateService;
 import com.youngman.mop.domain.schedule.service.ScheduleDeleteService;
@@ -37,9 +38,10 @@ public class ScheduleApi {
     }
 
     @GetMapping("/monthly")
-    public Map<String, Schedule> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
-                                                                  @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("date") LocalDate date) {
-        return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, date);
+    public Map<String, ScheduleResponse> fetchSchedulesByClubIdAndMonthly(@RequestParam("clubId") Long clubId,
+                                                                          @RequestParam("email") String email,
+                                                                          @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("date") LocalDate date) {
+        return scheduleFetchService.fetchSchedulesByClubIdAndMonthly(clubId, email, date);
     }
 
     @PutMapping

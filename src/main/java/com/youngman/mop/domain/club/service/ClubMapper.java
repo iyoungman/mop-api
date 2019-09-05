@@ -22,7 +22,6 @@ public class ClubMapper {
 
     private final ModelMapper modelMapper;
 
-
     public ClubInfoResponse mapFrom(Club club) {
         prepareModelMapper();
 

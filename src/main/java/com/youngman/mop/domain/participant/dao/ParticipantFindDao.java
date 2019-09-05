@@ -2,7 +2,6 @@ package com.youngman.mop.domain.participant.dao;
 
 import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.schedule.domain.Schedule;
-import com.youngman.mop.domain.schedule.exception.ScheduleNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +34,12 @@ public class ParticipantFindDao {
     public boolean isExistByEmailAndSchedule(String email, Long scheduleId) {
         Optional<Participant> participant = participantRepository.findByEmailAndSchedule(email, scheduleId);
         return participant.isPresent();
+    }
+
+    public List<Long> findScheduleIdByEmail(String email) {
+        List<Participant> schedules = participantRepository.findByEmail(email);
+        return schedules.stream()
+                .map(p -> p.getSchedule().getId())
+                .collect(Collectors.toList());
     }
 }

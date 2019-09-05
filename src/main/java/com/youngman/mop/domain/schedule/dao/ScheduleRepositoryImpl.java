@@ -25,7 +25,6 @@ public class ScheduleRepositoryImpl extends QuerydslRepositorySupport implements
     @PersistenceContext
     private EntityManager entityManager;
 
-
     public ScheduleRepositoryImpl() {
         super(Schedule.class);
     }
