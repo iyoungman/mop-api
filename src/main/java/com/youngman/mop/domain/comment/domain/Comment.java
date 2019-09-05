@@ -1,18 +1,14 @@
 package com.youngman.mop.domain.comment.domain;
 
-import com.youngman.mop.domain.board.domain.Board;
-import com.youngman.mop.domain.model.BaseTime;
+import com.youngman.mop.board.domain.Board;
+import com.youngman.mop.domain.generic.time.BaseTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /**
  * Created by YoungMan on 2019-05-23.

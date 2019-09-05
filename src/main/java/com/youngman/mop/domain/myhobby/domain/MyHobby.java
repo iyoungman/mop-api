@@ -1,7 +1,7 @@
 package com.youngman.mop.domain.myhobby.domain;
 
 import com.youngman.mop.domain.hobby.domain.Hobby;
-import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

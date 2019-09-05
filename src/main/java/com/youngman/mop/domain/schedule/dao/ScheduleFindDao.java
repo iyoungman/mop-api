@@ -1,7 +1,5 @@
 package com.youngman.mop.domain.schedule.dao;
 
-import com.youngman.mop.domain.board.domain.Board;
-import com.youngman.mop.domain.board.exception.BoardNotFoundException;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.domain.schedule.exception.ScheduleNotFoundException;
 import lombok.RequiredArgsConstructor;

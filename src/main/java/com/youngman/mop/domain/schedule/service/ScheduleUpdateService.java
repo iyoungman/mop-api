@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.schedule.service;
 
-import com.youngman.mop.domain.board.exception.InvalidWriterException;
+import com.youngman.mop.board.exception.InvalidWriterException;
 import com.youngman.mop.domain.schedule.dao.ScheduleFindDao;
 import com.youngman.mop.domain.schedule.dao.ScheduleRepository;
 import com.youngman.mop.domain.schedule.domain.Schedule;

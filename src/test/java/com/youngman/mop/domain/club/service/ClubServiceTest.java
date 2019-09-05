@@ -1,8 +1,8 @@
 //package com.youngman.mop.domain.club.service;
 //
-//import com.youngman.mop.domain.club.dto.ClubCreateRequest;
-//import com.youngman.mop.domain.club.dao.ClubRepository;
-//import com.youngman.mop.domain.club.service.ClubCreateService;
+//import com.youngman.mop.club.controller.ClubCreateRequest;
+//import com.youngman.mop.club.domain.ClubRepository;
+//import com.youngman.mop.club.service.ClubCreateService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

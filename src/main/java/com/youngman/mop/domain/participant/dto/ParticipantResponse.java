@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.participant.dto;
 
-import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.member.domain.Member;
 import com.youngman.mop.domain.participant.domain.Participant;
 import lombok.AccessLevel;
 import lombok.Builder;

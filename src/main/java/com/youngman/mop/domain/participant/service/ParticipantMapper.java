@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.participant.service;
 
-import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.member.domain.Member;
 import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.participant.dto.ParticipantResponse;
 import lombok.RequiredArgsConstructor;

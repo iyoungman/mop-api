@@ -1,10 +1,10 @@
 //package com.youngman.mop.domain.member.service;
 //
-//import com.youngman.mop.domain.member.dao.MemberFindDao;
-//import com.youngman.mop.domain.member.dao.MemberRepository;
-//import com.youngman.mop.domain.member.domain.Member;
-//import com.youngman.mop.domain.member.dto.MemberCreateRequest;
-//import com.youngman.mop.domain.member.exception.EmailDuplicationException;
+//import com.youngman.mop.member.domain.MemberFindDao;
+//import com.youngman.mop.member.domain.MemberRepository;
+//import com.youngman.mop.member.domain.Member;
+//import com.youngman.mop.member.controller.MemberCreateRequest;
+//import com.youngman.mop.member.exception.EmailDuplicationException;
 //import org.junit.Before;
 //import org.junit.Rule;
 //import org.junit.Test;

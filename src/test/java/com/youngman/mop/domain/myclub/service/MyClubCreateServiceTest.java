@@ -1,14 +1,14 @@
 //package com.youngman.mop.domain.myclub.service;
 //
-//import com.youngman.mop.domain.club.dao.ClubFindDao;
-//import com.youngman.mop.domain.club.domain.Club;
-//import com.youngman.mop.domain.member.dao.MemberFindDao;
-//import com.youngman.mop.domain.member.domain.Member;
-//import com.youngman.mop.domain.myclub.dto.MyClubCreateRequest;
-//import com.youngman.mop.domain.club.dao.ClubRepository;
-//import com.youngman.mop.domain.member.dao.MemberRepository;
-//import com.youngman.mop.domain.myclub.dao.MyClubRepository;
-//import com.youngman.mop.domain.myclub.service.MyClubCreateService;
+//import com.youngman.mop.club.domain.ClubFindDao;
+//import com.youngman.mop.club.domain.Club;
+//import com.youngman.mop.member.domain.MemberFindDao;
+//import com.youngman.mop.member.domain.Member;
+//import com.youngman.mop.myclub.controller.MyClubCreateRequest;
+//import com.youngman.mop.club.domain.ClubRepository;
+//import com.youngman.mop.member.domain.MemberRepository;
+//import com.youngman.mop.myclub.domain.MyClubRepository;
+//import com.youngman.mop.myclub.service.MyClubCreateService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

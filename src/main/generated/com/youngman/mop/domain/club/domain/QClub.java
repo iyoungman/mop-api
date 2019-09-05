@@ -8,6 +8,9 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
+import com.youngman.mop.board.domain.Board;
+import com.youngman.mop.club.domain.Club;
+import com.youngman.mop.myclub.domain.MyClub;
 
 
 /**
@@ -22,7 +25,7 @@ public class QClub extends EntityPathBase<Club> {
 
     public final com.youngman.mop.domain.model.QBaseDate _super = new com.youngman.mop.domain.model.QBaseDate(this);
 
-    public final ListPath<com.youngman.mop.domain.board.domain.Board, com.youngman.mop.domain.board.domain.QBoard> boards = this.<com.youngman.mop.domain.board.domain.Board, com.youngman.mop.domain.board.domain.QBoard>createList("boards", com.youngman.mop.domain.board.domain.Board.class, com.youngman.mop.domain.board.domain.QBoard.class, PathInits.DIRECT2);
+    public final ListPath<Board, com.youngman.mop.domain.board.domain.QBoard> boards = this.<Board, com.youngman.mop.domain.board.domain.QBoard>createList("boards", Board.class, com.youngman.mop.domain.board.domain.QBoard.class, PathInits.DIRECT2);
 
     public final StringPath chairEmail = createString("chairEmail");
 
@@ -40,7 +43,7 @@ public class QClub extends EntityPathBase<Club> {
     //inherited
     public final DatePath<java.time.LocalDate> modifiedDate = _super.modifiedDate;
 
-    public final ListPath<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub> myClubs = this.<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub>createList("myClubs", com.youngman.mop.domain.myclub.domain.MyClub.class, com.youngman.mop.domain.myclub.domain.QMyClub.class, PathInits.DIRECT2);
+    public final ListPath<MyClub, com.youngman.mop.domain.myclub.domain.QMyClub> myClubs = this.<MyClub, com.youngman.mop.domain.myclub.domain.QMyClub>createList("myClubs", MyClub.class, com.youngman.mop.domain.myclub.domain.QMyClub.class, PathInits.DIRECT2);
 
     public final StringPath name = createString("name");
 

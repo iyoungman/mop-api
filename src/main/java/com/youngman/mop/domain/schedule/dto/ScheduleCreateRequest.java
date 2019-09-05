@@ -1,7 +1,7 @@
 package com.youngman.mop.domain.schedule.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.club.domain.Club;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.domain.schedule.exception.InvalidMeetingTimeException;
 import lombok.AccessLevel;

@@ -1,9 +1,8 @@
 package com.youngman.mop.domain.schedule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.youngman.mop.domain.club.domain.Club;
-import com.youngman.mop.domain.member.domain.Member;
-import com.youngman.mop.domain.model.BaseTime;
+import com.youngman.mop.club.domain.Club;
+import com.youngman.mop.domain.generic.time.BaseTime;
 import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
@@ -11,8 +10,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

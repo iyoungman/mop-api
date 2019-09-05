@@ -1,7 +1,7 @@
 package com.youngman.mop.domain.participant.service;
 
-import com.youngman.mop.domain.club.dao.ClubRepository;
-import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.club.domain.ClubRepository;
+import com.youngman.mop.member.domain.Member;
 import com.youngman.mop.domain.participant.dao.ParticipantFindDao;
 import com.youngman.mop.domain.participant.dto.ParticipantResponse;
 import lombok.RequiredArgsConstructor;

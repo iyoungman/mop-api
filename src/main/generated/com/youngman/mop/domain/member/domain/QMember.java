@@ -8,6 +8,8 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
+import com.youngman.mop.member.domain.Member;
+import com.youngman.mop.myclub.domain.MyClub;
 
 
 /**
@@ -40,7 +42,7 @@ public class QMember extends EntityPathBase<Member> {
     //inherited
     public final DatePath<java.time.LocalDate> modifiedDate = _super.modifiedDate;
 
-    public final ListPath<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub> myClubs = this.<com.youngman.mop.domain.myclub.domain.MyClub, com.youngman.mop.domain.myclub.domain.QMyClub>createList("myClubs", com.youngman.mop.domain.myclub.domain.MyClub.class, com.youngman.mop.domain.myclub.domain.QMyClub.class, PathInits.DIRECT2);
+    public final ListPath<MyClub, com.youngman.mop.domain.myclub.domain.QMyClub> myClubs = this.<MyClub, com.youngman.mop.domain.myclub.domain.QMyClub>createList("myClubs", MyClub.class, com.youngman.mop.domain.myclub.domain.QMyClub.class, PathInits.DIRECT2);
 
     public final ListPath<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby> myHobbies = this.<com.youngman.mop.domain.myhobby.domain.MyHobby, com.youngman.mop.domain.myhobby.domain.QMyHobby>createList("myHobbies", com.youngman.mop.domain.myhobby.domain.MyHobby.class, com.youngman.mop.domain.myhobby.domain.QMyHobby.class, PathInits.DIRECT2);
 
