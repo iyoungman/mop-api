@@ -27,7 +27,7 @@ public class ScheduleMapper {
 
     public Map<String, ScheduleResponse> convertListToMap(List<ScheduleResponse> scheduleResponses) {
         return scheduleResponses.stream()
-                .collect(Collectors.toMap(ScheduleResponse::getMeetingTime, s -> s));
+                .collect(Collectors.toMap(ScheduleResponse::getMeetingDateStr, s -> s));
     }
 
 }

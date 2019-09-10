@@ -43,13 +43,13 @@ public class ScheduleResponse {
                 .content(schedule.getContent())
                 .region(schedule.getRegion())
                 .writer(schedule.getWriter())
-                .meetingTime(convertTimeToDateStr(schedule.getMeetingTime()))
+                .meetingTime(schedule.getMeetingTime().toString())
                 .build();
     }
 
-    private static String convertTimeToDateStr(LocalDateTime localDateTime) {
-        return localDateTime.toLocalDate()
-                .toString();
+    public String getMeetingDateStr() {
+        String[] split = meetingTime.split("T");
+        return split[0];
     }
 
     public void updateParticipate() {
