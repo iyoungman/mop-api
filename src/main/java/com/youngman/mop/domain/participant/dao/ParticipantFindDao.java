@@ -36,6 +36,11 @@ public class ParticipantFindDao {
         return participant.isPresent();
     }
 
+    public Participant findDeleteParticipant(String email, Long scheduleId) {
+        Optional<Participant> participant = participantRepository.findByEmailAndSchedule(email, scheduleId);
+        return participant.get();
+    }
+
     public List<Long> findScheduleIdByEmail(String email) {
         List<Participant> schedules = participantRepository.findByEmail(email);
         return schedules.stream()

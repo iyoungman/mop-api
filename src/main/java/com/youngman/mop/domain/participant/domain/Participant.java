@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.participant.domain;
 
-import com.youngman.mop.domain.participant.dto.ParticipantCreateRequest;
+import com.youngman.mop.domain.participant.dto.ParticipantChangeRequest;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -19,31 +19,24 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Participant {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "participant_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "participant_id")
+    private Long id;
 
-	private String email;
+    private String email;
 
-	private String name;
+    private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "schedule_id", nullable = false)
-	private Schedule schedule;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", nullable = false)
+    private Schedule schedule;
 
 
-	@Builder
-	public Participant(String email, String name, Schedule schedule) {
-		this.email = email;
-		this.name = name;
-		this.schedule = schedule;
-	}
-
-	public static Participant of(ParticipantCreateRequest participantCreateRequest, Schedule schedule) {
-		return Participant.builder()
-				.email(participantCreateRequest.getEmail())
-				.name(participantCreateRequest.getName())
-				.schedule(schedule)
-				.build();
-	}
+    @Builder
+    public Participant(String email, String name, Schedule schedule) {
+        this.email = email;
+        this.name = name;
+        this.schedule = schedule;
+    }
 }

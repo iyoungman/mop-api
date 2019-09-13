@@ -1,8 +1,8 @@
 package com.youngman.mop.domain.participant.api;
 
-import com.youngman.mop.domain.participant.dto.ParticipantCreateRequest;
+import com.youngman.mop.domain.participant.dto.ParticipantChangeRequest;
 import com.youngman.mop.domain.participant.dto.ParticipantResponse;
-import com.youngman.mop.domain.participant.service.ParticipantCreateService;
+import com.youngman.mop.domain.participant.service.ParticipantChangeService;
 import com.youngman.mop.domain.participant.service.ParticipantFetchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,18 +20,23 @@ import java.util.List;
 @RequestMapping(value = "/mop/participant")
 public class ParticipantApi {
 
-    private final ParticipantCreateService participantCreateService;
+    private final ParticipantChangeService participantChangeService;
     private final ParticipantFetchService participantFetchService;
 
 
     @PostMapping
-    public int createParticipant(@RequestBody ParticipantCreateRequest participantCreateRequest) {
-        return participantCreateService.createParticipant(participantCreateRequest);
+    public int changeParticipant(@RequestBody ParticipantChangeRequest participantChangeRequest) {
+        return participantChangeService.changeParticipant(participantChangeRequest);
     }
 
     @GetMapping
     public List<ParticipantResponse> fetchParticipants(@RequestParam("scheduleId") Long scheduleId,
                                                        @RequestParam("clubId") Long clubId) {
         return participantFetchService.fetchParticipants(scheduleId, clubId);
+    }
+
+    @GetMapping("/count")
+    public int fetchParticipantCount(@RequestParam("scheduleId") Long scheduleId) {
+        return participantFetchService.fetchParticipantCount(scheduleId);
     }
 }

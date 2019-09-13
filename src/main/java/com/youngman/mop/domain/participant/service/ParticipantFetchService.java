@@ -35,4 +35,8 @@ public class ParticipantFetchService {
 
         return allMembers;
     }
+
+    public int fetchParticipantCount(Long scheduleId) {
+        return participantFindDao.findCountBySchedule(scheduleId);
+    }
 }
