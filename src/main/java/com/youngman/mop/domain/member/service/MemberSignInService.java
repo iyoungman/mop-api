@@ -20,7 +20,6 @@ public class MemberSignInService {
     private final MemberFindDao memberFindDao;
     private final JwtService jwtService;
 
-
     public MemberSignInResponse singInMember(MemberSignInRequest memberSignInRequest) {
         Member member = memberFindDao.findByEmail(memberSignInRequest.getEmail());
 

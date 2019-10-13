@@ -24,59 +24,60 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseDate implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "member_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
 
-	@Column(unique = true)
-	private String email;
+    @Column(unique = true)
+    private String email;
 
-	private String pw;
+    private String pw;
 
-	private String name;
+    private String name;
 
-	private String mobile;
+    private String mobile;
 
-	private String address;
+    private String address;
 
-	private String introduce;
+    private String introduce;
 
-	private String fcmToken;
+    private String fcmToken;
 
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-	private List<MyClub> myClubs = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MyClub> myClubs = new ArrayList<>();
 
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-	private List<MyHobby> myHobbies = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MyHobby> myHobbies = new ArrayList<>();
 
-	@Builder
-	public Member(String email, String pw, String name, String mobile,
-				  String address, String introduce, String fcmToken) {
-		this.email = email;
-		this.pw = pw;
-		this.name = name;
-		this.mobile = mobile;
-		this.address = address;
-		this.introduce = introduce;
-		this.fcmToken = fcmToken;
-	}
+    @Builder
+    public Member(String email, String pw, String name, String mobile,
+                  String address, String introduce, String fcmToken) {
+        this.email = email;
+        this.pw = pw;
+        this.name = name;
+        this.mobile = mobile;
+        this.address = address;
+        this.introduce = introduce;
+        this.fcmToken = fcmToken;
+    }
 
-	public static Member of(MemberCreateRequest memberCreateRequest) {
-		return Member.builder()
-				.email(memberCreateRequest.getEmail())
-				.pw(memberCreateRequest.getPw())
-				.name(memberCreateRequest.getName())
-				.mobile(memberCreateRequest.getMobile())
-				.address(memberCreateRequest.getAddress())
-				.fcmToken(memberCreateRequest.getFcmToken())
-				.build();
-	}
+    public static Member of(MemberCreateRequest memberCreateRequest) {
+        return Member.builder()
+                .email(memberCreateRequest.getEmail())
+                .pw(memberCreateRequest.getPw())
+                .name(memberCreateRequest.getName())
+                .mobile(memberCreateRequest.getMobile())
+                .address(memberCreateRequest.getAddress())
+                .fcmToken(memberCreateRequest.getFcmToken())
+                .build();
+    }
 
-	public void updateMember(MemberCreateRequest memberCreateRequest) {
-		this.pw = memberCreateRequest.getPw();
-		this.name = memberCreateRequest.getName();
-		this.mobile = memberCreateRequest.getMobile();
-		this.address = memberCreateRequest.getAddress();
-	}
+    public void updateMember(MemberCreateRequest memberCreateRequest) {
+        this.pw = memberCreateRequest.getPw();
+        this.name = memberCreateRequest.getName();
+        this.mobile = memberCreateRequest.getMobile();
+        this.address = memberCreateRequest.getAddress();
+    }
 
 }

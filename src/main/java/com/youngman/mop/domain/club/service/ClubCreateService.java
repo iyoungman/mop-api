@@ -16,7 +16,6 @@ public class ClubCreateService {
 
     private final ClubRepository clubRepository;
 
-
     public void createClub(ClubCreateRequest clubCreateRequest) {
         Club createClub = clubCreateRequest.toEntity();
         clubRepository.save(createClub);

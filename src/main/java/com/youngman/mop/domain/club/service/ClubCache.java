@@ -3,6 +3,7 @@ package com.youngman.mop.domain.club.service;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@EnableCaching
 @RequiredArgsConstructor
 public class ClubCache {
 

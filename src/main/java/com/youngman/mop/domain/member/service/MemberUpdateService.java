@@ -19,7 +19,6 @@ public class MemberUpdateService {
     private final MemberRepository memberRepository;
     private final MemberFindDao memberFindDao;
 
-
     public void updateMember(MemberCreateRequest memberCreateRequest) {
         Member member = memberFindDao.findByEmail(memberCreateRequest.getEmail());
         member.updateMember(memberCreateRequest);
