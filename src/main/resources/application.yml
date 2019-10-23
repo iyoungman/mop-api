@@ -83,9 +83,9 @@ spring:
     open-in-view: true
 
   datasource:
-    url: jdbc:mysql://yjinstance.cvfd8m7cgyo4.ap-northeast-2.rds.amazonaws.com:3306/mop?useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://iyoungman-skuniv-mysql-1.chxhgtrfuigt.ap-northeast-2.rds.amazonaws.com:3306/mop?useSSL=false&serverTimezone=Asia/Seoul
     username: root
-    password: 11111111
+    password: duddnjsgl912!
 
   http:
     encoding:
@@ -94,7 +94,7 @@ spring:
       force: true
 
   redis:
-    host: 54.180.67.243
+    host: 54.180.116.179
     port: 6379
 
   servlet:
@@ -103,7 +103,7 @@ spring:
       max-request-size: 10MB
 
 server:
-  port: 8092
+  port: 8080
 
 logging:
   level:
