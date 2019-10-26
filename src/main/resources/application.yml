@@ -37,7 +37,7 @@ spring:
       force: true
 
   redis:
-    host: 54.180.67.243
+    host: 54.180.116.179
     port: 6379
 
 server:
@@ -116,7 +116,7 @@ logging:
 cloud:
   aws:
     s3:
-      bucket: iyoungman
+      bucket: iyoungman-skuniv-s3-1
       dirName: mop
     region:
       static: ap-northeast-2

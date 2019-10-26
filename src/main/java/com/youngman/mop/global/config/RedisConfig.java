@@ -1,6 +1,9 @@
 package com.youngman.mop.global.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CachingConfigurer;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.CacheKeyPrefix;
@@ -22,8 +25,9 @@ import java.util.Map;
  */
 
 @Configuration
+@EnableCaching
 @EnableRedisRepositories
-public class RedisConfig {
+public class RedisConfig extends CachingConfigurerSupport implements CachingConfigurer {
 
     @Value("${spring.redis.host}")
     private String redisHost;
@@ -40,8 +44,8 @@ public class RedisConfig {
 
     @Bean
     public RedisTemplate<?, ?> redisTemplate() {
-        RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        LoggingRedisTemplate<byte[], byte[]> redisTemplate = new LoggingRedisTemplate<>();
+//        redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         return redisTemplate;
     }
@@ -60,8 +64,4 @@ public class RedisConfig {
                 .build();
     }
 
-
-    public String getRedisHost() {
-        return this.redisHost;
-    }
 }

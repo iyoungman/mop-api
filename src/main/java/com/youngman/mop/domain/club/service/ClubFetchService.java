@@ -1,19 +1,17 @@
 package com.youngman.mop.domain.club.service;
 
+import com.youngman.mop.domain.club.dao.ClubRepository;
+import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.club.domain.ClubCacheKey;
 import com.youngman.mop.domain.club.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.dto.ClubPagingResponse;
 import com.youngman.mop.domain.club.dto.ClubResponse;
 import com.youngman.mop.domain.member.dao.MemberFindDao;
-import com.youngman.mop.domain.myclub.dto.MyClubResponse;
-import com.youngman.mop.domain.club.dto.ClubPagingResponse;
-import com.youngman.mop.domain.club.domain.Club;
-import com.youngman.mop.domain.club.dao.ClubRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
