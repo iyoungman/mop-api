@@ -39,12 +39,12 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
         JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
         return jpaQuery.select(Projections.constructor(MyClubResponse.class,
-                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath,
-                new CaseBuilder()
-                        .when(isAfterSchedule())
-                        .then(schedule.meetingTime.min())
-                        .otherwise((LocalDateTime) null).as("meetingTime"))
-        )
+                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath))
+                //                new CaseBuilder()
+//                        .when(isAfterSchedule())
+//                        .then(schedule.meetingTime.min())
+//                        .otherwise((LocalDateTime) null).as("meetingTime"))
+//        )
                 .from(myClub)
                 .innerJoin(myClub.member, member)
                 .innerJoin(myClub.club, club)
