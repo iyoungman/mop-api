@@ -34,13 +34,13 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
         super(MyClub.class);
     }
 
-
     @Override
     public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
         JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
 
         return jpaQuery.select(Projections.constructor(MyClubResponse.class,
-                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, new CaseBuilder()
+                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath,
+                new CaseBuilder()
                         .when(isAfterSchedule())
                         .then(schedule.meetingTime.min())
                         .otherwise((LocalDateTime) null).as("meetingTime"))
