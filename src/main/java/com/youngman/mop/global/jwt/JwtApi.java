@@ -17,7 +17,6 @@ public class JwtApi {
 
     private final JwtService jwtService;
 
-
     @GetMapping
     public boolean isValidToken(@RequestHeader("token") String token) {
         return jwtService.isUsable(token);

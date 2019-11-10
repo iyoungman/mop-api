@@ -15,14 +15,13 @@ import javax.transaction.Transactional;
  */
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class BoardCreateService {
 
     private final BoardRepository boardRepository;
     private final ClubFindDao clubFindDao;
 
-
+    @Transactional
     public void createBoard(BoardCreateRequest boardCreateRequest) {
         Club club = clubFindDao.findById(boardCreateRequest.getClubId());
         Board board = boardCreateRequest.toEntity(club);
