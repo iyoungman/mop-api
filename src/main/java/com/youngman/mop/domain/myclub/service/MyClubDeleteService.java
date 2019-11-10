@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.myclub.service;
 
+import com.youngman.mop.domain.member.dao.MemberFindDao;
 import com.youngman.mop.domain.myclub.dao.MyClubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Service;
 public class MyClubDeleteService {
 
 	private final MyClubRepository myClubRepository;
+	private final MemberFindDao memberFindDao;
 
 	public void deleteMyClub(String email, Long clubId) {
-		myClubRepository.deleteByMemberAndAndClub(email, clubId);
+		Long memberId = memberFindDao.findByEmail(email).getId();
+		myClubRepository.deleteByMemberAndAndClub(memberId, clubId);
 	}
 }
