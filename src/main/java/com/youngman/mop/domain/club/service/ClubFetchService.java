@@ -27,7 +27,7 @@ public class ClubFetchService {
 
     private final ClubRepository clubRepository;
     private final MemberFindDao memberFindDao;
-    private final ClubCache clubCache;
+//    private final ClubCache clubCache;
     private final ClubMapper clubMapper;
 
     public ClubPagingResponse fetchPagingClubsByMember(String email, PageRequest pageable) {
@@ -37,7 +37,7 @@ public class ClubFetchService {
         return ClubPagingResponse.of(pagingClubResponse);
     }
 
-    @Cacheable(value = ClubCacheKey.CLUB_INFO, key = "#clubId", unless = "#result == null")
+//    @Cacheable(value = ClubCacheKey.CLUB_INFO, key = "#clubId", unless = "#result == null")
     public ClubInfoResponse fetchClubInfoById(Long clubId) {
         Optional<Club> club = clubRepository.fetchClubInfoById(clubId);
         if (club.isPresent()) {

@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class ClubDeleteService {
 
     private final ClubRepository clubRepository;
-    private final ClubCache clubCache;
+//    private final ClubCache clubCache;
 
-    @CacheEvict(value = ClubCacheKey.CLUB_INFO, key = "#clubId")
+//    @CacheEvict(value = ClubCacheKey.CLUB_INFO, key = "#clubId")
     public void deleteClub(Long clubId) {
         clubRepository.deleteById(clubId);
     }

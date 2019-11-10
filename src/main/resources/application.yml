@@ -93,9 +93,9 @@ spring:
       enabled: true
       force: true
 
-  redis:
-    host: 54.180.116.179
-    port: 6379
+#  redis:
+#    host: 54.180.116.179
+#    port: 6379
 
   servlet:
     multipart:

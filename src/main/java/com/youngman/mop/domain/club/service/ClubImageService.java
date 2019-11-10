@@ -23,9 +23,9 @@ public class ClubImageService {
     private final ClubRepository clubRepository;
     private final ClubFindDao clubFindDao;
     private final S3Uploader s3Uploader;
-    private final ClubCache clubCache;
+//    private final ClubCache clubCache;
 
-    @CachePut(value = ClubCacheKey.CLUB_INFO, key = "#clubId")
+//    @CachePut(value = ClubCacheKey.CLUB_INFO, key = "#clubId")
     public String uploadClubImage(Long clubId, MultipartFile imageFile) {
         Club club = clubFindDao.findById(clubId);
         String imageUri = s3Uploader.uploadFile(imageFile, generateFileName(clubId));
