@@ -1,11 +1,11 @@
-//package com.youngman.mop.service;
+//package com.youngman.mop.dw;
 //
 //import com.youngman.mop.board.domain.BoardRepository;
 //import com.youngman.mop.board.domain.Board;
 //import com.youngman.mop.board.domain.BoardType;
-//import com.youngman.mop.board.controller.BoardPagingResponse;
-//import com.youngman.mop.board.service.BoardFetchService;
-//import com.youngman.mop.club.domain.ClubFindDao;
+//import com.youngman.mop.board.api.BoardPagingResponse;
+//import com.youngman.mop.board.dw.BoardFetchService;
+//import com.youngman.mop.club.command.domain.ClubFindDao;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
-//package com.youngman.mop.domain.member.service;
+//package com.youngman.mop.domain.member.dw;
 //
-//import com.youngman.mop.member.domain.MemberFindDao;
+//import com.youngman.mop.member.infra.repository.MemberFindDao;
 //import com.youngman.mop.member.domain.MemberRepository;
 //import com.youngman.mop.member.domain.Member;
-//import com.youngman.mop.member.controller.MemberCreateRequest;
+//import com.youngman.mop.member.dto.MemberCreateRequest;
 //import com.youngman.mop.member.exception.EmailDuplicationException;
 //import org.junit.Before;
 //import org.junit.Rule;

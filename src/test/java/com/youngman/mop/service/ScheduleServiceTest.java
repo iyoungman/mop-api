@@ -1,10 +1,10 @@
-//package com.youngman.mop.service;
+//package com.youngman.mop.dw;
 //
-//import com.youngman.mop.club.domain.Club;
+//import com.youngman.mop.club.command.domain.Club;
 //import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
-//import com.youngman.mop.club.domain.ClubRepository;
+//import com.youngman.mop.club.command.domain.ClubRepository;
 //import com.youngman.mop.domain.schedule.dao.ScheduleRepository;
-//import com.youngman.mop.domain.schedule.service.ScheduleCreateService;
+//import com.youngman.mop.domain.schedule.dw.ScheduleCreateService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

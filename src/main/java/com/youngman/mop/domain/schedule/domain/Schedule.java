@@ -1,8 +1,8 @@
 package com.youngman.mop.domain.schedule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.youngman.mop.club.domain.Club;
-import com.youngman.mop.domain.generic.time.BaseTime;
+import com.youngman.mop.club.command.domain.Club;
+import com.youngman.mop.common.model.BaseTime;
 import com.youngman.mop.domain.participant.domain.Participant;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;

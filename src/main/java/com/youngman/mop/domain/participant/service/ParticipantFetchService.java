@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.participant.service;
 
-import com.youngman.mop.club.domain.ClubRepository;
+import com.youngman.mop.club.command.domain.ClubRepository;
 import com.youngman.mop.member.domain.Member;
 import com.youngman.mop.domain.participant.dao.ParticipantFindDao;
 import com.youngman.mop.domain.participant.dto.ParticipantResponse;
@@ -24,7 +24,7 @@ public class ParticipantFetchService {
 
     public List<ParticipantResponse> fetchParticipants(Long scheduleId, Long clubId) {
         List<String> participateEmails = participantFindDao.findEmailBySchedule(scheduleId);
-        List<Member> allMembers = clubRepository.fetchClubMembers(clubId);
+        List<Member> allMembers = clubRepository.selectClubMembers(clubId);
         return checkParticipate(participateEmails, participantMapper.mapFromMembers(allMembers));
     }
 

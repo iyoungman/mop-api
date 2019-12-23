@@ -1,8 +1,6 @@
 package com.youngman.mop.myclub.domain;
 
-import com.youngman.mop.club.domain.Club;
-import com.youngman.mop.member.domain.Member;
-import com.youngman.mop.domain.generic.time.BaseDate;
+import com.youngman.mop.common.model.BaseDate;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

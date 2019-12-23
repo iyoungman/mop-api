@@ -1,18 +1,12 @@
 package com.youngman.mop.member.domain;
 
-import com.youngman.mop.domain.generic.time.BaseDate;
-import com.youngman.mop.myclub.domain.MyClub;
-import com.youngman.mop.domain.myhobby.domain.MyHobby;
-import com.youngman.mop.member.controller.MemberCreateRequest;
+import com.youngman.mop.common.model.BaseDate;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by YoungMan on 2019-05-08.
@@ -22,7 +16,7 @@ import java.util.List;
 @Table(name = "member_tbl")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends BaseDate implements Serializable {
+public class Member extends BaseDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,52 +26,43 @@ public class Member extends BaseDate implements Serializable {
     @Column(unique = true)
     private String email;
 
-    private String pw;
+    @Embedded
+    private Password password;
 
     private String name;
 
     private String mobile;
 
-    private String address;
+    @Embedded
+    private MemberAddress memberAddress;
 
     private String introduce;
 
-    private String fcmToken;
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<MyClub> myClubs = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<MyHobby> myHobbies = new ArrayList<>();
+    @Embedded
+    private FcmToken fcmToken;
 
     @Builder
-    public Member(String email, String pw, String name, String mobile,
-                  String address, String introduce, String fcmToken) {
+    public Member(String email, Password password, String name, String mobile,
+                  MemberAddress memberAddress, String introduce, FcmToken fcmToken) {
         this.email = email;
-        this.pw = pw;
+        this.password = password;
         this.name = name;
         this.mobile = mobile;
-        this.address = address;
+        this.memberAddress = memberAddress;
         this.introduce = introduce;
         this.fcmToken = fcmToken;
     }
 
-    public static Member of(MemberCreateRequest memberCreateRequest) {
-        return Member.builder()
-                .email(memberCreateRequest.getEmail())
-                .pw(memberCreateRequest.getPw())
-                .name(memberCreateRequest.getName())
-                .mobile(memberCreateRequest.getMobile())
-                .address(memberCreateRequest.getAddress())
-                .fcmToken(memberCreateRequest.getFcmToken())
-                .build();
+    public void changePassword(String oldPw, String newPw) {
+        if (!password.isMatch(oldPw)) {
+            throw new IllegalArgumentException();
+        }
+        password = new Password(newPw);
     }
 
-    public void updateMember(MemberCreateRequest memberCreateRequest) {
-        this.pw = memberCreateRequest.getPw();
-        this.name = memberCreateRequest.getName();
-        this.mobile = memberCreateRequest.getMobile();
-        this.address = memberCreateRequest.getAddress();
+    public void checkPassword(String inputPw) {
+        if (!password.isMatch(inputPw)) {
+            throw new IllegalArgumentException();
+        }
     }
-
 }

@@ -1,7 +1,6 @@
 package com.youngman.mop.myclub.service;
 
-import com.youngman.mop.club.domain.ClubFindDao;
-import com.youngman.mop.member.domain.MemberFindDao;
+import com.youngman.mop.member.infra.repository.MemberFindDao;
 import com.youngman.mop.myclub.domain.MyClub;
 import com.youngman.mop.myclub.controller.MyClubCreateRequest;
 import com.youngman.mop.myclub.domain.MyClubRepository;

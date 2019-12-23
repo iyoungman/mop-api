@@ -1,7 +1,7 @@
 package com.youngman.mop.domain.comment.domain;
 
 import com.youngman.mop.board.domain.Board;
-import com.youngman.mop.domain.generic.time.BaseTime;
+import com.youngman.mop.common.model.BaseTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

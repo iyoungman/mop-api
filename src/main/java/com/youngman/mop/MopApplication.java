@@ -11,7 +11,7 @@ import java.util.TimeZone;
 public class MopApplication {
 
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
-            + "classpath:application.yml,"
+            + "classpath:dw.yml,"
             + "classpath:aws.yml";
 
     @PostConstruct

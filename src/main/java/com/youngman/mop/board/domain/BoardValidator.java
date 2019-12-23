@@ -1,6 +1,6 @@
 package com.youngman.mop.board.domain;
 
-import com.youngman.mop.club.domain.ClubRepository;
+import com.youngman.mop.club.command.domain.ClubRepository;
 import com.youngman.mop.member.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

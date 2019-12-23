@@ -1,7 +1,6 @@
 package com.youngman.mop.domain.schedule.service;
 
-import com.youngman.mop.club.domain.ClubFindDao;
-import com.youngman.mop.club.domain.Club;
+import com.youngman.mop.club.command.domain.Club;
 import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
 import com.youngman.mop.domain.schedule.dao.ScheduleRepository;
 import lombok.RequiredArgsConstructor;

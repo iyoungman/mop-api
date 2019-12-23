@@ -112,15 +112,3 @@ logging:
         type:
           descriptor:
             sql: trace
-
-cloud:
-  aws:
-    s3:
-      bucket: iyoungman
-      dirName: mop
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
-    credentials:
-      instanceProfile: true

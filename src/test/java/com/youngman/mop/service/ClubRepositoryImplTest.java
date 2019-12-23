@@ -1,8 +1,8 @@
-//package com.youngman.mop.service;
+//package com.youngman.mop.dw;
 //
-//import com.youngman.mop.club.controller.ClubInfoResponse;
-//import com.youngman.mop.club.domain.ClubRepositoryImpl;
-//import com.youngman.mop.club.service.ClubFetchService;
+//import com.youngman.mop.club.command.dto.ClubInfoResponse;
+//import com.youngman.mop.club.infra.ClubRepositoryImpl;
+//import com.youngman.mop.club.dw.ClubFetchService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.modelmapper.ModelMapper;
@@ -29,7 +29,7 @@
 //
 //	@Test
 //	public void ff() throws Exception {
-//		/*Club list = clubRepository.fetchClubInfoById(1L);
+//		/*Club list = clubRepository.selectClubInfoById(1L);
 //		System.out.println(list);*/
 //
 //		/*modelMapper.addMappings(new PropertyMap<Club, ClubInfoResponse.ClubInfo>() {
@@ -57,7 +57,7 @@
 //
 //		System.out.println("haha");*/
 //
-//		ClubInfoResponse clubInfoResponse = clubFetchService.fetchClubInfoById(1L);
+//		ClubInfoResponse clubInfoResponse = clubFetchService.selectClubInfoById(1L);
 //		System.out.println("haha");
 //	}
 //}
