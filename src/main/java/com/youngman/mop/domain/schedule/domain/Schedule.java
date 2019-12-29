@@ -1,22 +1,13 @@
 package com.youngman.mop.domain.schedule.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.youngman.mop.club.command.domain.Club;
-import com.youngman.mop.common.model.BaseTime;
-import com.youngman.mop.domain.participant.domain.Participant;
-import com.youngman.mop.domain.schedule.dto.ScheduleCreateRequest;
-import com.youngman.mop.domain.schedule.dto.ScheduleUpdateRequest;
+import com.youngman.mop.domain.common.model.Address;
+import com.youngman.mop.domain.common.model.BaseTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by YoungMan on 2019-05-23.
@@ -26,60 +17,38 @@ import java.util.List;
 @Table(name = "schedule_tbl")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Schedule extends BaseTime implements Serializable {
+public class Schedule extends BaseTime {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "schedule_id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "schedule_id")
+	private Long id;
 
-    private String name;
+	@Column(name = "club_id")
+	private Long clubId;
 
-    @Lob
-    private String content;
+	private String name;
 
-    private String region;
+	@Lob
+	private String content;
 
-    private String writer;
+	@Embedded
+	private Address address;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime meetingTime;
+	@Embedded
+	private Writer writer;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "club_id", nullable = false)
-    private Club club;
+	@Embedded
+	private MeetingTime meetingTime;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
-    private List<Participant> participants = new ArrayList<>();
-
-    @Builder
-    public Schedule(String name, String content, String region,
-                    String writer, LocalDateTime meetingTime, Club club) {
-        this.name = name;
-        this.content = content;
-        this.region = region;
-        this.writer = writer;
-        this.meetingTime = meetingTime;
-        this.club = club;
-    }
-
-    public static Schedule of(ScheduleCreateRequest scheduleCreateRequest, Club club) {
-        return Schedule.builder()
-                .name(scheduleCreateRequest.getName())
-                .content(scheduleCreateRequest.getContent())
-                .region(scheduleCreateRequest.getRegion())
-                .writer(scheduleCreateRequest.getWriter())
-                .meetingTime(scheduleCreateRequest.getMeetingTime())
-                .club(club)
-                .build();
-    }
-
-    public void updateSchedule(ScheduleUpdateRequest scheduleUpdateRequest) {
-        this.name = scheduleUpdateRequest.getName();
-        this.content = scheduleUpdateRequest.getContent();
-        this.region = scheduleUpdateRequest.getRegion();
-        this.writer = scheduleUpdateRequest.getWriter();
-        this.meetingTime = scheduleUpdateRequest.getMeetingTime();
-    }
+	@Builder
+	public Schedule(Long clubId, String name, String content,
+					Address address, Writer writer, MeetingTime meetingTime) {
+		this.clubId = clubId;
+		this.name = name;
+		this.content = content;
+		this.address = address;
+		this.writer = writer;
+		this.meetingTime = meetingTime;
+	}
 }

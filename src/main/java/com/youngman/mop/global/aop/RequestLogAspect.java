@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Aspect
 public class RequestLogAspect {
 
-    @Pointcut("within(com.youngman.mop.domain.*.api.*)")//jwtApi 도 추가할 것
+    @Pointcut("within(com.youngman.mop.original.*.api.*)")//jwtApi 도 추가할 것
     public void onRequest() {
     }
 

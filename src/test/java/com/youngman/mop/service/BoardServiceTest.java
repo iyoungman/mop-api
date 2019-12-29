@@ -1,16 +1,16 @@
 //package com.youngman.mop.dw;
 //
-//import com.youngman.mop.board.domain.BoardRepository;
-//import com.youngman.mop.board.domain.Board;
-//import com.youngman.mop.board.domain.BoardType;
-//import com.youngman.mop.board.api.BoardPagingResponse;
-//import com.youngman.mop.board.dw.BoardFetchService;
-//import com.youngman.mop.club.command.domain.ClubFindDao;
+//import com.youngman.mop.domain.board.original.BoardRepository;
+//import com.youngman.mop.domain.board.original.Board;
+//import com.youngman.mop.domain.board.original.BoardType;
+//import com.youngman.mop.domain.board.api.BoardPagingResponse;
+//import com.youngman.mop.domain.board.dw.BoardFetchService;
+//import com.youngman.mop.domain.club.command.original.ClubFindDao;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.data.domain.PageRequest;
+//import org.springframework.data.original.PageRequest;
 //import org.springframework.test.context.junit4.SpringRunner;
 //
 //import java.util.ArrayList;

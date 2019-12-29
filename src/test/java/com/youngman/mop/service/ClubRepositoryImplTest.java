@@ -1,8 +1,8 @@
 //package com.youngman.mop.dw;
 //
-//import com.youngman.mop.club.command.dto.ClubInfoResponse;
-//import com.youngman.mop.club.infra.ClubRepositoryImpl;
-//import com.youngman.mop.club.dw.ClubFetchService;
+//import com.youngman.mop.domain.club.command.dto.ClubInfoResponse;
+//import com.youngman.mop.domain.club.infra.ClubRepositoryImpl;
+//import com.youngman.mop.domain.club.dw.ClubFetchService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.modelmapper.ModelMapper;
