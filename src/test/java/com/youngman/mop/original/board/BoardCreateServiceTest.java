@@ -1,6 +1,6 @@
 package com.youngman.mop.original.board;
 
-import com.youngman.mop.domain.board.controller.BoardCreateRequest;
+import com.youngman.mop.domain.board.controller.dto.BoardCreateRequest;
 import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.domain.BoardType;

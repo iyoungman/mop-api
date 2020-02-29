@@ -1,9 +1,10 @@
 package com.youngman.mop.domain.board.service;
 
+import com.youngman.mop.core.jwt.Claim;
+import com.youngman.mop.core.jwt.JwtService;
 import com.youngman.mop.domain.board.domain.BoardFindDao;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.exception.InvalidWriterException;
-import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,17 @@ import org.springframework.stereotype.Service;
 public class BoardDeleteService {
 
     private final BoardRepository boardRepository;
-    private final BoardFindDao boardFindDao;
-    private final JwtService jwtService;
 
+    private final BoardFindDao boardFindDao;
+
+    private final JwtService jwtService;
 
     public void deleteBoard(Long boardId, String token) {
         String findWriter = boardFindDao.findWriterById(boardId);
-        String tokenWriter = jwtService.findNameByJwt(token);
+
+        Claim claim = jwtService.decode(token);
+        String tokenWriter = claim.getName();
+
         checkValidateWriter(findWriter, tokenWriter);
 
         boardRepository.deleteById(boardId);

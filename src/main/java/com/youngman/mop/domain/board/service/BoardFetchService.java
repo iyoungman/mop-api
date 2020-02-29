@@ -3,7 +3,7 @@ package com.youngman.mop.domain.board.service;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.domain.BoardType;
-import com.youngman.mop.domain.board.controller.BoardPagingResponse;
+import com.youngman.mop.domain.board.controller.dto.BoardPagingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

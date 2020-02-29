@@ -3,7 +3,7 @@ package com.youngman.mop.domain.board.service;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.domain.BoardValidator;
-import com.youngman.mop.domain.board.controller.BoardCreateRequest;
+import com.youngman.mop.domain.board.controller.dto.BoardCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,6 @@ public class BoardCreateService {
 
     private final BoardRepository boardRepository;
     private final BoardValidator boardValidator;
-
 
     public void createBoard(BoardCreateRequest boardCreateRequest) {
         Board board = boardCreateRequest.toEntity();

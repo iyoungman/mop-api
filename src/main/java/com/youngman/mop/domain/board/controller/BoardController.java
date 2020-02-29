@@ -1,5 +1,8 @@
 package com.youngman.mop.domain.board.controller;
 
+import com.youngman.mop.domain.board.controller.dto.BoardCreateRequest;
+import com.youngman.mop.domain.board.controller.dto.BoardPagingResponse;
+import com.youngman.mop.domain.board.controller.dto.BoardUpdateRequest;
 import com.youngman.mop.domain.board.service.BoardCreateService;
 import com.youngman.mop.domain.board.service.BoardDeleteService;
 import com.youngman.mop.domain.board.service.BoardFetchService;

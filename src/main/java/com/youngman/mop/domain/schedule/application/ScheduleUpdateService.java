@@ -1,11 +1,12 @@
 package com.youngman.mop.domain.schedule.application;
 
+import com.youngman.mop.core.jwt.Claim;
+import com.youngman.mop.core.jwt.JwtService;
 import com.youngman.mop.domain.board.exception.InvalidWriterException;
+import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.original.schedule.dao.ScheduleFindDao;
 import com.youngman.mop.original.schedule.dao.ScheduleRepository;
-import com.youngman.mop.domain.schedule.domain.Schedule;
 import com.youngman.mop.original.schedule.dto.ScheduleUpdateRequest;
-import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,11 @@ public class ScheduleUpdateService {
 
     public void updateSchedule(ScheduleUpdateRequest scheduleUpdateRequest, String token) {
         Schedule schedule = scheduleFindDao.findById(scheduleUpdateRequest.getScheduleId());
-        checkValidateWriter(schedule.getWriter(), jwtService.findNameByJwt(token));
+
+        Claim claim = jwtService.decode(token);
+
+        checkValidateWriter(schedule.getWriter(), claim.getName());
+
         schedule.updateSchedule(scheduleUpdateRequest);
         scheduleRepository.save(schedule);
     }

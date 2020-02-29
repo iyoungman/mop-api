@@ -1,11 +1,12 @@
 package com.youngman.mop.domain.board.service;
 
+import com.youngman.mop.core.jwt.Claim;
+import com.youngman.mop.core.jwt.JwtService;
+import com.youngman.mop.domain.board.controller.dto.BoardUpdateRequest;
+import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.domain.BoardFindDao;
 import com.youngman.mop.domain.board.domain.BoardRepository;
-import com.youngman.mop.domain.board.domain.Board;
-import com.youngman.mop.domain.board.controller.BoardUpdateRequest;
 import com.youngman.mop.domain.board.exception.InvalidWriterException;
-import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,10 @@ public class BoardUpdateService {
 
     public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
         Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
-        board.checkWriter(jwtService.findNameByJwt(token));
+
+        Claim claim = jwtService.decode(token);
+        board.checkWriter(claim.getName());
+
         board.updateBoardItem(boardUpdateRequest.getTitle(), boardUpdateRequest.getContent());
         boardRepository.save(board);
     }

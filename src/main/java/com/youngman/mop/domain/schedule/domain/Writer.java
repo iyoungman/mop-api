@@ -18,4 +18,6 @@ public class Writer {
 
 	@Column(name = "member_id")
 	private Long memberId;
+
+
 }

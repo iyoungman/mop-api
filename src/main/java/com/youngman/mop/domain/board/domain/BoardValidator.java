@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class BoardValidator {
 
     private final ClubRepository clubRepository;
+
     private final MemberRepository memberRepository;
 
     public void validate(Board board) {

@@ -2,7 +2,7 @@ package com.youngman.mop.domain.club.query;
 
 import com.youngman.mop.domain.club.command.domain.ClubRepository;
 import com.youngman.mop.domain.club.command.domain.Club;
-import com.youngman.mop.infra.aws.S3Uploader;
+import com.youngman.mop.common.aws.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

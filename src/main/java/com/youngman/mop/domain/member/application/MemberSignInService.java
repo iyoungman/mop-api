@@ -1,11 +1,10 @@
 package com.youngman.mop.domain.member.application;
 
+import com.youngman.mop.core.jwt.JwtService;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.dto.MemberSignInRequest;
 import com.youngman.mop.domain.member.dto.MemberSignInResponse;
-import com.youngman.mop.domain.member.exception.InvalidPasswordException;
 import com.youngman.mop.domain.member.infra.repository.MemberFindDao;
-import com.youngman.mop.global.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,25 +17,21 @@ import org.springframework.stereotype.Service;
 public class MemberSignInService {
 
     private final MemberFindDao memberFindDao;
-    private final JwtService jwtService;
 
+    private final JwtService jwtService;
 
     public MemberSignInResponse singInMember(MemberSignInRequest memberSignInRequest) {
         Member member = memberFindDao.findByEmail(memberSignInRequest.getEmail());
 
-        if (isEqualPw(member.getPw(), memberSignInRequest.getPw())) {
-            String token = jwtService.createJwt(member.getEmail(), member.getName());
-            return MemberSignInResponse.builder()
-                    .token(token)
-                    .email(member.getEmail())
-                    .name(member.getName())
-                    .build();
-        }
-        throw new InvalidPasswordException();
+        member.checkPassword(memberSignInRequest.getPw());
+
+        String token = jwtService.encode(member.getEmail(), member.getName());
+
+        return MemberSignInResponse.builder()
+                .token(token)
+                .email(member.getEmail())
+                .name(member.getName())
+                .build();
     }
 
-
-    private boolean isEqualPw(String pw, String signInPw) {
-        return pw.equals(signInPw);
-    }
 }
