@@ -3,7 +3,7 @@
 //import com.youngman.mop.domain.board.original.BoardRepository;
 //import com.youngman.mop.domain.board.original.Board;
 //import com.youngman.mop.domain.board.original.BoardType;
-//import com.youngman.mop.domain.board.api.BoardPagingResponse;
+//import com.youngman.mop.domain.board.controller.BoardPagingResponse;
 //import com.youngman.mop.domain.board.dw.BoardFetchService;
 //import com.youngman.mop.domain.club.command.original.ClubFindDao;
 //import org.junit.Test;

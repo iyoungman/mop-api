@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.schedule.application;
+package com.youngman.mop.domain.schedule.service;
 
 import com.youngman.mop.domain.club.command.domain.Club;
 import com.youngman.mop.original.schedule.dto.ScheduleCreateRequest;

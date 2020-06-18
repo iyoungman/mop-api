@@ -1,23 +1,22 @@
-package com.youngman.mop.original.myclub.domain;
-
-import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.jpa.impl.JPAQuery;
-import com.youngman.mop.original.myclub.controller.MyClubResponse;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.time.LocalDateTime;
-import java.util.List;
+package com.youngman.mop.domain.myclub.domain;
 
 import static com.youngman.mop.original.club.domain.QClub.club;
 import static com.youngman.mop.original.member.domain.QMember.member;
 import static com.youngman.mop.original.myclub.domain.QMyClub.myClub;
 import static com.youngman.mop.original.schedule.domain.QSchedule.schedule;
+
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.CaseBuilder;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.youngman.mop.domain.myclub.controller.dto.MyClubResponse;
+import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by YoungMan on 2019-05-23.

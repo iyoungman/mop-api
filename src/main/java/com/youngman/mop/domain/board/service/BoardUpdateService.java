@@ -22,7 +22,6 @@ public class BoardUpdateService {
     private final BoardFindDao boardFindDao;
     private final JwtService jwtService;
 
-
     public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
         Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
 

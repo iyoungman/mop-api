@@ -1,4 +1,4 @@
-package com.youngman.mop.original.myclub.exception;
+package com.youngman.mop.domain.myclub.exception;
 
 import com.youngman.mop.core.error.exception.BusinessLogicException;
 import com.youngman.mop.core.error.exception.ErrorCodeType;

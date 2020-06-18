@@ -27,7 +27,6 @@ public class BoardController {
     private final BoardUpdateService boardUpdateService;
     private final BoardDeleteService boardDeleteService;
 
-
     @PostMapping
     public void createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
         boardCreateService.createBoard(boardCreateRequest);

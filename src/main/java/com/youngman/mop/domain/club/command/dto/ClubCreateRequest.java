@@ -1,9 +1,9 @@
 package com.youngman.mop.domain.club.command.dto;
 
 import com.youngman.mop.domain.club.command.domain.Club;
-import com.youngman.mop.domain.common.model.Address;
 import com.youngman.mop.domain.club.command.domain.ClubChair;
 import com.youngman.mop.domain.club.command.domain.ClubImage;
+import com.youngman.mop.domain.common.model.Address;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +35,7 @@ public class ClubCreateRequest {
         return Club.builder()
                 .name(name)
                 .introduce(introduce)
-                .clubAddress(address)
+                .address(address)
                 .clubChair(clubChair)
                 .clubImage(clubImage)
                 .build();

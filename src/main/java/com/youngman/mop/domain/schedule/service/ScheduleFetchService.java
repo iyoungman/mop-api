@@ -1,4 +1,4 @@
-package com.youngman.mop.domain.schedule.application;
+package com.youngman.mop.domain.schedule.service;
 
 import com.youngman.mop.original.schedule.dao.ScheduleRepository;
 import com.youngman.mop.domain.schedule.domain.Schedule;

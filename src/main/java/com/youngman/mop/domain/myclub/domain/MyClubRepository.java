@@ -1,4 +1,4 @@
-package com.youngman.mop.original.myclub.domain;
+package com.youngman.mop.domain.myclub.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface MyClubRepository extends JpaRepository<MyClub, Long>, MyClubRepositoryCustom {
 
+	//TODO 쿼리 작성
 	@Query()
 	void deleteByMemberAndAndClub(@Param("email") String email, @Param("clubId") Long clubId);
 }

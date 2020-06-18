@@ -1,23 +1,26 @@
-package com.youngman.mop.original.myclub.domain;
+package com.youngman.mop.domain.myclub.domain;
 
 import com.youngman.mop.domain.common.model.BaseDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
 /**
- * Created by YoungMan on 2019-05-12.
+ * Created by iyoungman on 2020-06-16.
  */
 
 @Entity
 @Table(name = "my_club_tbl")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MyClub extends BaseDate implements Serializable {
+public class MyClub extends BaseDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +39,7 @@ public class MyClub extends BaseDate implements Serializable {
         this.clubId = clubId;
     }
 
-//    public static MyClub of(Member member, Club club) {
-//        return MyClub.builder()
-//                .member(member)
-//                .club(club)
-//                .build();
-//    }
-
+    public void validate(MyClubValidator myClubValidator) {
+        myClubValidator.validate();
+    }
 }

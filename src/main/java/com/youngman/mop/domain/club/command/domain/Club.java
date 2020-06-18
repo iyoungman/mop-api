@@ -39,10 +39,6 @@ public class Club extends BaseDate {
 	@Embedded
 	private ClubImage clubImage;
 
-	@ElementCollection
-	@CollectionTable(name = "club_member", joinColumns = @JoinColumn(name = "club_id"))
-	private Set<Long> memberIds = new HashSet<>();
-
 	//Hobby를 별도의 Entity로 빼자
 //    private List<Hobby> hobby = new ArrayList<>();
 
@@ -56,17 +52,13 @@ public class Club extends BaseDate {
 		this.clubImage = clubImage;
 	}
 
+	public void validate(ClubValidator clubValidator) {
+		clubValidator.validate(this);
+	}
+
 	public void verifyChairMan(Long memberId) {
 		if (!clubChair.getChairManId().equals(memberId)) {
 			throw new RuntimeException();
 		}
-	}
-
-	public void registerClub(Long memberId) {
-		if (memberIds.contains(memberId)) {
-			throw new RuntimeException("이미 동호회에 가입된 인원입니다.");
-		}
-		memberIds.add(memberId);
-//		Events.Raise();
 	}
 }

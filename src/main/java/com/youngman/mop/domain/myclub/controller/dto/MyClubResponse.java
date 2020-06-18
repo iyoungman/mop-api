@@ -1,12 +1,11 @@
-package com.youngman.mop.original.myclub.controller;
+package com.youngman.mop.domain.myclub.controller.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Created by YoungMan on 2019-05-23.

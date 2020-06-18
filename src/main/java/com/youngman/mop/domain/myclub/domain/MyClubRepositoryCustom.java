@@ -1,7 +1,6 @@
-package com.youngman.mop.original.myclub.domain;
+package com.youngman.mop.domain.myclub.domain;
 
-import com.youngman.mop.original.myclub.controller.MyClubResponse;
-
+import com.youngman.mop.domain.myclub.controller.dto.MyClubResponse;
 import java.util.List;
 
 /**
