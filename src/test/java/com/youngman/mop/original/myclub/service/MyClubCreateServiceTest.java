@@ -4,7 +4,7 @@
 //import com.youngman.mop.domain.club.command.original.Club;
 //import com.youngman.mop.domain.member.infra.repository.MemberFindDao;
 //import com.youngman.mop.domain.member.original.Member;
-//import com.youngman.mop.original.myclub.controller.MyClubCreateRequest;
+//import com.youngman.mop.original.myclub.api.MyClubCreateRequest;
 //import com.youngman.mop.domain.club.command.original.ClubRepository;
 //import com.youngman.mop.domain.member.original.MemberRepository;
 //import com.youngman.mop.original.myclub.original.MyClubRepository;

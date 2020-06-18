@@ -1,16 +1,15 @@
 package com.youngman.mop.domain.club.query;
 
-import com.youngman.mop.domain.club.command.domain.Club;
-import com.youngman.mop.domain.club.command.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.api.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.domain.member.domain.Member;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by YoungMan on 2019-07-18.
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 public class ClubMapper {
 
     private final ModelMapper modelMapper;
-
 
     public ClubInfoResponse mapFrom(Club club) {
         prepareModelMapper();

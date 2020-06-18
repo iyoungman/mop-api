@@ -1,9 +1,9 @@
 //package com.youngman.mop.dw;
 //
 //import com.youngman.mop.domain.club.command.original.Club;
-//import com.youngman.mop.original.schedule.dto.ScheduleCreateRequest;
+//import com.youngman.mop.domain.schedule.api.dto.ScheduleCreateRequest;
 //import com.youngman.mop.domain.club.command.original.ClubRepository;
-//import com.youngman.mop.original.schedule.dao.ScheduleRepository;
+//import com.youngman.mop.domain.schedule.domain.ScheduleRepository;
 //import com.youngman.mop.original.schedule.dw.ScheduleCreateService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

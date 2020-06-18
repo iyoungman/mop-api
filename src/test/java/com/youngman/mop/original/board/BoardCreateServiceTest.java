@@ -1,11 +1,11 @@
 package com.youngman.mop.original.board;
 
-import com.youngman.mop.domain.board.controller.dto.BoardCreateRequest;
+import com.youngman.mop.domain.board.api.dto.BoardCreateRequest;
 import com.youngman.mop.domain.board.domain.Board;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.domain.BoardType;
-import com.youngman.mop.domain.board.service.BoardCreateService;
-import com.youngman.mop.domain.club.command.domain.Club;
+import com.youngman.mop.domain.board.application.BoardCreateService;
+import com.youngman.mop.domain.club.domain.Club;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

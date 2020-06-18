@@ -2,7 +2,7 @@ package com.youngman.mop.domain.member.application;
 
 import com.youngman.mop.domain.member.exception.EmailDuplicationException;
 import com.youngman.mop.domain.member.domain.Member;
-import com.youngman.mop.domain.member.dto.MemberCreateRequest;
+import com.youngman.mop.domain.member.api.dto.MemberCreateRequest;
 import com.youngman.mop.domain.member.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,7 @@
 package com.youngman.mop.domain.schedule.domain;
 
-import com.youngman.mop.domain.club.api.ClubScheduleResponse;
-import com.youngman.mop.domain.club.command.domain.ClubScheduleService;
-import com.youngman.mop.original.schedule.dao.ScheduleRepository;
+import com.youngman.mop.domain.club.api.dto.ClubScheduleResponse;
+import com.youngman.mop.domain.club.domain.ClubScheduleService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

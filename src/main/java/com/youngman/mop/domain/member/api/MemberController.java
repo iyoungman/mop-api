@@ -4,9 +4,9 @@ import com.youngman.mop.domain.member.application.MemberCreateService;
 import com.youngman.mop.domain.member.application.MemberDeleteService;
 import com.youngman.mop.domain.member.application.MemberSignInService;
 import com.youngman.mop.domain.member.application.MemberUpdateService;
-import com.youngman.mop.domain.member.dto.MemberCreateRequest;
-import com.youngman.mop.domain.member.dto.MemberSignInRequest;
-import com.youngman.mop.domain.member.dto.MemberSignInResponse;
+import com.youngman.mop.domain.member.api.dto.MemberCreateRequest;
+import com.youngman.mop.domain.member.api.dto.MemberSignInRequest;
+import com.youngman.mop.domain.member.api.dto.MemberSignInResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

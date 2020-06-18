@@ -9,7 +9,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.youngman.mop.domain.myclub.controller.dto.MyClubResponse;
+import com.youngman.mop.domain.myclub.api.dto.MyClubResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;

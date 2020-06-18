@@ -3,7 +3,7 @@
 //import com.youngman.mop.domain.member.infra.repository.MemberFindDao;
 //import com.youngman.mop.domain.member.original.MemberRepository;
 //import com.youngman.mop.domain.member.original.Member;
-//import com.youngman.mop.domain.member.dto.MemberCreateRequest;
+//import com.youngman.mop.domain.member.api.dto.MemberCreateRequest;
 //import com.youngman.mop.domain.member.exception.EmailDuplicationException;
 //import org.junit.Before;
 //import org.junit.Rule;

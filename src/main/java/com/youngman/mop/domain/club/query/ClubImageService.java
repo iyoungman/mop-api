@@ -1,8 +1,9 @@
 package com.youngman.mop.domain.club.query;
 
-import com.youngman.mop.domain.club.command.domain.ClubRepository;
-import com.youngman.mop.domain.club.command.domain.Club;
+import com.youngman.mop.domain.club.domain.ClubRepository;
+import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.common.aws.S3Uploader;
+import com.youngman.mop.domain.club.exception.ClubNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class ClubImageService {
 
     private final ClubRepository clubRepository;
-    private final ClubFindDao clubFindDao;
     private final S3Uploader s3Uploader;
     private final ClubCache clubCache;
 
 
     public String uploadClubImage(Long clubId, MultipartFile imageFile) {
         clubCache.delete(clubId);
-        Club club = clubFindDao.findById(clubId);
+        Club club = clubRepository.findById(clubId).orElseThrow(ClubNotFoundException::new);
+
         String imageUri = s3Uploader.uploadFile(imageFile, generateFileName(clubId));
         club.updateClubImagePath(imageUri);
         clubRepository.save(club);

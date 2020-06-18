@@ -9,7 +9,7 @@ import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
 import com.youngman.mop.domain.board.domain.Board;
-import com.youngman.mop.domain.club.command.domain.Club;
+import com.youngman.mop.domain.club.domain.Club;
 import com.youngman.mop.original.myclub.domain.MyClub;
 import com.youngman.mop.domain.schedule.domain.Schedule;
 

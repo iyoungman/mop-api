@@ -1,6 +1,6 @@
 package com.youngman.mop.original.participant.service;
 
-import com.youngman.mop.domain.club.command.domain.ClubRepository;
+import com.youngman.mop.domain.club.domain.ClubRepository;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.original.participant.dao.ParticipantFindDao;
 import com.youngman.mop.original.participant.dto.ParticipantResponse;

@@ -1,6 +1,6 @@
 //package com.youngman.mop.original.club.dw;
 //
-//import com.youngman.mop.domain.club.command.dto.ClubCreateRequest;
+//import com.youngman.mop.domain.club.api.dto.ClubCreateRequest;
 //import com.youngman.mop.domain.club.command.original.ClubRepository;
 //import com.youngman.mop.domain.club.dw.ClubCreateService;
 //import org.junit.Test;

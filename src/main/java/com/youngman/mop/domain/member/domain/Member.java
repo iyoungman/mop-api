@@ -1,13 +1,18 @@
 package com.youngman.mop.domain.member.domain;
 
-import com.youngman.mop.domain.common.model.Address;
-import com.youngman.mop.domain.common.model.BaseDate;
+import com.youngman.mop.common.model.Address;
+import com.youngman.mop.common.model.BaseDate;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 /**
  * Created by YoungMan on 2019-05-08.
@@ -30,6 +35,7 @@ public class Member extends BaseDate {
 	@Embedded
 	private Password password;
 
+	//실명제, 초기에 정하면 바꿀 수 없다.
 	private String name;
 
 	private String mobile;

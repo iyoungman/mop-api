@@ -1,20 +1,21 @@
 package com.youngman.mop.domain.club.query.application;
 
-import com.youngman.mop.domain.club.command.dto.ClubInfoResponse;
-import com.youngman.mop.domain.club.command.dto.ClubResponse;
+import com.youngman.mop.domain.club.api.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.api.dto.ClubPagingResponse;
+import com.youngman.mop.domain.club.api.dto.ClubResponse;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.club.domain.ClubRepository;
 import com.youngman.mop.domain.club.query.ClubMapper;
 import com.youngman.mop.domain.club.query.dto.ClubCacheKey;
-import com.youngman.mop.domain.club.command.dto.ClubPagingResponse;
-import com.youngman.mop.domain.club.command.domain.Club;
-import com.youngman.mop.domain.club.command.domain.ClubRepository;
+import com.youngman.mop.domain.member.domain.MemberRepository;
+import com.youngman.mop.domain.member.infra.repository.MemberFindDao;
+import java.util.Optional;
+import javax.persistence.Cacheable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.Cacheable;
-import java.util.Optional;
 
 /**
  * Created by YoungMan on 2019-05-24.
@@ -26,14 +27,15 @@ import java.util.Optional;
 public class ClubFetchService {
 
     private final ClubRepository clubRepository;
-//    private final MemberFindDao memberFindDao;
+    private final MemberRepository memberRepository;
+    private final MemberFindDao memberFindDao;
 //    private final ClubCache clubCache;
     private final ClubMapper clubMapper;
 
 
     public ClubPagingResponse selectPagingClubsByMember(String email, PageRequest pageable) {
         Page<ClubResponse> pagingClubResponse = clubRepository.selectPagingClubsByMember(
-                email, memberFindDao.findAddressByEmail(email), pageable);
+                email, memberRepository.findAddressByEmail(email), pageable);
 
         return ClubPagingResponse.of(pagingClubResponse);
     }

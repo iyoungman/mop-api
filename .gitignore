@@ -36,3 +36,6 @@ mvnw.cmd
 #/src/test/java/com/youngman/mop/
 
 aws.yml
+
+/src/test/*
+/src/main/java/com/youngman/mop/original/

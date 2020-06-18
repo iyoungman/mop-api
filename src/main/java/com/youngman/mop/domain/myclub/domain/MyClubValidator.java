@@ -1,7 +1,7 @@
 package com.youngman.mop.domain.myclub.domain;
 
-import com.youngman.mop.domain.club.command.domain.Club;
-import com.youngman.mop.domain.club.command.domain.ClubRepository;
+import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.domain.club.domain.ClubRepository;
 import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.domain.MemberRepository;
 import java.util.Optional;

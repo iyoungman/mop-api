@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.club.query;
 
-import com.youngman.mop.domain.club.command.dto.ClubInfoResponse;
+import com.youngman.mop.domain.club.api.dto.ClubInfoResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.RedisConnection;
