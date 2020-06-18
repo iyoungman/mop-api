@@ -19,5 +19,4 @@ https://github.com/iyoungman/mop-android
 * AWS S3 연동
 * ETC..
 
-## Ing
-* 도메인 설계 변경하기
+## Refactoring(2020.06.18~)
