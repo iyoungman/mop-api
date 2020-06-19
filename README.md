@@ -19,5 +19,5 @@ https://github.com/iyoungman/mop-android
 * AWS S3 연동
 * ETC..
 
-## Refactoring(2020.06.18~)
+## Refactoring(2020.06 ~)
 * https://github.com/iyoungman/mop-api/tree/task/refactoring
