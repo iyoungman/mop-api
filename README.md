@@ -36,5 +36,8 @@
 * TO-BE
   * 의존성 역전, 중간 객체 등을 통해 순환 참조 해결
 
+<br>
 
+> [3] 성능 테스트(todo)
+* http://naver.github.io/ngrinder/
 
