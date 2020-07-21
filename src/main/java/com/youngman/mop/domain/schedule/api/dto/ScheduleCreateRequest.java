@@ -1,8 +1,9 @@
 package com.youngman.mop.domain.schedule.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.youngman.mop.domain.club.domain.Club;
+import com.youngman.mop.common.model.Address;
 import com.youngman.mop.domain.schedule.domain.Schedule;
+import com.youngman.mop.domain.schedule.domain.Writer;
 import com.youngman.mop.domain.schedule.exception.InvalidMeetingTimeException;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,7 +30,6 @@ public class ScheduleCreateRequest {
 	private LocalDateTime meetingTime;
 	private Long clubId;
 
-
 	@Builder
 	public ScheduleCreateRequest(String name, String content, String region,
 								 LocalDateTime meetingTime, String writer, Long clubId) {
@@ -41,14 +41,15 @@ public class ScheduleCreateRequest {
 		this.clubId = clubId;
 	}
 
-	public Schedule toEntity(Club club) {
+	//TODO 도메인 수정
+	public Schedule toEntity() {
 		return Schedule.builder()
 				.name(name)
 				.content(content)
-				.region(region)
-				.writer(writer)
+				.address(new Address(region, region, region))
+				.writer(new Writer(1L, writer))
 				.meetingTime(meetingTime)
-				.club(club)
+				.clubId(clubId)
 				.build();
 	}
 

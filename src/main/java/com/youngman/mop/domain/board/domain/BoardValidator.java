@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 public class BoardValidator {
 
     private final ClubRepository clubRepository;
-
     private final MemberRepository memberRepository;
 
     public void validate(Board board) {
@@ -33,8 +32,8 @@ public class BoardValidator {
     }
 
     private void validateBoardItem(BoardItem boardItem) {
-        if (boardItem.isValid()) {
-            throw new IllegalArgumentException("게시판 내용이 잘못되었습니다.");
+        if (!boardItem.isValid()) {
+            throw new IllegalArgumentException("게시글 내용이 잘못되었습니다.");
         }
     }
 

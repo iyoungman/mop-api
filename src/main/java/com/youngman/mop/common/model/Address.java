@@ -31,4 +31,9 @@ public class Address {
 		this.district = district;
 		this.neighborhood = neighborhood;
 	}
+
+	@Override
+	public String toString() {
+		return city + district + neighborhood;
+	}
 }

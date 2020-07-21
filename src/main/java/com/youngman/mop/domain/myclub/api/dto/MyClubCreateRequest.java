@@ -17,9 +17,8 @@ public class MyClubCreateRequest {
     private Long memberId;
     private Long clubId;
 
-
     @Builder
-    public MyClubCreateRequest(Long email, Long clubId) {
+    public MyClubCreateRequest(Long memberId, Long clubId) {
         this.memberId = memberId;
         this.clubId = clubId;
     }

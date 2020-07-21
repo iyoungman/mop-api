@@ -22,4 +22,9 @@ public class ClubImage {
 	public ClubImage(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
+	@Override
+	public String toString() {
+		return imagePath;
+	}
 }

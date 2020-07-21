@@ -17,12 +17,10 @@ public class MemberCreateService {
 
     private final MemberRepository memberRepository;
 
-
-    public void createMember(MemberCreateRequest memberCreateRequest) {
-
+    public Long createMember(MemberCreateRequest memberCreateRequest) {
         if (!memberRepository.existsByEmail(memberCreateRequest.getEmail())) {
-            memberRepository.save(Member.of(memberCreateRequest));
-            return;
+            Member member = memberRepository.save(memberCreateRequest.toEntity());
+            return member.getId();
         }
         throw new EmailDuplicationException();
     }

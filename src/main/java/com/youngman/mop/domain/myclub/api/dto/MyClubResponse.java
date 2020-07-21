@@ -1,5 +1,6 @@
 package com.youngman.mop.domain.myclub.api.dto;
 
+import com.youngman.mop.domain.club.domain.Club;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
@@ -24,18 +25,27 @@ public class MyClubResponse {
     private String imageUri;
     private LocalDateTime upComingMeetingDate;
 
-
     @Builder
-    public MyClubResponse(Long clubId, String name, String introduce,
-                          LocalDate createDate, String region, String hobby,
-                          String imageUri, LocalDateTime upComingMeetingDate) {
-        this.clubId = clubId;
-        this.name = name;
-        this.introduce = introduce;
-        this.createDate = createDate;
-        this.region = region;
-        this.hobby = hobby;
-        this.imageUri = imageUri;
+    public MyClubResponse(Club club, LocalDateTime upComingMeetingDate) {
+        this.clubId = club.getId();
+        this.name = club.getName();
+        this.introduce = club.getIntroduce();
         this.upComingMeetingDate = upComingMeetingDate;
     }
+
+//    @Builder
+//    public MyClubResponse(Long clubId, String name, String introduce,
+//                          LocalDate createDate, String region, String hobby,
+//                          String imageUri, LocalDateTime upComingMeetingDate) {
+//        this.clubId = clubId;
+//        this.name = name;
+//        this.introduce = introduce;
+//        this.createDate = createDate;
+//        this.region = region;
+//        this.hobby = hobby;
+//        this.imageUri = imageUri;
+//        this.upComingMeetingDate = upComingMeetingDate;
+//    }
+
+
 }

@@ -12,7 +12,6 @@ import java.util.Map;
 public class Claim {
 
     private String email;
-
     private String name;
 
     public Claim(Map<String, Object> claimMap) {

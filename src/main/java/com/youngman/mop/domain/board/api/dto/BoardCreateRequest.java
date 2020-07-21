@@ -23,7 +23,6 @@ public class BoardCreateRequest {
     private Long clubId;
     private Long userId;
 
-
     @Builder
     public BoardCreateRequest(String title, String content, String writer,
                               BoardType boardType, Long clubId, Long userId) {

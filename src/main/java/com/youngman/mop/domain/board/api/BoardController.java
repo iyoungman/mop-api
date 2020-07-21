@@ -5,7 +5,7 @@ import com.youngman.mop.domain.board.api.dto.BoardPagingResponse;
 import com.youngman.mop.domain.board.api.dto.BoardUpdateRequest;
 import com.youngman.mop.domain.board.application.BoardCreateService;
 import com.youngman.mop.domain.board.application.BoardDeleteService;
-import com.youngman.mop.domain.board.application.BoardFetchService;
+import com.youngman.mop.domain.board.application.BoardFindService;
 import com.youngman.mop.domain.board.application.BoardUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
 
     private final BoardCreateService boardCreateService;
-    private final BoardFetchService boardFetchService;
+    private final BoardFindService boardFetchService;
     private final BoardUpdateService boardUpdateService;
     private final BoardDeleteService boardDeleteService;
 

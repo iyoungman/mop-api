@@ -4,7 +4,6 @@ import com.youngman.mop.core.jwt.Claim;
 import com.youngman.mop.core.jwt.JwtService;
 import com.youngman.mop.domain.board.api.dto.BoardUpdateRequest;
 import com.youngman.mop.domain.board.domain.Board;
-import com.youngman.mop.domain.board.domain.BoardFindDao;
 import com.youngman.mop.domain.board.domain.BoardRepository;
 import com.youngman.mop.domain.board.exception.InvalidWriterException;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,10 @@ import org.springframework.stereotype.Service;
 public class BoardUpdateService {
 
     private final BoardRepository boardRepository;
-    private final BoardFindDao boardFindDao;
     private final JwtService jwtService;
 
     public void updateBoard(BoardUpdateRequest boardUpdateRequest, String token) {
-        Board board = boardFindDao.findById(boardUpdateRequest.getBoardId());
+        Board board = boardRepository.findById(boardUpdateRequest.getBoardId()).get();
 
         Claim claim = jwtService.decode(token);
         board.checkWriter(claim.getName());

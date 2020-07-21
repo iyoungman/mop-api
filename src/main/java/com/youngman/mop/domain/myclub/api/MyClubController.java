@@ -4,7 +4,7 @@ import com.youngman.mop.domain.myclub.api.dto.MyClubCreateRequest;
 import com.youngman.mop.domain.myclub.api.dto.MyClubResponse;
 import com.youngman.mop.domain.myclub.application.MyClubCreateService;
 import com.youngman.mop.domain.myclub.application.MyClubDeleteService;
-import com.youngman.mop.domain.myclub.application.MyClubFetchService;
+import com.youngman.mop.domain.myclub.application.MyClubFindService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyClubController {
 
     private final MyClubCreateService myClubCreateService;
-    private final MyClubFetchService myClubFetchService;
-    private final MyClubDeleteService myClubDeleteService;
 
+    private final MyClubFindService myClubFetchService;
+
+    private final MyClubDeleteService myClubDeleteService;
 
     @PostMapping
     public void createMyClub(@RequestBody MyClubCreateRequest myClubCreateRequest) {
@@ -37,13 +38,13 @@ public class MyClubController {
     }
 
     @GetMapping
-    public List<MyClubResponse> fetchMyClubsByMemberEmail(@RequestParam("email") String email) {
-        return myClubFetchService.fetchMyClubsByMemberEmail(email);
+    public List<MyClubResponse> fetchMyClubsByMemberEmail(@RequestParam("memberId") Long memberId) {
+        return myClubFetchService.findMyClubsByMemberId(memberId);
     }
 
     @DeleteMapping
-    public void deleteMyClub(@RequestParam("email") String email, @RequestParam("clubId") Long clubId) {
-        myClubDeleteService.deleteMyClub(email, clubId);
+    public void deleteMyClub(@RequestParam("memberId") Long memberId, @RequestParam("clubId") Long clubId) {
+        myClubDeleteService.deleteMyClub(memberId, clubId);
     }
 
 }

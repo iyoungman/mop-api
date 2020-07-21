@@ -1,9 +1,9 @@
 spring:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/mop?useSSL=false&serverTimezone=Asia/Seoul
+        url: jdbc:mysql://database-first.cjwqe1jklwit.ap-northeast-2.rds.amazonaws.com:3306/mop?useSSL=false&serverTimezone=Asia/Seoul
         username: iyoungman
-        password: duddnjsgl912!
+        password: duddnjsgl912
 
     redis:
-        host: 54.180.67.243
+        host: 101.101.216.197
         port: 6379

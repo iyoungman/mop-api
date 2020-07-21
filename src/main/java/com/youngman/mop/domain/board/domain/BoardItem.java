@@ -12,16 +12,10 @@ import javax.persistence.*;
  * Created by YoungMan on 2019-08-19.
  */
 
-@Entity
-@Table(name = "board_item_tbl")
 @Getter
+@Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_item_id")
-    private Long id;
 
     private String title;
 
@@ -31,7 +25,7 @@ public class BoardItem {
     private String writer;
 
     @Enumerated(EnumType.STRING)
-    private BoardType boardType;
+    private BoardType boardType = BoardType.POST;
 
     @Builder
     public BoardItem(String title, String content,

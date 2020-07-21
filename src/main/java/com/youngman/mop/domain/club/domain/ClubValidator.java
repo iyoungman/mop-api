@@ -23,7 +23,7 @@ public class ClubValidator {
             throw new IllegalArgumentException("중복되는 동호회 이름입니다.");
         }
 
-        if (getMember(club).isPresent()) {
+        if (!getMember(club).isPresent()) {
             throw new IllegalArgumentException("탈퇴한 회원입니다.");
         }
     }

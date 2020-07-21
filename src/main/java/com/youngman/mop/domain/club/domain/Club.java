@@ -68,4 +68,8 @@ public class Club extends BaseDate {
     public void updateClubImagePath(String path) {
         this.clubImage = new ClubImage(path);
     }
+
+    public String getImagePath() {
+        return clubImage.getImagePath();
+    }
 }

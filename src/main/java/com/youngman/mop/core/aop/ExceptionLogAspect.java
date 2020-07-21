@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.aop.framework.ProxyFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,7 +20,7 @@ import java.time.LocalDateTime;
 @Aspect
 public class ExceptionLogAspect {
 
-    @AfterThrowing(value = "execution(* com.youngman.mop.original.*.api.*.*(..))", throwing = "e")
+    @AfterThrowing(value = "execution(* com.youngman.mop.domain.*.api.*.*(..))", throwing = "e")
     public void printExceptionLog(JoinPoint joinPoint, Exception e) {
         log.info("==============Exception Log Start=================");
         log.info("|");

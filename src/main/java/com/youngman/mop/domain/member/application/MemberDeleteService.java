@@ -15,7 +15,6 @@ public class MemberDeleteService {
 
     private final MemberRepository memberRepository;
 
-
     public void deleteById(Long id) {
         memberRepository.deleteById(id);
     }

@@ -22,6 +22,10 @@ public class ClubChair {
 	@Column(name = "vice_chairman_id")
 	private Long viceChairManId;
 
+	public ClubChair(Long chairManId) {
+		this.chairManId = chairManId;
+	}
+
 	public ClubChair(Long chairManId, Long viceChairManId) {
 		checkEqual();
 		this.chairManId = chairManId;
@@ -29,13 +33,13 @@ public class ClubChair {
 	}
 
 	public void setChairManId(Long chairManId) {
-		this.chairManId = chairManId;
 		checkEqual();
+		this.chairManId = chairManId;
 	}
 
 	public void setViceChairManId(Long viceChairManId) {
-		this.viceChairManId = viceChairManId;
 		checkEqual();
+		this.viceChairManId = viceChairManId;
 	}
 
 	private void checkEqual() {

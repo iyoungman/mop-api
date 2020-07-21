@@ -24,5 +24,4 @@ public class BoardUpdateRequest {
         this.content = content;
     }
 
-
 }

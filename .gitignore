@@ -33,9 +33,8 @@ HELP.md
 mvnw
 mvnw.cmd
 
-#/src/test/java/com/youngman/mop/
-
+src/main/resources/application-dev.yml
+src/main/resources/application-real.yml
 aws.yml
 
-/src/test/*
 /src/main/java/com/youngman/mop/original/

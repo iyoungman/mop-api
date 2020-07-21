@@ -1,5 +1,9 @@
 package com.youngman.mop.domain.member.api.dto;
 
+import com.youngman.mop.common.model.Address;
+import com.youngman.mop.domain.member.domain.FcmToken;
+import com.youngman.mop.domain.member.domain.Member;
+import com.youngman.mop.domain.member.domain.Password;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,12 +28,23 @@ public class MemberCreateRequest {
 
     @Builder
     public MemberCreateRequest(String email, String pw, String name,
-                               String mobile, String address, String fcmToken) {
+            String mobile, String address, String fcmToken) {
         this.email = email;
         this.pw = pw;
         this.name = name;
         this.mobile = mobile;
         this.address = address;
         this.fcmToken = fcmToken;
+    }
+
+    public Member toEntity() {
+        return Member.builder()
+                .email(email)
+                .password(new Password(pw))
+                .name(name)
+                .mobile(mobile)
+                .address(new Address(address, address, address))
+                .fcmToken(new FcmToken(fcmToken))
+                .build();
     }
 }

@@ -3,7 +3,6 @@ package com.youngman.mop.domain.schedule.application;
 import com.youngman.mop.core.jwt.Claim;
 import com.youngman.mop.core.jwt.JwtService;
 import com.youngman.mop.domain.board.exception.InvalidWriterException;
-import com.youngman.mop.original.schedule.dao.ScheduleFindDao;
 import com.youngman.mop.domain.schedule.domain.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,12 +16,12 @@ import org.springframework.stereotype.Service;
 public class ScheduleDeleteService {
 
     private final ScheduleRepository scheduleRepository;
-    private final ScheduleFindDao scheduleFindDao;
     private final JwtService jwtService;
 
 
     public void deleteSchedule(Long scheduleId, String token) {
-        String findWriter = scheduleFindDao.findWriterById(scheduleId);
+//        String findWriter = scheduleRepository.findWriterById(scheduleId);
+        String findWriter = null;
 
         Claim claim = jwtService.decode(token);
         String tokenWriter = claim.getName();

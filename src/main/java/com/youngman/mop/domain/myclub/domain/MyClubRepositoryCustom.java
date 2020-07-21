@@ -9,7 +9,5 @@ import java.util.List;
 
 public interface MyClubRepositoryCustom {
 
-	List<MyClubResponse> fetchMyClubsByMemberEmail(String email);
-
-	boolean isExistMyClubByMemberEmailAndClubId(String email, Long clubId);
+	boolean isExistMyClubByMemberIdAndClubId(Long memberId, Long clubId);
 }

@@ -21,9 +21,9 @@ public class BoardCreateService {
     private final BoardRepository boardRepository;
     private final BoardValidator boardValidator;
 
-    public void createBoard(BoardCreateRequest boardCreateRequest) {
+    public Long createBoard(BoardCreateRequest boardCreateRequest) {
         Board board = boardCreateRequest.toEntity();
         board.check(boardValidator);
-        boardRepository.save(board);
+        return boardRepository.save(board).getId();
     }
 }

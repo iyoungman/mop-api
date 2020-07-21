@@ -6,6 +6,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.aop.framework.ProxyFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 @Aspect
 public class RequestLogAspect {
 
-    @Pointcut("within(com.youngman.mop.original.*.api.*)")//jwtApi 도 추가할 것
+    @Pointcut("within(com.youngman.mop.domain.*.api.*)")//jwtApi 도 추가할 것
     public void onRequest() {
     }
 

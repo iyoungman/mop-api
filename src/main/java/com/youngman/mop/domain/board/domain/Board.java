@@ -1,12 +1,20 @@
 package com.youngman.mop.domain.board.domain;
 
-import com.youngman.mop.domain.common.model.BaseTime;
+import com.youngman.mop.common.model.BaseTime;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 /**
  * Created by YoungMan on 2019-05-23.
@@ -29,7 +37,7 @@ public class Board extends BaseTime {
     @Column(name = "user_id")
     private Long userId;
 
-    @OneToOne
+    @Embedded
     private BoardItem boardItem;
 
 //    @JsonIgnore
@@ -55,4 +63,7 @@ public class Board extends BaseTime {
         boardItem.updateTitleAndContent(title, content);
     }
 
+    public BoardType getBoardType() {
+        return boardItem.getBoardType();
+    }
 }

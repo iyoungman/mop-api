@@ -22,10 +22,8 @@ public class BoardPagingResponse {
     private List<Board> notices = new ArrayList<>();
     private List<Board> posts = new ArrayList<>();
 
-
     @Builder
-    public BoardPagingResponse(boolean isLast, boolean isEmpty,
-                               List<Board> notices, List<Board> posts) {
+    public BoardPagingResponse(boolean isLast, boolean isEmpty, List<Board> notices, List<Board> posts) {
         this.isLast = isLast;
         this.isEmpty = isEmpty;
         this.notices = notices;

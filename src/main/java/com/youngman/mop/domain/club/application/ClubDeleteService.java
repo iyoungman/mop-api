@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ClubDeleteService {
 
     private final ClubRepository clubRepository;
 
-    @Transactional
     public void deleteClub(Long clubId, Long memberId) {
-        Club club = clubRepository.findById(clubId).get();
+        Club club = clubRepository.findById(clubId).orElseThrow(() -> new RuntimeException());
         club.verifyChairMan(memberId);
         clubRepository.deleteById(clubId);
     }

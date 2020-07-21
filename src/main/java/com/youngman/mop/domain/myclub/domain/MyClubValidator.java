@@ -23,18 +23,15 @@ public class MyClubValidator {
     private final MemberRepository memberRepository;
 
     public void validate(MyClub myClub) {
-        if (getClub(myClub).isPresent()) {
+        if (!getClub(myClub).isPresent()) {
             throw new IllegalArgumentException("삭제된 동호회 입니다.");
         }
 
-        //TODO Optional isPresent 확인
-        if (getMember(myClub).isPresent()) {
+        if (!getMember(myClub).isPresent()) {
             throw new IllegalArgumentException("탈퇴한 멤버입니다.");
         }
 
-        //이미 가입된 동호회인지 확인
-        //TODO Email -> PK
-        if (myClubRepository.isExistMyClubByMemberEmailAndClubId(String.valueOf(myClub.getMemberId()), myClub.getMemberId())) {
+        if (myClubRepository.isExistMyClubByMemberIdAndClubId(myClub.getMemberId(), myClub.getClubId())) {
             throw new IllegalArgumentException("이미 가입된 동호회입니다.");
         }
     }
@@ -46,4 +43,5 @@ public class MyClubValidator {
     private Optional<Member> getMember(MyClub myClub) {
         return memberRepository.findById(myClub.getMemberId());
     }
+
 }

@@ -1,9 +1,9 @@
 package com.youngman.mop.domain.myclub.domain;
 
-import static com.youngman.mop.original.club.domain.QClub.club;
-import static com.youngman.mop.original.member.domain.QMember.member;
-import static com.youngman.mop.original.myclub.domain.QMyClub.myClub;
-import static com.youngman.mop.original.schedule.domain.QSchedule.schedule;
+import static com.youngman.mop.domain.member.domain.QMember.member;
+import static com.youngman.mop.domain.club.domain.QClub.club;
+import static com.youngman.mop.domain.myclub.domain.QMyClub.myClub;
+import static com.youngman.mop.domain.schedule.domain.QSchedule.schedule;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -16,7 +16,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * Created by YoungMan on 2019-05-23.
@@ -32,56 +31,47 @@ public class MyClubRepositoryImpl extends QuerydslRepositorySupport implements M
         super(MyClub.class);
     }
 
-
-    @Override
-    public List<MyClubResponse> fetchMyClubsByMemberEmail(String email) {
-        JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
-
-        return jpaQuery.select(Projections.constructor(MyClubResponse.class,
-                club.id, club.name, club.introduce, club.createdDate, club.region, club.hobby, club.imagePath, new CaseBuilder()
-                        .when(isAfterSchedule())
-                        .then(schedule.meetingTime.min())
-                        .otherwise((LocalDateTime) null).as("meetingTime"))
-        )
-                .from(myClub)
-                .innerJoin(myClub.member, member)
-                .innerJoin(myClub.club, club)
-                .leftJoin(club.schedule, schedule)
-                .where(eqMemberEmail(email))
-                .orderBy(schedule.meetingTime.asc())
-                .groupBy(club.id)
-                .fetch();
-    }
-
-    private BooleanExpression eqMemberEmail(String email) {
-        if (StringUtils.isEmpty(email)) {
-            return null;
-        }
-        return member.email.eq(email);
-    }
+//    @Override
+//    public List<MyClubResponse> fetchMyClubsByMemberId(Long memberId) {
+//        JPAQuery<MyClubResponse> jpaQuery = new JPAQuery<>(entityManager);
+//
+//        return jpaQuery.select(Projections.constructor(MyClubResponse.class,
+//                club.id, club.name, club.introduce, club.createdDate, club.name, club.name, club.clubImage.imagePath,
+//                new CaseBuilder()
+//                        .when(isAfterSchedule())
+//                        .then(schedule.meetingTime.min())
+//                        .otherwise((LocalDateTime) null).as("meetingTime"))
+//        )
+//                .from(myClub)
+//                .innerJoin(myClub.clubId, club)
+//                .leftJoin(club, schedule)
+//                .where(eqMemberId(memberId))
+//                .orderBy(schedule.meetingTime.asc())
+//                .groupBy(club.id)
+//                .fetch();
+//    }
 
     private BooleanExpression isAfterSchedule() {
         return schedule.meetingTime.after(LocalDateTime.now());
     }
 
-
-    public boolean isExistMyClubByMemberEmailAndClubId(String email, Long clubId) {
+    @Override
+    public boolean isExistMyClubByMemberIdAndClubId(Long memberId, Long clubId) {
         JPAQuery<MyClub> jpaQuery = new JPAQuery<>(entityManager);
 
-        List<MyClub> myClubs = jpaQuery.from(myClub)
-                .innerJoin(myClub.member, member)
-                .innerJoin(myClub.club, club)
-                .where(eqMemberEmail(email))
+        List<MyClub> result = jpaQuery.from(myClub)
                 .where(eqClubId(clubId))
+                .where(eqMemberId(memberId))
                 .fetch();
 
-        return myClubs.size() != 0;
+        return result.size() > 0;
     }
 
     private BooleanExpression eqClubId(Long clubId) {
-        if (clubId == null) {
-            return null;
-        }
-        return club.id.eq(clubId);
+        return myClub.clubId.eq(clubId);
+    }
+
+    private BooleanExpression eqMemberId(Long memberId) {
+        return myClub.memberId.eq(memberId);
     }
 }

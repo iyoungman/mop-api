@@ -1,6 +1,6 @@
 package com.youngman.mop.domain.myclub.domain;
 
-import com.youngman.mop.domain.common.model.BaseDate;
+import com.youngman.mop.common.model.BaseDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,6 +40,6 @@ public class MyClub extends BaseDate {
     }
 
     public void validate(MyClubValidator myClubValidator) {
-        myClubValidator.validate();
+        myClubValidator.validate(this);
     }
 }

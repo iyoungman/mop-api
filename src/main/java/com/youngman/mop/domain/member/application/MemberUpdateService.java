@@ -1,8 +1,7 @@
 package com.youngman.mop.domain.member.application;
 
-import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.api.dto.MemberCreateRequest;
-import com.youngman.mop.domain.member.infra.repository.MemberFindDao;
+import com.youngman.mop.domain.member.domain.Member;
 import com.youngman.mop.domain.member.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +16,9 @@ import org.springframework.stereotype.Service;
 public class MemberUpdateService {
 
     private final MemberRepository memberRepository;
-    private final MemberFindDao memberFindDao;
-
 
     public void updateMember(MemberCreateRequest memberCreateRequest) {
-        Member member = memberFindDao.findByEmail(memberCreateRequest.getEmail());
+        Member member = memberRepository.findByEmail(memberCreateRequest.getEmail()).get();
         member.updateMember(memberCreateRequest);
         memberRepository.save(member);
     }

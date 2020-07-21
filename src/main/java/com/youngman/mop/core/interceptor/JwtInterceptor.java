@@ -1,6 +1,6 @@
 package com.youngman.mop.core.interceptor;
 
-import com.youngman.mop.core.error.UserDefineException;
+import com.youngman.mop.core.exception.InvalidTokenException;
 import com.youngman.mop.core.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         if (StringUtils.isNotBlank(token) && jwtService.isValidate(token)) {
             return true;
         }
-        throw new UserDefineException("올바르지 않은 JWT 토큰입니다");
+        throw new InvalidTokenException();
     }
 
 }

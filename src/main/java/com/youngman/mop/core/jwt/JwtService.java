@@ -2,6 +2,10 @@ package com.youngman.mop.core.jwt;
 
 import com.google.common.collect.Maps;
 import io.jsonwebtoken.*;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -10,16 +14,17 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
+import org.springframework.stereotype.Service;
 
 @Slf4j
-@Component
+@Service
 public class JwtService {
 
     private static final String TYPE = "JWT";
 
     private static final String ALGORITHM = "HS256";
 
-    private static final Long ABSOLUTE_EXPIRE_TIME = 1000L * 60 * 60 * 8;//8시간
+    private static final long ABSOLUTE_EXPIRE_TIME = 1000 * 60 * 60 * 8;//8시간
 
     private static final String SECRET_KEY = "MoP";
 
@@ -32,20 +37,17 @@ public class JwtService {
         claimMap.put("email", email);
         claimMap.put("name", name);
 
-        Date now = new Date();
+        Date expireTime = new Date();
+        expireTime.setTime(expireTime.getTime() + ABSOLUTE_EXPIRE_TIME);
 
         JwtBuilder builder = Jwts.builder()
-                .setHeader(headerMap)
+                .setHeaderParam("typ", "JWT")
+                .setHeaderParam("issueDate", System.currentTimeMillis())
                 .setClaims(claimMap)
-                .setExpiration(new Date(now.getTime() + ABSOLUTE_EXPIRE_TIME))
+                .setExpiration(expireTime)
                 .signWith(SignatureAlgorithm.HS256, generateKey());
 
         return builder.compact();
-    }
-
-    private Key generateKey() {
-        byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
-        return new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS256.getJcaName());
     }
 
     public boolean isValidate(String token) {
@@ -65,12 +67,16 @@ public class JwtService {
     }
 
     public Claim decode(String token) {
-        Map<String, Object> claimMap = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+        Claims claims = Jwts.parser()
+                .setSigningKey(generateKey())
                 .parseClaimsJws(token)
                 .getBody();
 
-        return new Claim(claimMap);
+        return new Claim(claims);
+    }
+
+    private byte[] generateKey() {
+        return SECRET_KEY.getBytes(StandardCharsets.UTF_8);
     }
 
 }

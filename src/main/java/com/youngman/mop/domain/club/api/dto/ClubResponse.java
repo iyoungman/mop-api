@@ -23,7 +23,6 @@ public class ClubResponse {
     private String hobby;
     private String imageUri;
 
-
     @Builder
     public ClubResponse(Long clubId, String name, String introduce, LocalDate createDate,
                         String region, String hobby, String imageUri) {

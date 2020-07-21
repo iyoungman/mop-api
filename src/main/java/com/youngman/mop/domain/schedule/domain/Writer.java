@@ -1,11 +1,10 @@
 package com.youngman.mop.domain.schedule.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 /**
  * Created by YoungMan on 2019-12-23.

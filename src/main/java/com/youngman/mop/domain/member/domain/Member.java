@@ -2,6 +2,7 @@ package com.youngman.mop.domain.member.domain;
 
 import com.youngman.mop.common.model.Address;
 import com.youngman.mop.common.model.BaseDate;
+import com.youngman.mop.domain.member.api.dto.MemberCreateRequest;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -58,6 +59,10 @@ public class Member extends BaseDate {
 		this.address = address;
 		this.introduce = introduce;
 		this.fcmToken = fcmToken;
+	}
+
+	public void updateMember(MemberCreateRequest memberCreateRequest) {
+
 	}
 
 	public void changePassword(String oldPw, String newPw) {

@@ -18,7 +18,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     void deleteByEmail(String email);
 
-    @Query(value = "SELECT member.address FROM Member member WHERE member.email = :email")
-    String findAddressByEmail(@Param("email") String email);
+//    @Query(value = "SELECT member FROM Member member WHERE member.email = :email")
+//    Member findAddressByEmail(@Param("email") String email);
 
 }
