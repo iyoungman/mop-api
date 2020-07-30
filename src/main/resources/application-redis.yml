@@ -1,0 +1,6 @@
+spring:
+    redis:
+        host: 101.101.216.197
+        port: 6379
+        expire: 36000 # 60 * 60 * 10
+        timeout: 3 # Connection TimeOut
