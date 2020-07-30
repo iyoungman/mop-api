@@ -1,8 +1,13 @@
 HELP.md
+<<<<<<< HEAD
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+=======
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+>>>>>>> 8c4f6931bf3e30475469d449546d9a672582a09b
 
 ### STS ###
 .apt_generated
@@ -32,4 +37,7 @@ build/
 ### VS Code ###
 .vscode/
 
-.mvn/**
+### MAVEN ###
+.mvn/*
+mvnw
+mvnw.cmd
